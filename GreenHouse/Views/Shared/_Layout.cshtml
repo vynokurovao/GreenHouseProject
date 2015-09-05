@@ -1,42 +1,83 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Green House</title>
+
+    <!-- Bootstrap -->
+    <link href="./Content/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="./Content/font-awesome.css" />
+    <link rel="stylesheet" href="./Content/build.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.css" />
+    <link href="~/Content/Site.css" rel="stylesheet">
+
+    <script src="./Scripts/jquery-1.11.3.js"></script>
+    <script src="./Scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="./Scripts/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/locales/bootstrap-datepicker.ru.min.js"></script>
+
+    <script type="text/javascript" src="~/Scripts/greenhouse.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse navbar-right navbar-btn" id="bs-example-navbar-collapse-1">
+                            <div class="nav navbar-right">
+                                <a href="#" style="margin-right: 20px; color:gray">Логин</a>|
+                                <a href="#" style="margin-left: 20px; color:gray">Регистрация</a>
+                            </div>
+
+                        </div><!-- /.navbar-collapse -->
+                        <div class="logo" style="background: url(../../Content/images/logo.png) no-repeat; background-size: 139px 30px; position: absolute;  width: 139px; height: 30px; top: 0; left: 30px;">
+                        </div>
+                    </div><!-- /.container-fluid -->
+
+                </nav>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <script>
+        $(function () {
+            $('[data-toggle="popover"]').popover({
+                html: true
+            })
+
+            $('#datetimepicker12').datepicker({
+                inline: true,
+                sideBySide: true,
+                language: 'ru'
+            });
+
+            $("#schedule td").click(function (e) {
+                var currentTd = $(e.currentTarget);
+                currentTd.popover({
+                    html: true,
+                    placement: 'bottom',
+                    content: "<div class='custompopover'><h6>Цель</h6> <textarea /> <button onclick='$.GreenHouse.bookRoom(" + currentTd.attr("id") + ")'>Бронировать</button></div>"
+                });
+
+                currentTd.popover('show');
+            });
+        })
+    </script>
 </body>
+
 </html>

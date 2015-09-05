@@ -1,24 +1,68 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.container-fluid  .navbar-collapse {
+	width: 480px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+ul.navbar-nav li a {
+	padding: 25px 15px;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.radio-warning input[type="radio"]:checked + label::before {
+    border-color: #ccc;
 }
+
+.radio-warning input[type="radio"]:focus, .radio-warning input[type="radio"]:active {
+    border-color: #ccc;
+}
+
+.datepicker table tr td.active:hover, .datepicker table tr td.active:hover:hover, .datepicker table tr td.active.disabled:hover, .datepicker table tr td.active.disabled:hover:hover, .datepicker table tr td.active:active, .datepicker table tr td.active:hover:active, .datepicker table tr td.active.disabled:active, .datepicker table tr td.active.disabled:hover:active, .datepicker table tr td.active.active, .datepicker table tr td.active:hover.active, .datepicker table tr td.active.disabled.active, .datepicker table tr td.active.disabled:hover.active, .datepicker table tr td.active.disabled, .datepicker table tr td.active:hover.disabled, .datepicker table tr td.active.disabled.disabled, .datepicker table tr td.active.disabled:hover.disabled, .datepicker table tr td.active[disabled], .datepicker table tr td.active:hover[disabled], .datepicker table tr td.active.disabled[disabled], .datepicker table tr td.active.disabled:hover[disabled]
+{
+	background: transparent url(./images/active-calendar-item.png) no-repeat 1px 2px;
+	color: grey;
+	background-size: 26px ;
+}
+
+th.datepicker-switch {
+	font-size: 18px;
+	font-weight: normal;
+}
+
+table.table-condensed .dow{
+	font-weight: normal;
+	font-size: 10px;
+}
+
+.datepicker table tr.activeWeek {
+	position: relative;
+}
+
+.navbar-nav li a ul {
+	display:none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    margin: 0 auto;
+    top: 0px;
+}
+
+.navbar-default {
+    background-color: transparent;
+    border:0px solid black;
+}
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td 
+{
+  line-height:  1.42857143;
+  padding: 15px;
+}
+
