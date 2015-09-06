@@ -3,26 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GreenHouse.Models;
 
 namespace GreenHouse.Controllers
 {
     public class HomeController : Controller
     {
+
         public ActionResult Index()
         {
-            return View();
-        }
+            Entities db = new Entities();
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+            //IEnumerable<Reservation> TodayReservation = from r in db.Reservation
+            //                                            where r.StartDate.Date == DateTime.Now.Date
+            //                                            select r;
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Auditoriums = db.Auditorium;
 
             return View();
         }

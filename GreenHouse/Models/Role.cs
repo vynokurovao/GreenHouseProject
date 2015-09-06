@@ -9,18 +9,19 @@
 
 namespace GreenHouse.Models
 {
+    using System;
     using System.Collections.Generic;
     
     public partial class Role
     {
         public Role()
         {
-            this.Users = new HashSet<User>();
+            this.User = new HashSet<User>();
         }
     
         public int RoleId { get; set; }
         public string RoleName { get; set; }
     
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<User> User { get; set; }
     }
 }

@@ -9,18 +9,19 @@
 
 namespace GreenHouse.Models
 {
+    using System;
     using System.Collections.Generic;
     
     public partial class AdditionalEquipment
     {
         public AdditionalEquipment()
         {
-            this.Auditoriums = new HashSet<Auditorium>();
+            this.Auditorium = new HashSet<Auditorium>();
         }
     
         public int AdditionalEquipmentId { get; set; }
         public string AdditionalEquipmentName { get; set; }
     
-        public virtual ICollection<Auditorium> Auditoriums { get; set; }
+        public virtual ICollection<Auditorium> Auditorium { get; set; }
     }
 }

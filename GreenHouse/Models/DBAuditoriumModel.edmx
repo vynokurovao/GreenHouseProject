@@ -19,10 +19,9 @@
           <Property Name="AuditoriumId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AuditoriumName" Type="nvarchar" MaxLength="5" Nullable="false" />
           <Property Name="Capacity" Type="smallint" Nullable="false" />
-          <Property Name="AuditoriumEquipment" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'C:\USERS\РЕМАРК\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\GREENHOUSE\GREENHOUSE\APP_DATA\DBAUDITORIUM.MDF.dbo.AuditoriumEquipment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'C:\USERS\РЕМАРК\DOCUMENTS\GREENHOUSEPROJECT\GREENHOUSE\APP_DATA\DBAUDITORIUM.MDF.dbo.AuditoriumEquipment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="AuditoriumEquipment">
           <Key>
             <PropertyRef Name="Auditorium" />
@@ -36,7 +35,7 @@ warning 6002: The table/view 'C:\USERS\РЕМАРК\DOCUMENTS\VISUAL STUDIO 2015
             <PropertyRef Name="ReservationId" />
           </Key>
           <Property Name="ReservationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Auditorium" Type="int" Nullable="false" />
+          <Property Name="TargetAuditorium" Type="int" Nullable="false" />
           <Property Name="Purpose" Type="nvarchar" MaxLength="50" />
           <Property Name="StartDate" Type="datetime" Nullable="false" />
           <Property Name="FinishDate" Type="datetime" Nullable="false" />
@@ -93,7 +92,7 @@ warning 6002: The table/view 'C:\USERS\РЕМАРК\DOCUMENTS\VISUAL STUDIO 2015
               <PropertyRef Name="AuditoriumId" />
             </Principal>
             <Dependent Role="Reservation">
-              <PropertyRef Name="Auditorium" />
+              <PropertyRef Name="TargetAuditorium" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -165,7 +164,7 @@ FROM [dbo].[AuditoriumEquipment] AS [AuditoriumEquipment]</DefiningQuery>
           </Key>
           <Property Name="AdditionalEquipmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AdditionalEquipmentName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Auditoriums" Relationship="Self.AuditoriumEquipment" FromRole="AdditionalEquipment" ToRole="Auditorium" />
+          <NavigationProperty Name="Auditorium" Relationship="Self.AuditoriumEquipment" FromRole="AdditionalEquipment" ToRole="Auditorium" />
         </EntityType>
         <EntityType Name="Auditorium">
           <Key>
@@ -174,22 +173,21 @@ FROM [dbo].[AuditoriumEquipment] AS [AuditoriumEquipment]</DefiningQuery>
           <Property Name="AuditoriumId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AuditoriumName" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Capacity" Type="Int16" Nullable="false" />
-          <Property Name="AuditoriumEquipment" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservation_Auditorium" FromRole="Auditorium" ToRole="Reservation" />
-          <NavigationProperty Name="AdditionalEquipments" Relationship="Self.AuditoriumEquipment" FromRole="Auditorium" ToRole="AdditionalEquipment" />
+          <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_Auditorium" FromRole="Auditorium" ToRole="Reservation" />
+          <NavigationProperty Name="AdditionalEquipment" Relationship="Self.AuditoriumEquipment" FromRole="Auditorium" ToRole="AdditionalEquipment" />
         </EntityType>
         <EntityType Name="Reservation">
           <Key>
             <PropertyRef Name="ReservationId" />
           </Key>
           <Property Name="ReservationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Auditorium" Type="Int32" Nullable="false" />
+          <Property Name="TargetAuditorium" Type="Int32" Nullable="false" />
           <Property Name="Purpose" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FinishDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
           <Property Name="Type" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Auditoriums" Relationship="Self.FK_Reservation_Auditorium" FromRole="Reservation" ToRole="Auditorium" />
+          <NavigationProperty Name="Auditorium" Relationship="Self.FK_Reservation_Auditorium" FromRole="Reservation" ToRole="Auditorium" />
           <NavigationProperty Name="User" Relationship="Self.FK_Reservation_User" FromRole="Reservation" ToRole="User" />
         </EntityType>
         <EntityType Name="Role">
@@ -198,7 +196,7 @@ FROM [dbo].[AuditoriumEquipment] AS [AuditoriumEquipment]</DefiningQuery>
           </Key>
           <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -210,7 +208,7 @@ FROM [dbo].[AuditoriumEquipment] AS [AuditoriumEquipment]</DefiningQuery>
           <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Role" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservation_User" FromRole="User" ToRole="Reservation" />
+          <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_User" FromRole="User" ToRole="Reservation" />
           <NavigationProperty Name="Role1" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
         <Association Name="FK_Reservation_Auditorium">
@@ -221,7 +219,7 @@ FROM [dbo].[AuditoriumEquipment] AS [AuditoriumEquipment]</DefiningQuery>
               <PropertyRef Name="AuditoriumId" />
             </Principal>
             <Dependent Role="Reservation">
-              <PropertyRef Name="Auditorium" />
+              <PropertyRef Name="TargetAuditorium" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -253,27 +251,27 @@ FROM [dbo].[AuditoriumEquipment] AS [AuditoriumEquipment]</DefiningQuery>
           <End Role="AdditionalEquipment" Type="Self.AdditionalEquipment" Multiplicity="*" />
           <End Role="Auditorium" Type="Self.Auditorium" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="DBAuditoriumEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AdditionalEquipments" EntityType="Self.AdditionalEquipment" />
-          <EntitySet Name="Auditoriums" EntityType="Self.Auditorium" />
-          <EntitySet Name="Reservations" EntityType="Self.Reservation" />
-          <EntitySet Name="Roles" EntityType="Self.Role" />
-          <EntitySet Name="Users" EntityType="Self.User" />
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdditionalEquipment" EntityType="Self.AdditionalEquipment" />
+          <EntitySet Name="Auditorium" EntityType="Self.Auditorium" />
+          <EntitySet Name="Reservation" EntityType="Self.Reservation" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="User" EntityType="Self.User" />
           <AssociationSet Name="FK_Reservation_Auditorium" Association="Self.FK_Reservation_Auditorium">
-            <End Role="Auditorium" EntitySet="Auditoriums" />
-            <End Role="Reservation" EntitySet="Reservations" />
+            <End Role="Auditorium" EntitySet="Auditorium" />
+            <End Role="Reservation" EntitySet="Reservation" />
           </AssociationSet>
           <AssociationSet Name="FK_Reservation_User" Association="Self.FK_Reservation_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Reservation" EntitySet="Reservations" />
+            <End Role="User" EntitySet="User" />
+            <End Role="Reservation" EntitySet="Reservation" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
-            <End Role="Role" EntitySet="Roles" />
-            <End Role="User" EntitySet="Users" />
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
           <AssociationSet Name="AuditoriumEquipment" Association="Self.AuditoriumEquipment">
-            <End Role="AdditionalEquipment" EntitySet="AdditionalEquipments" />
-            <End Role="Auditorium" EntitySet="Auditoriums" />
+            <End Role="AdditionalEquipment" EntitySet="AdditionalEquipment" />
+            <End Role="Auditorium" EntitySet="Auditorium" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -281,8 +279,8 @@ FROM [dbo].[AuditoriumEquipment] AS [AuditoriumEquipment]</DefiningQuery>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DBAuditoriumModelStoreContainer" CdmEntityContainer="DBAuditoriumEntities">
-          <EntitySetMapping Name="AdditionalEquipments">
+        <EntityContainerMapping StorageEntityContainer="DBAuditoriumModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="AdditionalEquipment">
             <EntityTypeMapping TypeName="DBAuditoriumModel.AdditionalEquipment">
               <MappingFragment StoreEntitySet="AdditionalEquipment">
                 <ScalarProperty Name="AdditionalEquipmentId" ColumnName="AdditionalEquipmentId" />
@@ -290,21 +288,20 @@ FROM [dbo].[AuditoriumEquipment] AS [AuditoriumEquipment]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Auditoriums">
+          <EntitySetMapping Name="Auditorium">
             <EntityTypeMapping TypeName="DBAuditoriumModel.Auditorium">
               <MappingFragment StoreEntitySet="Auditorium">
                 <ScalarProperty Name="AuditoriumId" ColumnName="AuditoriumId" />
                 <ScalarProperty Name="AuditoriumName" ColumnName="AuditoriumName" />
                 <ScalarProperty Name="Capacity" ColumnName="Capacity" />
-                <ScalarProperty Name="AuditoriumEquipment" ColumnName="AuditoriumEquipment" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Reservations">
+          <EntitySetMapping Name="Reservation">
             <EntityTypeMapping TypeName="DBAuditoriumModel.Reservation">
               <MappingFragment StoreEntitySet="Reservation">
                 <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
-                <ScalarProperty Name="Auditorium" ColumnName="Auditorium" />
+                <ScalarProperty Name="TargetAuditorium" ColumnName="TargetAuditorium" />
                 <ScalarProperty Name="Purpose" ColumnName="Purpose" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
@@ -313,7 +310,7 @@ FROM [dbo].[AuditoriumEquipment] AS [AuditoriumEquipment]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Roles">
+          <EntitySetMapping Name="Role">
             <EntityTypeMapping TypeName="DBAuditoriumModel.Role">
               <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
@@ -321,7 +318,7 @@ FROM [dbo].[AuditoriumEquipment] AS [AuditoriumEquipment]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
+          <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="DBAuditoriumModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -355,7 +352,7 @@ FROM [dbo].[AuditoriumEquipment] AS [AuditoriumEquipment]</DefiningQuery>
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="true" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

@@ -9,22 +9,22 @@
 
 namespace GreenHouse.Models
 {
+    using System;
     using System.Collections.Generic;
     
     public partial class Auditorium
     {
         public Auditorium()
         {
-            this.Reservations = new HashSet<Reservation>();
-            this.AdditionalEquipments = new HashSet<AdditionalEquipment>();
+            this.Reservation = new HashSet<Reservation>();
+            this.AdditionalEquipment = new HashSet<AdditionalEquipment>();
         }
     
         public int AuditoriumId { get; set; }
         public string AuditoriumName { get; set; }
         public short Capacity { get; set; }
-        public int AuditoriumEquipment { get; set; }
     
-        public virtual ICollection<Reservation> Reservations { get; set; }
-        public virtual ICollection<AdditionalEquipment> AdditionalEquipments { get; set; }
+        public virtual ICollection<Reservation> Reservation { get; set; }
+        public virtual ICollection<AdditionalEquipment> AdditionalEquipment { get; set; }
     }
 }

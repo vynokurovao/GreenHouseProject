@@ -8,18 +8,21 @@
 //------------------------------------------------------------------------------
 
 namespace GreenHouse.Models
-{  
+{
+    using System;
+    using System.Collections.Generic;
+    
     public partial class Reservation
     {
         public int ReservationId { get; set; }
-        public int Auditorium { get; set; }
+        public int TargetAuditorium { get; set; }
         public string Purpose { get; set; }
         public System.DateTime StartDate { get; set; }
         public System.DateTime FinishDate { get; set; }
         public int CreatedBy { get; set; }
         public bool Type { get; set; }
     
-        public virtual Auditorium Auditoriums { get; set; }
+        public virtual Auditorium Auditorium { get; set; }
         public virtual User User { get; set; }
     }
 }

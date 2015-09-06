@@ -33,32 +33,27 @@
         <h5>Календарь</h5>
     </div>
     <div class="col-xs-2">
-        <button id="btnCalendarMode" class="btn btn-md" onclick="$.GreenHouse.btnCalendarMode_Click(this)" data-mode="0">День</button></divclass="col-xs-4">
+        <button id="btnCalendarMode" class="btn btn-md" onclick="$.GreenHouse.btnCalendarMode_Click(this)" data-mode="0">День</button>
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-2">
-    </div>>
-
+    <div class="col-xs-2"></div>
     <div class="col-xs-6">
         <table class="table table-striped table-bordered" id="schedule">
-
+                <tr style="border:0px">
+                    @foreach (var auditory in ViewBag.Auditoriums)
+                    {
+                        <th > @auditory.AuditoriumName</th>
+                    }
+                </tr>
             <tr>
-                <td id="11">1</td>
-                <td id="12">1</td>
-                <td id="13">1</td>
-                <td id="14">1</td>
-                <td id="15">1</td>
-                <td id="16">1</td>
-            </tr>
 
-            <tr>
-                <td id="21">2</td>
-                <td id="22">2</td>
-                <td id="23">2</td>
-                <td id="24">2</td>
-                <td id="25">2</td>
-                <td id="26">2</td>
+                <td id="31"></td>
+                <td id="32"></td>
+                <td id="33"></td>
+                <td id="34"></td>
+                <td id="35"></td>
+                <td id="36"></td>
             </tr>
             <tr>
                 <td id="31"></td>

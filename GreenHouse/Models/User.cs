@@ -9,13 +9,14 @@
 
 namespace GreenHouse.Models
 {
+    using System;
     using System.Collections.Generic;
     
     public partial class User
     {
         public User()
         {
-            this.Reservations = new HashSet<Reservation>();
+            this.Reservation = new HashSet<Reservation>();
         }
     
         public int UserId { get; set; }
@@ -25,7 +26,7 @@ namespace GreenHouse.Models
         public string Password { get; set; }
         public int Role { get; set; }
     
-        public virtual ICollection<Reservation> Reservations { get; set; }
+        public virtual ICollection<Reservation> Reservation { get; set; }
         public virtual Role Role1 { get; set; }
     }
 }

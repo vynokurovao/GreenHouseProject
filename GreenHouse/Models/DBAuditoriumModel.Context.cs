@@ -13,10 +13,10 @@ namespace GreenHouse.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DBAuditoriumEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public DBAuditoriumEntities()
-            : base("name=DBAuditoriumEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
@@ -25,10 +25,10 @@ namespace GreenHouse.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<AdditionalEquipment> AdditionalEquipments { get; set; }
-        public DbSet<Auditorium> Auditoriums { get; set; }
-        public DbSet<Reservation> Reservations { get; set; }
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<AdditionalEquipment> AdditionalEquipment { get; set; }
+        public DbSet<Auditorium> Auditorium { get; set; }
+        public DbSet<Reservation> Reservation { get; set; }
+        public DbSet<Role> Role { get; set; }
+        public DbSet<User> User { get; set; }
     }
 }

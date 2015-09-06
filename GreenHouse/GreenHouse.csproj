@@ -133,34 +133,34 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AdditionalEquipment.cs">
-      <DependentUpon>ModelAuditorium.tt</DependentUpon>
+      <DependentUpon>DBAuditoriumModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Auditorium.cs">
-      <DependentUpon>ModelAuditorium.tt</DependentUpon>
+      <DependentUpon>DBAuditoriumModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelAuditorium.Context.cs">
+    <Compile Include="Models\DBAuditoriumModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelAuditorium.Context.tt</DependentUpon>
+      <DependentUpon>DBAuditoriumModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelAuditorium.cs">
+    <Compile Include="Models\DBAuditoriumModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelAuditorium.tt</DependentUpon>
+      <DependentUpon>DBAuditoriumModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelAuditorium.Designer.cs">
+    <Compile Include="Models\DBAuditoriumModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelAuditorium.edmx</DependentUpon>
+      <DependentUpon>DBAuditoriumModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Reservation.cs">
-      <DependentUpon>ModelAuditorium.tt</DependentUpon>
+      <DependentUpon>DBAuditoriumModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Role.cs">
-      <DependentUpon>ModelAuditorium.tt</DependentUpon>
+      <DependentUpon>DBAuditoriumModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>ModelAuditorium.tt</DependentUpon>
+      <DependentUpon>DBAuditoriumModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -333,25 +333,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\ModelAuditorium.Context.tt">
+    <Content Include="Models\DBAuditoriumModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelAuditorium.edmx</DependentUpon>
-      <LastGenOutput>ModelAuditorium.Context.cs</LastGenOutput>
+      <DependentUpon>DBAuditoriumModel.edmx</DependentUpon>
+      <LastGenOutput>DBAuditoriumModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\ModelAuditorium.tt">
+    <Content Include="Models\DBAuditoriumModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelAuditorium.edmx</DependentUpon>
-      <LastGenOutput>ModelAuditorium.cs</LastGenOutput>
+      <DependentUpon>DBAuditoriumModel.edmx</DependentUpon>
+      <LastGenOutput>DBAuditoriumModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\ModelAuditorium.edmx">
+    <EntityDeploy Include="Models\DBAuditoriumModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelAuditorium.Designer.cs</LastGenOutput>
+      <LastGenOutput>DBAuditoriumModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\ModelAuditorium.edmx.diagram">
-      <DependentUpon>ModelAuditorium.edmx</DependentUpon>
+    <Content Include="Models\DBAuditoriumModel.edmx.diagram">
+      <DependentUpon>DBAuditoriumModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\greenhouse.js" />
@@ -378,8 +378,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
