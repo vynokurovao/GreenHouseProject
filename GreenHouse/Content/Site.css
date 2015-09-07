@@ -1,8 +1,10 @@
 ﻿body {
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    height: 100%;
 }
 
 .container-fluid  .navbar-collapse {
+    background-attachment:fixed;
 	width: 480px;
 }
 
@@ -82,4 +84,53 @@ img {
     border-spacing: 0px;
 }
 
+.btnregistr
+{
+	border: 0px;
+	margin: 0px;
+    margin-left: 20px;
+	padding: 0px;
+	background-color: transparent;
+}
 
+.btnlogin
+{
+	border: 0px;
+	margin: 0px;
+    margin-right: 20px;
+	padding: 0px;
+	background-color: transparent;
+}
+
+.modal-dialog {
+  position: absolute;
+  align-content:center;
+  width: 350px;
+  height: 200px;
+}
+
+h5, h6
+{
+    color:gray;
+}
+
+.center-container
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    color: gray;
+}
+.btntoday
+{
+    border:0px;
+	background-color:transparent;
+}
+
+.form-room{
+    padding:50px;
+    margin:0px;
+    padding-bottom: 150px;
+}

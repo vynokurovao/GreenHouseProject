@@ -33,7 +33,6 @@ CREATE TABLE [dbo].[Auditorium](
 	[AuditoriumId] [int] Identity(1,1) NOT NULL,
 	[AuditoriumName] [nvarchar](5) NOT NULL,
 	[Capacity] [smallint] NOT NULL,
-	[AuditoriumEquipment] [int] NULL,
  CONSTRAINT [PK_Auditorium] PRIMARY KEY CLUSTERED 
 (
 	[AuditoriumId] ASC

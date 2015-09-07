@@ -2,26 +2,28 @@
 
     $.GreenHouse = $.GreenHouse || {};
 
-    $.extend($.GreenHouse, {       
-        btnCalendarMode_Click: function(elem) {
-			element = $(elem)
-			
-			var selectedDayTd = $("#datetimepicker12 td.active");
-			
-			if (selectedDayTd.length) {
-				selectedDayTd.parent().toggleClass('activeWeek');
-			}
-			
-			var mode = element.attr('data-mode');
-			if (mode == 1) {
-				element.text('День')
-				mode = 0;
-			} else {
-				$(element).text('Неделя')
-				mode = 1;
-			}
-			
-			element.attr('data-mode', mode);
+    $.extend($.GreenHouse, {
+
+        btnToday_Click: function ()
+        {
+            $('#datetimepicker12').data
+        },
+
+        btnToggleCalendar_Click: function (elem)
+        {
+            element = $(elem);
+            $('#calendarContainer').toggle();
+
+            if ($('#table_container').hasClass('col-xs-6'))
+            {
+                $('#table_container').removeClass('col-xs-6').addClass('col-xs-8');
+                element.html('Показать');
+            }
+            else if ($('#table_container').hasClass('col-xs-8'))
+            {
+                $('#table_container').removeClass('col-xs-8').addClass('col-xs-6');
+                element.html('Скрыть');
+            }
         },
 
         bookRoom: function(id) {
