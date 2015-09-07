@@ -24,9 +24,8 @@ namespace GreenHouse.Models
         public string FirstName { get; set; }
         public string Surname { get; set; }
         public string Password { get; set; }
-        public int Role { get; set; }
     
         public virtual ICollection<Reservation> Reservation { get; set; }
-        public virtual Role Role1 { get; set; }
+        public virtual Role Role { get; set; }
     }
 }
