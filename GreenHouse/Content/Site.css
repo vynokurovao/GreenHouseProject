@@ -4,7 +4,6 @@
 }
 
 .container-fluid  .navbar-collapse {
-    background-attachment:fixed;
 	width: 480px;
 }
 
@@ -45,17 +44,10 @@ table.table-condensed .dow{
 	display:none;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-    display: flex;
-    margin: 0 auto;
-    top: 0px;
-}
-
 .navbar-default {
-    background-color: transparent;
+    background-color: white;
     border:0px solid black;
+    opacity:0.8;
 }
 .table > thead > tr > th,
 .table > tbody > tr > th,
@@ -65,6 +57,8 @@ img {
 .table > tfoot > tr > td 
 {
   line-height:  1.42857143;
+      width:50px;
+
 }
 .table > thead > tr > th,
 .table > tbody > tr > th,
@@ -80,6 +74,7 @@ img {
      background-color: #ffffff;
      border-spacing: 0px;
  }
+
 .table > th {
     border-spacing: 0px;
 }
@@ -107,6 +102,7 @@ img {
   align-content:center;
   width: 350px;
   height: 200px;
+  left: 40%;
 }
 
 h5, h6
@@ -114,23 +110,33 @@ h5, h6
     color:gray;
 }
 
-.center-container
-{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-    color: gray;
-}
-.btntoday
-{
-    border:0px;
-	background-color:transparent;
-}
-
 .form-room{
     padding:50px;
     margin:0px;
-    padding-bottom: 150px;
+    padding-bottom: 200px;
+    background-color:white;
+    opacity: 0.7; 
+    width: 300px; 
+    height: 200px;
 }
+
+.container {
+    background-image: url(../../Content/images/bg-home-img.png);
+    background-color: transparent;
+    background-position: 50% 0%;
+    background-size: 60%;
+    background-repeat: no-repeat;
+}
+
+#table-container{
+    width: 80%;
+        min-height: .01%;
+    overflow-x: auto;
+}
+
+#shedule{
+        width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+

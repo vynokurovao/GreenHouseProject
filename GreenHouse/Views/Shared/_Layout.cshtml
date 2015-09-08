@@ -9,24 +9,24 @@
 
     <!-- Bootstrap -->
     <link href="./Content/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="~/Content/font-awesome.css" />
-    <link rel="stylesheet" href="~/Content/build.css">
+    <link rel="stylesheet" href="./Content/font-awesome.css" />
+    <link rel="stylesheet" href="./Content/build.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.css" />
-    <link href="~/Content/Site.css" rel="stylesheet">
+    <link href="./Content/Site.css" rel="stylesheet">
 
-    <script src="~/Scripts/jquery-1.11.3.js"></script>
-    <script src="~/Scripts/bootstrap.js"></script>
-    <script type="text/javascript" src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script src="./Scripts/jquery-1.11.3.js"></script>
+    <script src="./Scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="./Scripts/bootstrap-datepicker.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/locales/bootstrap-datepicker.ru.min.js"></script>
 
-    <script type="text/javascript" src="~/Scripts/greenhouse.js"></script>
+    <script type="text/javascript" src="./Scripts/greenhouse.js"></script>
 </head>
 <body>
-    <div class="container" style="background-image:url(../../Content/images/bg-home-img.png); background-color: transparent;background-position:50% 30%; background-size: 80%; width: 792px; background-repeat:no-repeat; ">
+    <div class="container">
         <div class="row">
-            <div class="col-xs-12" >
-                <nav class="navbar navbar-default" >
-                    <div class="container-fluid" >
+            <div class="col-xs-12">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid text-center">
 
                         <!-- Brand and toggle get grouped for better mobile display -->
                         <div class="navbar-header">
@@ -58,66 +58,73 @@
                 </nav>
             </div>
         </div>
-        @RenderBody()
 
+        @RenderBody()
         <div id="Registration" class="modal fade" role="dialog">
             <div class="modal-dialog">
-
                 <!-- Modal content-->
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="form-horizontal text-center-left">
-                            <div class="row" style="width:400px;">
-                                <div class="col-xs-12 col-md-6" />
-                                <div class="col-xs-12 col-md-6">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="modal-content">
+                                <div class="text-center">
                                     <div>
-                                        <img src="~/Content/images/logo-big.png">
-                                    </div>
-                                    <div>
-                                        <img src="~/Content/images/icon-user-green.png">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>
-                                            <input type="text" placeholder="Username" id="Username" />
-                                            <output type="text" id="UsernameError" />
-                                        </label>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>
-                                            <input type="email" placeholder="Email" id="Email" />
-                                            <output type="text" id="EmailError" />
-                                        </label>
-                                    </div>
-
-                                    <div>
-                                        <img src="~/Content/images/icon-key-green.png">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>
-                                            <input type="password" placeholder="Password" id="Password" />
-                                            <output type="text" id="PasswordError" />
-                                        </label>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>
-                                            <input type="password" placeholder="Confirm Password" id="ConfirmPassword" />
-                                            <output type="text" id="ConfirmPasswordError" />
-                                        </label>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="col-md-offset-2 col-md-10">
-                                            <input type="submit" value="Registration" class="btn btn-default" />
-                                        </div>
+                                        <img src="./Content/images/logo-big.png">
                                     </div>
                                     <div>
-                                        <a href="#Come"></a>
+                                        <img src="./Content/images/icon-user-green.png">
                                     </div>
-
                                 </div>
+                                    
+                                <div class="form-group text-center">
+                                    <label>
+                                        <input type="text" placeholder="Имя" id="Username" />
+                                        <output type="text" id="UsernameError" />
+                                    </label>
+                                </div>
+
+                                <div class="form-group text-center">
+                                    <label>
+                                        <input type="text" placeholder="Фамилия" id="Username" />
+                                        <output type="text" id="SurnameError" />
+                                    </label>
+                                </div>
+
+                                <div class="form-group text-center">
+                                    <label>
+                                        <input type="text" placeholder="Електронная почта" id="Email" />
+                                        <output type="text" id="EmailError" />
+                                    </label>
+                                </div>
+                                <div class="text-center">
+                                    <div>
+                                        <img src="./Content/images/icon-key-green.png">
+                                    </div>
+                                </div>
+
+                                <div class="form-group text-center">
+                                    <label>
+                                        <input type="text" placeholder="Пароль" id="Password" />
+                                        <output type="text" id="PasswordError" />
+                                    </label>
+                                </div>
+
+                                <div class="form-group text-center">
+                                    <label>
+                                        <input type="text" placeholder="Повторить пароль" id="ConfirmPassword" />
+                                        <output type="text" id="ConfirmPasswordError" />
+                                    </label>
+                                </div>
+
+                                <div class="form-group text-center">
+                                    <div>
+                                        <input type="submit" value="Зарегестрироваться" class="btn btn-default" />
+                                    </div>
+                                </div>
+                                <div class="form-group text-center">
+                                    <a href="#" style="color:gray">Войти</a>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -125,7 +132,6 @@
 
             </div>
         </div>
-        
     </div>
 
     <script>
