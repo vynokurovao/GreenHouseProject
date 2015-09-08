@@ -44,7 +44,7 @@
                                         Логин
                                     </button>
                                     |
-                                    <button type="button" class="btnregistr" data-toggle="modal" data-target="#Registration">
+                                    <button id="btnRegistration" type="button" class="btnregistr" data-toggle="modal" data-target="#Registration">
                                         Реєстрація
                                     </button>
                                 </li>
@@ -64,78 +64,19 @@
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
-                    <div class="form-horizontal">
-                        <div class="row">
-                            <div class="modal-content">
-                                <div class="text-center">
-                                    <div>
-                                        <img src="./Content/images/logo-big.png">
-                                    </div>
-                                    <div>
-                                        <img src="./Content/images/icon-user-green.png">
-                                    </div>
-                                </div>
-                                    
-                                <div class="form-group text-center">
-                                    <label>
-                                        <input type="text" placeholder="Имя" id="Username" />
-                                        <output type="text" id="UsernameError" />
-                                    </label>
-                                </div>
-
-                                <div class="form-group text-center">
-                                    <label>
-                                        <input type="text" placeholder="Фамилия" id="Username" />
-                                        <output type="text" id="SurnameError" />
-                                    </label>
-                                </div>
-
-                                <div class="form-group text-center">
-                                    <label>
-                                        <input type="text" placeholder="Електронная почта" id="Email" />
-                                        <output type="text" id="EmailError" />
-                                    </label>
-                                </div>
-                                <div class="text-center">
-                                    <div>
-                                        <img src="./Content/images/icon-key-green.png">
-                                    </div>
-                                </div>
-
-                                <div class="form-group text-center">
-                                    <label>
-                                        <input type="text" placeholder="Пароль" id="Password" />
-                                        <output type="text" id="PasswordError" />
-                                    </label>
-                                </div>
-
-                                <div class="form-group text-center">
-                                    <label>
-                                        <input type="text" placeholder="Повторить пароль" id="ConfirmPassword" />
-                                        <output type="text" id="ConfirmPasswordError" />
-                                    </label>
-                                </div>
-
-                                <div class="form-group text-center">
-                                    <div>
-                                        <input type="submit" value="Зарегестрироваться" class="btn btn-default" />
-                                    </div>
-                                </div>
-                                <div class="form-group text-center">
-                                    <a href="#" style="color:gray">Войти</a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
                 </div>
-
             </div>
         </div>
     </div>
 
     <script>
         $(function () {
+            $('#btnRegistration').click('shown.bs.modal', function (e) {
+                $.get("@Url.Action("Create","Registration")", function (data) {
+                    $('#Registration div.modal-content').html(data);
+                });
+            });
+
             $('[data-toggle="popover"]').popover({
                 html: true
             })

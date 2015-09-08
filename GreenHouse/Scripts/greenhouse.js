@@ -36,5 +36,7 @@
 
             td.popover('hide');
         }
+
+
     });
 })(jQuery);
