@@ -49,35 +49,6 @@ table.table-condensed .dow{
     border:0px solid black;
     opacity:0.8;
 }
-.table > thead > tr > th,
-.table > tbody > tr > th,
-.table > tfoot > tr > th,
-.table > thead > tr > td,
-.table > tbody > tr > td,
-.table > tfoot > tr > td 
-{
-  line-height:  1.42857143;
-      width:50px;
-
-}
-.table > thead > tr > th,
-.table > tbody > tr > th,
-.table > tfoot > tr > th{
-    border:0px;
-    border-top:0px;
-    border-left:0px;
-    border-right:0px;
-    box-sizing: unset;
-    border-spacing: 0px;
-}
- .table-striped > tbody > tr:nth-child(odd) > th{
-     background-color: #ffffff;
-     border-spacing: 0px;
- }
-
-.table > th {
-    border-spacing: 0px;
-}
 
 .btnregistr
 {
@@ -110,13 +81,13 @@ h5, h6
     color:gray;
 }
 
-.form-room{
-    padding:50px;
+.form-find-room{
+    padding:25px;
     margin:0px;
     padding-bottom: 200px;
     background-color:white;
     opacity: 0.7; 
-    width: 300px; 
+    width: 350px; 
     height: 200px;
 }
 
@@ -124,19 +95,29 @@ h5, h6
     background-image: url(../../Content/images/bg-home-img.png);
     background-color: transparent;
     background-position: 50% 0%;
-    background-size: 60%;
+    background-size: 70%;
     background-repeat: no-repeat;
 }
 
-#table-container{
-    width: 80%;
-        min-height: .01%;
-    overflow-x: auto;
+#lenta {
+    position: relative;
+    width: 600px;
+    overflow: hidden;
 }
 
-#shedule{
-        width: 100%;
-    max-width: 100%;
-    margin-bottom: 20px;
+#slider {
+    margin: 0px;
+    padding: 0px;
+    border-collapse: collapse;
 }
 
+    #slider td {
+        padding-top: 10px; 
+        padding-bottom: 10px;
+        margin:0px;
+        min-width:55px;
+    }
+
+#cont {
+    position: relative;
+}

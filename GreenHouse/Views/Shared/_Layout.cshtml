@@ -79,22 +79,13 @@
 
             $('[data-toggle="popover"]').popover({
                 html: true
-            })
+            });
 
             $('#datetimepicker12').datepicker({
                 inline: true,
                 sideBySide: true,
                 language: 'ru',
                 todayBtn: true
-            });
-
-            $("#schedule td").click(function (e) {
-                var currentTd = $(e.currentTarget);
-                    currentTd.popover({
-                        html: true,
-                        placement: 'bottom',
-                        content: "<div class='custompopover'><h6>Цель</h6> <textarea /> <button onclick='$.GreenHouse.bookRoom(" + currentTd.attr("id") + ")'>Бронировать</button></div>"
-                    });
             });
         })
     </script>

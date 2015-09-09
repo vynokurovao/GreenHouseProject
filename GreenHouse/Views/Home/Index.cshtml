@@ -1,24 +1,28 @@
 ﻿@{
     ViewBag.Title = "Start Page";
 }
+
+<br />
+<br />
+
 <div class="row">
     <div class="col-xs-12">
         <div class="col-xs-4"></div>
-        <div class="col-xs-4 text-center">
-            <form role="form" class="form-room">
+        <div class="col-xs-6">
+            <form class="form-find-room form-inline" role="form">
+                    <h2>Забронировать</h2>
+                <br />
                 <div class="form-group">
-                    <h3>Забронировать комнату</h3>
-                    <br />
-                    <span class="form-inline">
-                        <input class="form-control" placeholder="Номер комнаты">
-
-                        <button type="submit" class="btn form-control btn-default">Обзор</button>
-                    </span>
+                    <input class="form-control" placeholder="Номер комнаты">
                 </div>
+                <button type="submit" class="btn btn-primary">Обзор</button>
             </form>
         </div>
     </div>
 </div>
+
+<br />
+<br />
 
 <div class="row">
     <div class="col-xs-2"></div>
@@ -43,101 +47,119 @@
         </div>
     </div>
 </div>
+
 <div class="row">
     <div class="col-xs-1"></div>
-    <div class="col-xs-7" id="table_container">
-        <table class="table table-striped table-bordered" id="schedule">
-            <thead>
-                <tr>
-                    @foreach (var auditory in ViewBag.Auditoriums)
-                    {
-                        <th id="tr+@auditory.AuditoriumId"> @auditory.AuditoriumName</th>
-                    }
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    @foreach (var reserv in ViewBag.ToTable9)
-                    {
-                        if (reserv != null)
-                        {
-                            <td data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h6>@reserv.User.Surname @reserv.User.FirstName</h6><h6>@reserv.Purpose</h6></div>">@reserv.User.Surname @reserv.User.FirstName</td>
-                        }
-                        else
-                        {
-                            <td data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h6>Цель</h6> <textarea /> <button>Бронировать</button></div>"></td>
-                        }
-                    }
-                </tr>
-                <tr>
-                    @foreach (var reserv in ViewBag.ToTable10)
-                    {
-                        if (reserv != null)
-                        {
-                            <td data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h6>@reserv.User.Surname @reserv.User.FirstName</h6><h6>@reserv.Purpose</h6></div>">@reserv.User.Surname @reserv.User.FirstName</td>
-                        }
-                        else
-                        {
-                            <td data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h6>Цель</h6> <textarea /> <button>Бронировать</button></div>"></td>
-                        }
-                    }
-                </tr>
-                <tr>
-                    @foreach (var reserv in ViewBag.ToTable11)
-                    {
-                        if (reserv != null)
-                        {
-                            <td data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h6>@reserv.User.Surname @reserv.User.FirstName</h6><h6>@reserv.Purpose</h6></div>">@reserv.User.Surname @reserv.User.FirstName</td>
-                        }
-                        else
-                        {
-                            <td data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h6>Цель</h6> <textarea /> <button>Бронировать</button></div>"></td>
-                        }
-                    }
-                </tr>
-                <tr>
-                    @foreach (var reserv in ViewBag.ToTable12)
-                    {
-                        if (reserv != null)
-                        {
-                            <td data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h6>@reserv.User.Surname @reserv.User.FirstName</h6><h6>@reserv.Purpose</h6></div>">@reserv.User.Surname @reserv.User.FirstName</td>
-                        }
-                        else
-                        {
-                            <td data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h6>Цель</h6> <textarea /> <button>Бронировать</button></div>"></td>
-                        }
-                    }
-                </tr>
-                <tr>
-                    @foreach (var reserv in ViewBag.ToTable13)
-                    {
-                        if (reserv != null)
-                        {
-                            <td data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h6>@reserv.User.Surname @reserv.User.FirstName</h6><h6>@reserv.Purpose</h6></div>">@reserv.User.Surname @reserv.User.FirstName</td>
-                        }
-                        else
-                        {
-                            <td data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h6>Цель</h6> <textarea /> <button>Бронировать</button></div>"></td>
-                        }
-                    }
-                </tr>
-                <tr>
-                    @foreach (var reserv in ViewBag.ToTable14)
-                    {
-                        if (reserv != null)
-                        {
-                            <td data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h6>@reserv.User.Surname @reserv.User.FirstName</h6><h6>@reserv.Purpose</h6></div>">@reserv.User.Surname @reserv.User.FirstName</td>
-                        }
-                        else
-                        {
-                            <td data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h6>Цель</h6> <textarea /> <button>Бронировать</button></div>"></td>
-                        }
-                    }
-                </tr>
-            </tbody>
-        </table>
+    <table id="table-container" class="col-xs-6">
+        <tr>
+            <td>
+                <button onclick="$.GreenHouse.btnLeft_Click()"><</button>
+            </td>
 
-    </div>
+            <td valign='top'>
+                <div id='lenta'>
+                    <div id='cont'>
+                        <table class="table-bordered" id='slider'>
+                            <thead>
+                                <tr>
+                                    @foreach (var auditory in ViewBag.Auditoriums)
+                                    {
+                                        <th id="@auditory.AuditoriumId"> @auditory.AuditoriumName</th>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    @foreach (var reserv in ViewBag.ToTable9)
+                                    {
+                                        if (reserv != null)
+                                        {
+                                            <td data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h6>@reserv.User.Surname @reserv.User.FirstName</h6><h6>@reserv.Purpose</h6></div>">@reserv.User.Surname @reserv.User.FirstName</td>
+                                        }
+                                        else
+                                        {
+                                            <td data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h6>Цель</h6> <textarea /> <button>Бронировать</button></div>"></td>
+                                        }
+                                    }
+                                </tr>
+                                <tr>
+                                    @foreach (var reserv in ViewBag.ToTable10)
+                                    {
+                                        if (reserv != null)
+                                        {
+                                            <td data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h6>@reserv.User.Surname @reserv.User.FirstName</h6><h6>@reserv.Purpose</h6></div>">@reserv.User.Surname @reserv.User.FirstName</td>
+                                        }
+                                        else
+                                        {
+                                            <td data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h6>Цель</h6> <textarea /> <button>Бронировать</button></div>"></td>
+                                        }
+                                    }
+                                </tr>
+                                <tr>
+                                    @foreach (var reserv in ViewBag.ToTable11)
+                                    {
+                                        if (reserv != null)
+                                        {
+                                            <td data-placement="right" data-content="<div class='custompopover'><h6>@reserv.User.Surname @reserv.User.FirstName</h6><h6>@reserv.Purpose</h6></div>">@reserv.User.Surname @reserv.User.FirstName</td>
+                                        }
+                                        else
+                                        {
+                                            <td data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h6>Цель</h6> <textarea /> <button>Бронировать</button></div>"></td>
+                                        }
+                                    }
+                                </tr>
+                                <tr>
+                                    @foreach (var reserv in ViewBag.ToTable12)
+                                    {
+                                        if (reserv != null)
+                                        {
+                                            <td data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h6>@reserv.User.Surname @reserv.User.FirstName</h6><h6>@reserv.Purpose</h6></div>">@reserv.User.Surname @reserv.User.FirstName</td>
+                                        }
+                                        else
+                                        {
+                                            <td data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h6>Цель</h6> <textarea /> <button>Бронировать</button></div>"></td>
+                                        }
+                                    }
+                                </tr>
+                                <tr>
+                                    @foreach (var reserv in ViewBag.ToTable13)
+                                    {
+                                        if (reserv != null)
+                                        {
+                                            <td data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h6>@reserv.User.Surname @reserv.User.FirstName</h6><h6>@reserv.Purpose</h6></div>">@reserv.User.Surname @reserv.User.FirstName</td>
+                                        }
+                                        else
+                                        {
+                                            <td data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h6>Цель</h6> <textarea /> <button>Бронировать</button></div>"></td>
+                                        }
+                                    }
+                                </tr>
+                                <tr>
+                                    @foreach (var reserv in ViewBag.ToTable14)
+                                    {
+                                        if (reserv != null)
+                                        {
+                                            <td data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h6>@reserv.User.Surname @reserv.User.FirstName</h6><h6>@reserv.Purpose</h6></div>">@reserv.User.Surname @reserv.User.FirstName</td>
+                                        }
+                                        else
+                                        {
+                                            <td data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h6>Цель</h6> <textarea /> <button>Бронировать</button></div>"></td>
+                                        }
+                                    }
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <button onclick="$.GreenHouse.btnRight_Click()">></button>
+            </td>
+        </tr>
+    </table>
+
+
     <div class="col-xs-4">
         <div style="overflow:hidden;">
             <div class="form-group">
@@ -152,3 +174,5 @@
         </div>
     </div>
 </div>
+
+      

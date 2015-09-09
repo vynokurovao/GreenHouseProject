@@ -4,20 +4,40 @@
 
     $.extend($.GreenHouse, {
 
-        btnToday_Click: function () {
-            $('#datetimepicker12').data
+        btnRight_Click: function () {
+            on_screen_pic = 9;
+            slider_diff = 60;
+            var x = $("#cont").position();
+            if (Math.abs(x.left) + slider_diff * on_screen_pic < $("#slider").width()) {
+                newcoord = (x.left - slider_diff);
+                if (Math.abs(newcoord) + slider_diff >= $("#slider").width())
+                    newcoord = -$("#slider").width() + slider_diff;
+                $("#cont").animate({ left: newcoord + "px" }, 150);
+            }
+        },
+        btnLeft_Click: function () {
+            on_screen_pic = 9;
+            slider_diff = 60;
+            var x = $("#cont").position();
+            if (x.left <= 0) {
+                newcoord = (x.left + slider_diff);
+                if (newcoord >= 0)
+                    newcoord = 0;
+                $("#cont").animate({ left: newcoord + "px" }, 150);
+            }
         },
 
         btnToggleCalendar_Click: function (elem) {
             element = $(elem);
             $('#calendarContainer').toggle();
 
-            if ($('#table_container').hasClass('col-xs-7')) {
-                $('#table_container').removeClass('col-xs-7').addClass('col-xs-11');
+            if ($('#table-container').hasClass('col-xs-6')) {
+                $('#table-container').removeClass('col-xs-6').addClass('col-xs-10');
                 element.html('Показать');
+
             }
-            else if ($('#table_container').hasClass('col-xs-11')) {
-                $('#table_container').removeClass('col-xs-11').addClass('col-xs-7');
+            else if ($('#table-container').hasClass('col-xs-10')) {
+                $('#table-container').removeClass('col-xs-10').addClass('col-xs-6');
                 element.html('Скрыть');
             }
         },
@@ -33,10 +53,7 @@
                     console.log(data);
                 }
             });
-
             td.popover('hide');
         }
-
-
     });
 })(jQuery);
