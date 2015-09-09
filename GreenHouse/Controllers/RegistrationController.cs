@@ -12,20 +12,35 @@ namespace GreenHouse.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            Models.User user = new Models.User();
-            return View(user);
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView();
+            }
+            
+            return View(new RegistrationModel());
         }
 
         [HttpPost]
-        public ActionResult Add(Models.User user)
+        public ActionResult Add(RegistrationModel userInfo)
         {
-            using (Entities db = new Entities())
+            if (ModelState.IsValid)
             {
-                user.Role1 = db.Role.Where(role => role.RoleName.Equals("Client")).First();
-                db.User.Add(user);
-                db.SaveChanges();
+                User user = new User();
+                user.FirstName = userInfo.FirstName;
+                user.Surname = userInfo.Surname;
+                user.Email = userInfo.Email;
+                user.Password = userInfo.Password;
+
+                using (Entities db = new Entities())
+                {
+                    user.Role1 = db.Role.Where(role => role.RoleName.Equals("Client")).First();
+                    db.User.Add(user);
+                    db.SaveChanges();
+                }
+                return PartialView(user);
             }
-            return View(user);
+            
+            return PartialView("Create", userInfo);
         }
     }
 }

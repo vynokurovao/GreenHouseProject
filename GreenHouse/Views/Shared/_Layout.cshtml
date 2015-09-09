@@ -20,6 +20,20 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/locales/bootstrap-datepicker.ru.min.js"></script>
 
     <script type="text/javascript" src="./Scripts/greenhouse.js"></script>
+
+    <title>Ajax Helpers</title>
+    @Styles.Render("~/Content/css")
+
+    @RenderSection("scripts", required: false)
+
+    @{
+        var ajaxOptions = new AjaxOptions
+        {
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "ModalContent"
+        };
+    }
 </head>
 <body>
     <div class="container">
@@ -43,9 +57,9 @@
                                     <button type="button" class="btnlogin" data-toggle="modal" data-target="#myModal">
                                         Логин
                                     </button>
-                                    |
+
                                     <button id="btnRegistration" type="button" class="btnregistr" data-toggle="modal" data-target="#Registration">
-                                        Реєстрація
+                                        @Ajax.ActionLink("Регистрация", "Create", "Registration", ajaxOptions)
                                     </button>
                                 </li>
                             </ul>
@@ -60,22 +74,29 @@
         </div>
 
         @RenderBody()
+
         <div id="Registration" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <!-- Modal content-->
-                <div class="modal-content">
+                <div id="ModalContent" class="modal-content">
                 </div>
             </div>
         </div>
     </div>
 
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="/Scripts/jquery.unobtrusive-ajax.js"></script>
+
     <script>
         $(function () {
-            $('#btnRegistration').click('shown.bs.modal', function (e) {
-                $.get("@Url.Action("Create","Registration")", function (data) {
-                    $('#Registration div.modal-content').html(data);
-                });
-            });
+            //$('#btnRegistration').click('shown.bs.modal', function (e) {
+            //    $.get("@Url.Action("Create","Registration")", function (data) {
+            //        $('#Registration div.modal-content').html(data);
+            //    });
+            //});
 
             $('[data-toggle="popover"]').popover({
                 html: true
