@@ -130,3 +130,144 @@ h2{
 .btn-lg{
     background-color: #438e11;
 }
+
+div.mapContainer {
+    background-color: #ccc;
+    padding: 50px;
+    width: 800px; 
+}
+
+div.mapImgContainer {
+    position: relative;
+    height: 400px;
+}
+
+div.mapContainer img {
+    width: 700px;
+    position: absolute;
+}
+
+div.mapImgContainer div {
+    position: absolute;
+    background-size: cover;
+}
+
+div#room301 {
+    top: 164px;
+    left: 504px;
+    width: 107px;
+    height: 93px;
+    background-image: url(./images/rooms/r-301-30.png)
+}
+
+div#room302 {
+    top: 164px;
+    left: 464px;
+    width: 37px;
+    height: 93px;
+    background-image: url(./images/rooms/r-302-30.png)
+}
+
+div#room303 {
+    top: 164px;
+    left: 295px;
+    width: 41px;
+    height: 92px;
+    background-image: url(./images/rooms/r-303-30.png)
+}
+
+
+div#room304 {
+    top: 192px;
+    left: 173px;
+    width: 112px;
+    height: 64px;
+    background-image: url(./images/rooms/r-304-30.png)
+}
+
+div#room305 {
+    top: 82px;
+    left: 173px;
+    width: 91px;
+    height: 48px;
+    background-image: url(./images/rooms/r-305-30.png)
+}
+
+div#room306 {
+    top: 29px;
+    left: 197px;
+    width: 67px;
+    height: 48px;
+    background-image: url(./images/rooms/r-306-30.png)
+}
+
+div#room307 {
+    top: 29px;
+    left: 38px;
+    width: 87px;
+    height: 57px;
+    background-image: url(./images/rooms/r-307-30.png)
+}
+
+div#room308 {
+    top: 92px;
+    left: 38px;
+    width: 87px;
+    height: 37px;
+    background-image: url(./images/rooms/r-308-30.png)
+}
+
+div#room309 {
+    top: 133px;
+    left: 38px;
+    width: 87px;
+    height: 40px;
+    background-image: url(./images/rooms/r-309-30.png);
+}
+
+div#room310 {
+    top: 177px;
+    left: 38px;
+    width: 87px;
+    height: 62px;
+    background-image: url(./images/rooms/r-310-30.png);
+}
+
+div#room311 {
+    top: 247px;
+    left: 31px;
+    width: 153px;
+    height: 148px;
+    background-image: url(./images/rooms/r-311-200.png)
+}
+
+div#room312 {
+    top: 307px;
+    left: 192px;
+    width: 153px;
+    height: 89px;
+    background-image: url(./images/rooms/r-312-200.png)
+}
+
+div#room313 {
+    top: 307px;
+    left: 350px;
+    width: 105px;
+    height: 89px;
+    background-image: url(./images/rooms/r-313-200.png)
+}
+
+div#room314 {
+    top: 307px;
+    left: 465px;
+    width: 145px;
+    height: 89px;
+    background-image: url(./images/rooms/r-314-200.png)
+}
+div#room315 {
+    top: 307px;
+    left: 621px;
+    width: 44px;
+    height: 30px;
+    background-image: url(./images/rooms/r-315-200.png)
+}
