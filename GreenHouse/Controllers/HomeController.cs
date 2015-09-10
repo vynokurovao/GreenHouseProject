@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using GreenHouse.Models;
+using GreenHouse.ContexManager;
 
 namespace GreenHouse.Controllers
 {
@@ -29,6 +30,9 @@ namespace GreenHouse.Controllers
         public ActionResult Index()
         {
             Entities db = new Entities();
+
+            //DBInitialization init = new DBInitialization();
+            //init.Initialization(db);
 
             #region ToTables
             List<Reservation> ToTable9 = new List<Reservation>();

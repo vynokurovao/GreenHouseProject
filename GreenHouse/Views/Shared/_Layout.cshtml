@@ -8,32 +8,17 @@
     <title>Green House</title>
 
     <!-- Bootstrap -->
-    <link href="./Content/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="./Content/font-awesome.css" />
-    <link rel="stylesheet" href="./Content/build.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.css" />
-    <link href="./Content/Site.css" rel="stylesheet">
-
-    <script src="./Scripts/jquery-1.11.3.js"></script>
-    <script src="./Scripts/bootstrap.js"></script>
-    <script type="text/javascript" src="./Scripts/bootstrap-datepicker.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/locales/bootstrap-datepicker.ru.min.js"></script>
-
-    <script type="text/javascript" src="./Scripts/greenhouse.js"></script>
 
     <title>Ajax Helpers</title>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
     @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/locales/bootstrap-datepicker.ru.min.js"></script>
+    @Scripts.Render("~/GreenHouse/js")
+    
 
-    @RenderSection("scripts", required: false)
-
-    @{
-        var ajaxOptions = new AjaxOptions
-        {
-            HttpMethod = "GET",
-            InsertionMode = InsertionMode.Replace,
-            UpdateTargetId = "ModalContent"
-        };
-    }
 </head>
 <body>
     <div class="container">
@@ -57,10 +42,15 @@
                                     <button type="button" class="btnlogin" data-toggle="modal" data-target="#myModal">
                                         Логин
                                     </button>
-
-                                    <button id="btnRegistration" type="button" class="btnregistr" data-toggle="modal" data-target="#Registration">
-                                        @Ajax.ActionLink("Регистрация", "Create", "Registration", ajaxOptions)
-                                    </button>
+                                    |
+                                    <span class="btnregistr" data-toggle="modal" data-target="#Registration">
+                                        @Ajax.ActionLink("Регистрация", "Create", "Registration", new AjaxOptions
+                                   {
+                                       HttpMethod = "GET",
+                                       InsertionMode = InsertionMode.Replace,
+                                       UpdateTargetId = "ModalContent"
+                                   })
+                                    </span>
                                 </li>
                             </ul>
 
@@ -84,32 +74,6 @@
         </div>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/jqueryval")
-
-    <script src="/Scripts/jquery.unobtrusive-ajax.js"></script>
-
-    <script>
-        $(function () {
-            //$('#btnRegistration').click('shown.bs.modal', function (e) {
-            //    $.get("@Url.Action("Create","Registration")", function (data) {
-            //        $('#Registration div.modal-content').html(data);
-            //    });
-            //});
-
-            $('[data-toggle="popover"]').popover({
-                html: true
-            });
-
-            $('#datetimepicker12').datepicker({
-                inline: true,
-                sideBySide: true,
-                language: 'ru',
-                todayBtn: true
-            });
-        })
-    </script>
 </body>
 
 </html>

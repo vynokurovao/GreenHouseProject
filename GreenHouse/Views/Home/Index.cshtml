@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="col-xs-4"></div>
-        <div class="col-xs-6">
+        <div class="col-xs-6 text-center">
             <form class="form-find-room form-inline" role="form">
                     <h2>Забронировать</h2>
                 <br />
@@ -52,7 +52,7 @@
     <div class="col-xs-1"></div>
     <table id="table-container" class="col-xs-6">
         <tr>
-            <td>
+            <td style="vertical-align:top;">
                 <button onclick="$.GreenHouse.btnLeft_Click()"><</button>
             </td>
 
@@ -62,6 +62,7 @@
                         <table class="table-bordered" id='slider'>
                             <thead>
                                 <tr>
+                                    <th></th>
                                     @foreach (var auditory in ViewBag.Auditoriums)
                                     {
                                         <th id="@auditory.AuditoriumId"> @auditory.AuditoriumName</th>
@@ -70,6 +71,7 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td>09:00</td>
                                     @foreach (var reserv in ViewBag.ToTable9)
                                     {
                                         if (reserv != null)
@@ -83,6 +85,7 @@
                                     }
                                 </tr>
                                 <tr>
+                                    <td>10:00</td>
                                     @foreach (var reserv in ViewBag.ToTable10)
                                     {
                                         if (reserv != null)
@@ -96,6 +99,7 @@
                                     }
                                 </tr>
                                 <tr>
+                                    <td>11:00</td>
                                     @foreach (var reserv in ViewBag.ToTable11)
                                     {
                                         if (reserv != null)
@@ -109,6 +113,7 @@
                                     }
                                 </tr>
                                 <tr>
+                                    <td>12:00</td>
                                     @foreach (var reserv in ViewBag.ToTable12)
                                     {
                                         if (reserv != null)
@@ -122,6 +127,7 @@
                                     }
                                 </tr>
                                 <tr>
+                                    <td>13:00</td>
                                     @foreach (var reserv in ViewBag.ToTable13)
                                     {
                                         if (reserv != null)
@@ -135,6 +141,7 @@
                                     }
                                 </tr>
                                 <tr>
+                                    <td>14:00</td>
                                     @foreach (var reserv in ViewBag.ToTable14)
                                     {
                                         if (reserv != null)
@@ -153,18 +160,18 @@
                 </div>
             </td>
 
-            <td>
-                <button onclick="$.GreenHouse.btnRight_Click()">></button>
+            <td style="vertical-align:top;">
+           <button onclick="$.GreenHouse.btnRight_Click()">></button>
             </td>
         </tr>
     </table>
 
 
     <div class="col-xs-4">
-        <div style="overflow:hidden;">
+        <div>
             <div class="form-group">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div>
                         <div id="calendarContainer">
                             <div id="datetimepicker12"></div>
                         </div>

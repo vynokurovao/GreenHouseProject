@@ -21,7 +21,7 @@ ul.navbar-nav li a {
 
 .datepicker table tr td.active:hover, .datepicker table tr td.active:hover:hover, .datepicker table tr td.active.disabled:hover, .datepicker table tr td.active.disabled:hover:hover, .datepicker table tr td.active:active, .datepicker table tr td.active:hover:active, .datepicker table tr td.active.disabled:active, .datepicker table tr td.active.disabled:hover:active, .datepicker table tr td.active.active, .datepicker table tr td.active:hover.active, .datepicker table tr td.active.disabled.active, .datepicker table tr td.active.disabled:hover.active, .datepicker table tr td.active.disabled, .datepicker table tr td.active:hover.disabled, .datepicker table tr td.active.disabled.disabled, .datepicker table tr td.active.disabled:hover.disabled, .datepicker table tr td.active[disabled], .datepicker table tr td.active:hover[disabled], .datepicker table tr td.active.disabled[disabled], .datepicker table tr td.active.disabled:hover[disabled]
 {
-	background: transparent url(./images/active-calendar-item.png) no-repeat 1px 2px;
+	background: transparent url(~/images/active-calendar-item.png) no-repeat 1px 2px;
 	color: grey;
 	background-size: 26px ;
 }
@@ -47,6 +47,7 @@ table.table-condensed .dow{
 .navbar-default {
     background-color: white;
     border:0px solid black;
+    border-bottom:4px groove rgba(128, 128, 128, 0.11);
     opacity:0.8;
 }
 
@@ -57,6 +58,7 @@ table.table-condensed .dow{
     margin-left: 20px;
 	padding: 0px;
 	background-color: transparent;
+    color:black;
 }
 
 .btnlogin
@@ -81,14 +83,17 @@ h5, h6
     color:gray;
 }
 
+h2{
+    color:black;
+}
+
 .form-find-room{
-    padding:25px;
-    margin:0px;
-    padding-bottom: 200px;
+    padding:50px;
+    padding-bottom:175px;
     background-color:white;
     opacity: 0.7; 
-    width: 350px; 
-    height: 200px;
+    width: 400px; 
+    height: 80px;
 }
 
 .container {
@@ -120,4 +125,8 @@ h5, h6
 
 #cont {
     position: relative;
+}
+
+.btn-lg{
+    background-color: #438e11;
 }

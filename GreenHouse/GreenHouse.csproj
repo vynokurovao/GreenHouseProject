@@ -130,6 +130,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="ContexManager\DBInitialization.cs" />
+    <Compile Include="Controllers\CabinetController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\DailyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -174,6 +176,7 @@
     <Content Include="App_Data\DBAuditorium_log.ldf">
       <DependentUpon>DBAuditorium.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\build.css" />
@@ -349,6 +352,7 @@
       <LastGenOutput>DBAuditoriumModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-datepicker.ru.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\DBAuditoriumModel.edmx">
@@ -387,6 +391,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Registration\Create.cshtml" />
+    <Content Include="Views\Cabinet\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

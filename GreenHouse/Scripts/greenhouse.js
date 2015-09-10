@@ -2,6 +2,20 @@
 
     $.GreenHouse = $.GreenHouse || {};
 
+    $(function () {
+
+        $('[data-toggle="popover"]').popover({
+            html: true
+        });
+
+        $('#datetimepicker12').datepicker({
+            inline: true,
+            sideBySide: true,
+            language: 'ru',
+            todayBtn: true
+        });
+    })
+
     $.extend($.GreenHouse, {
 
         btnRight_Click: function () {
@@ -32,14 +46,37 @@
             $('#calendarContainer').toggle();
 
             if ($('#table-container').hasClass('col-xs-6')) {
+                $('#lenta').width(1000);
+                $("#cont").animate({ left: "0px" }, 150);
                 $('#table-container').removeClass('col-xs-6').addClass('col-xs-10');
                 element.html('Показать');
 
             }
             else if ($('#table-container').hasClass('col-xs-10')) {
+                $('#lenta').width(600);
                 $('#table-container').removeClass('col-xs-10').addClass('col-xs-6');
                 element.html('Скрыть');
             }
+        },
+
+        btnUpdateUserData_Click: function () {
+            $('#user_data').hide('slow');
+            $('#update_user_data').removeClass('hidden');
+        },
+
+        btnCancelUpdateUserData_Click: function () {
+            $('#user_data').show('slow');
+            $('#update_user_data').addClass('hidden');
+        },
+
+        btnUpdatePassword_Click: function () {
+            $('#btn_new_pass_room').hide('slow');
+            $('#new_password').removeClass('hidden');
+        },
+
+        btnCancelUpdatePassword_Click: function () {
+            $('#btn_new_pass_room').show('slow');
+            $('#new_password').addClass('hidden');
         },
 
         bookRoom: function (id) {

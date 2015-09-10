@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .container 
+    {
+        background: none;
+    }
+</style>
+
+<div class="row">
+    <div id="update_user_data" class="col-xs-6 hidden">
+        <div class="form-inline" role="form">
+            <div class="form-group">
+                <input class="form-control" placeholder="Олександр">
+                <input class="form-control" placeholder="Рахуба">
+                <input class="form-control" placeholder="rahuba@ukr.net">
+            </div>
+        </div>
+        <div>
+            
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary btn-lg" onclick="$.GreenHouse.btnCancelUpdateUserData_Click()">Отмена</button>
+            <button type="button" class="btn btn-primary btn-lg">Сохранить</button>
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-sm-6 mt30">
+        <div id="user_data">
+            <h2>Александр Рахуба <span>Admin</span></h2>
+            <h5>alex.rahuba@gmail.com</h5>
+            <button type="button" class="btn btn-primary btn-lg" onclick="$.GreenHouse.btnUpdateUserData_Click()">Редактировать</button>
+        </div>
+    </div>
+    <div id="new_password" class="col-xs-6 hidden">
+        <div>
+            <input class="form-control" placeholder="Новый пароль">
+        </div>
+        <div>
+            <div>
+                <input class="form-control" placeholder="Повторить новый пароль">
+            </div>
+        </div>
+        <div>
+            <div>
+                <button type="button" class="btn btn-primary btn-lg" onclick="$.GreenHouse.btnCancelUpdatePassword_Click()">Отмена</button>
+                <button type="button" class="btn btn-primary btn-lg">Сохранить</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 text-right mt30">
+        <div id="btn_new_pass_room">
+            <button type="button" class="btn btn-primary btn-lg ">Новая комната</button>
+            <button type="button" class="btn btn-primary btn-lg " onclick="$.GreenHouse.btnUpdatePassword_Click()">Сменить пароль</button>
+            <h6 class="hidden">Новая комната успешно добавлена</h6>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <h2>Забронированные комнаты</h2>
+</div>

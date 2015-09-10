@@ -1,3 +1,5 @@
+using GreenHouse.ContexManager;
+
 namespace GreenHouse.Models
 {
     using System;
@@ -13,7 +15,8 @@ namespace GreenHouse.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            DBInitialization init = new DBInitialization();
+            init.Initialization(this);
         }
 
         public DbSet<AdditionalEquipment> AdditionalEquipment { get; set; }
