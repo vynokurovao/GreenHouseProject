@@ -21,9 +21,9 @@ ul.navbar-nav li a {
 
 .datepicker table tr td.active:hover, .datepicker table tr td.active:hover:hover, .datepicker table tr td.active.disabled:hover, .datepicker table tr td.active.disabled:hover:hover, .datepicker table tr td.active:active, .datepicker table tr td.active:hover:active, .datepicker table tr td.active.disabled:active, .datepicker table tr td.active.disabled:hover:active, .datepicker table tr td.active.active, .datepicker table tr td.active:hover.active, .datepicker table tr td.active.disabled.active, .datepicker table tr td.active.disabled:hover.active, .datepicker table tr td.active.disabled, .datepicker table tr td.active:hover.disabled, .datepicker table tr td.active.disabled.disabled, .datepicker table tr td.active.disabled:hover.disabled, .datepicker table tr td.active[disabled], .datepicker table tr td.active:hover[disabled], .datepicker table tr td.active.disabled[disabled], .datepicker table tr td.active.disabled:hover[disabled]
 {
-	background: transparent url(~/images/active-calendar-item.png) no-repeat 1px 2px;
+	background: transparent url(images/active-calendar-item.png) no-repeat 1px 2px;
 	color: grey;
-	background-size: 26px ;
+	background-size: 26px;
 }
 
 th.datepicker-switch {
@@ -37,7 +37,9 @@ table.table-condensed .dow{
 }
 
 .datepicker table tr.activeWeek {
-	position: relative;
+    position: relative;
+    border: 2px solid #438e11;
+    border-radius: 33%;
 }
 
 .navbar-nav li a ul {

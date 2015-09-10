@@ -1,20 +1,19 @@
+$(function () {
+    $('[data-toggle="popover"]').popover({
+        html: true
+    });
+
+    $('#datetimepicker12').datepicker({
+        inline: true,
+        sideBySide: true,
+        language: 'ru',
+        todayBtn: true
+    });
+});
+
 (function ($) {
 
     $.GreenHouse = $.GreenHouse || {};
-
-    $(function () {
-
-        $('[data-toggle="popover"]').popover({
-            html: true
-        });
-
-        $('#datetimepicker12').datepicker({
-            inline: true,
-            sideBySide: true,
-            language: 'ru',
-            todayBtn: true
-        });
-    })
 
     $.extend($.GreenHouse, {
 

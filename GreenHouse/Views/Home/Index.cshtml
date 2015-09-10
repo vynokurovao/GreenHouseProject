@@ -104,7 +104,7 @@
                                     {
                                         if (reserv != null)
                                         {
-                                            <td data-placement="right" data-content="<div class='custompopover'><h6>@reserv.User.Surname @reserv.User.FirstName</h6><h6>@reserv.Purpose</h6></div>">@reserv.User.Surname @reserv.User.FirstName</td>
+                                            <td data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h6>@reserv.User.Surname @reserv.User.FirstName</h6><h6>@reserv.Purpose</h6></div>">@reserv.User.Surname @reserv.User.FirstName</td>
                                         }
                                         else
                                         {
@@ -159,8 +159,6 @@
                     </div>
                 </div>
             </td>
-
-
             <td style="vertical-align:top;">
            <button onclick="$.GreenHouse.btnRight_Click()">></button>
             </td>
@@ -182,12 +180,15 @@
         </div>
     </div>
 </div>
+<br />
+<br />
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
             <div class="mapContainer">
                 <h3>План Этажа</h3>
-                <h4>Комнат 12</h4>
+                <h4>Комнат 15</h4>
 
                 <div class="mapImgContainer">
                     <div id="room301"></div>
@@ -208,29 +209,30 @@
                     <div> </div>
                     <img src="@Url.Content("~/Content/Images/map.png")" usemap="#roommap" />
                     <map name="roommap">
-                        <area shape="rect" coords="504,164,611,257" href=""/>
-                        <area shape="rect" coords="464,164,501,257" href="http://google.com" />
-                        <area shape="rect" coords="295,164,336,256" href="http://google.com" />
-                        <area shape="rect" coords="173,192,285,256" href="http://google.com" />
-                        <area shape="rect" coords="173,82,264,130" href="http://google.com" />
-                        <area shape="rect" coords="198,29,264,77" href="http://google.com" />
-                        <area shape="rect" coords="38,29,125,86" href="http://google.com" />
-                        <area shape="rect" coords="38,92,125,129" href="http://google.com" />
-                        <area shape="rect" coords="38,133,125,173" href="http://google.com" />
-                        <area shape="rect" coords="38,177,125,239" href="http://google.com" />
+                        <area data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h3>301</h3></div>" shape="rect" coords="504,164,611,257"/>
+                        <area shape="rect" coords="464,164,501,257" data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h3>302</h3></div>" />
+                        <area shape="rect" coords="295,164,336,256" data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h3>303</h3></div>" />
+                        <area shape="rect" coords="173,192,285,256" data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h3>304</h3></div>" />
+                        <area shape="rect" coords="173,82,264,130" data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h3>305</h3></div>" />
+                        <area shape="rect" coords="198,29,264,77" data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h3>306</h3></div>" />
+                        <area shape="rect" coords="38,29,125,86" data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h3>307</h3></div>"/>
+                        <area shape="rect" coords="38,92,125,129" data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h3>308</h3></div>"/>
+                        <area shape="rect" coords="38,133,125,173" data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h3>309</h3></div>" />
+                        <area shape="rect" coords="38,177,125,239" data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h3>310</h3></div>" />
 
-                        <area shape="rect" coords="192,307,345,396" href="http://google.com" />
-                        <area shape="rect" coords="350,307,455,396" href="http://google.com" />
-                        <area shape="rect" coords="465,307,610,396" href="http://google.com" />
-                        <area shape="rect" coords="621,307,665,337" href="http://google.com" />
+                        <area shape="rect" coords="192,307,345,396" data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h3>312</h3></div>" />
+                        <area shape="rect" coords="350,307,455,396" data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h3>313</h3></div>" />
+                        <area shape="rect" coords="465,307,610,396" data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h3>314</h3></div>" />
+                        <area shape="rect" coords="621,307,665,337"data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h3>315</h3></div>" />
 
-                        <area shape="circle" coords="105,320,67" href="korr.ua" />
-                        <area shape="circle" coords="55,270,25" href="korr.ua" />
-                        <area shape="circle" coords="155,370,25" href="korr.ua" />
+                        <area shape="circle" coords="105,320,67" data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h3>311</h3></div>"/>
+                        <area shape="circle" coords="55,270,25" data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h3>311</h3></div>" />
+                        <area shape="circle" coords="155,370,25" data-toggle="popover" data-html="true" data-placement="right" data-content="<div class='custompopover'><h3>311</h3></div>" />
 
                     </map>
                 </div>
             </div>
         </div>
+        <div class="col-xs-1"></div>
     </div>
 </div>
