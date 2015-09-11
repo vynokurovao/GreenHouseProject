@@ -273,3 +273,7 @@ div#room315 {
     height: 30px;
     background-image: url(./images/rooms/r-315-200.png)
 }
+
+#table-container {
+    margin: 0px;
+}
