@@ -132,6 +132,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="ContexManager\DBInitialization.cs" />
     <Compile Include="Controllers\CabinetController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\DailyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="Models\Auditorium.cs">
       <DependentUpon>DBAuditoriumModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RegistrationModel.cs" />
     <Compile Include="Models\DBAuditoriumModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -392,6 +394,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Registration\Create.cshtml" />
     <Content Include="Views\Cabinet\Index.cshtml" />
+    <Content Include="Views\Login\Create.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

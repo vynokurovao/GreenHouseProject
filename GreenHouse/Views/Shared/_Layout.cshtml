@@ -39,9 +39,14 @@
                         <div class="collapse navbar-collapse navbar-right navbar-btn" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-right">
                                 <li>
-                                    <button type="button" class="btnlogin" data-toggle="modal" data-target="#myModal">
-                                        Логин
-                                    </button>
+                                    <span class="btnregistr" data-toggle="modal" data-target="#Registration">
+                                        @Ajax.ActionLink("Логин", "Create", "Login", new AjaxOptions
+                                   {
+                                       HttpMethod = "GET",
+                                       InsertionMode = InsertionMode.Replace,
+                                       UpdateTargetId = "ModalContent"
+                                   })
+                                    </span>
                                     |
                                     <span class="btnregistr" data-toggle="modal" data-target="#Registration">
                                         @Ajax.ActionLink("Регистрация", "Create", "Registration", new AjaxOptions
