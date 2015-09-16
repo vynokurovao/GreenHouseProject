@@ -10,7 +10,6 @@ namespace GreenHouse.Controllers
 {
     public class HomeController : Controller
     {
-        private DateTime date = new DateTime(0);
 
         public Entities db = new Entities();
 
@@ -22,31 +21,49 @@ namespace GreenHouse.Controllers
 
             ReservationManager reservManager = new ReservationManager(DateTime.Now);
 
-            if (date.Ticks == 0)
-            {
-                reservManager = new ReservationManager(new DateTime(2015, 9, 9, 0, 0, 0));
-            }
-            else
-            {
-                reservManager = new ReservationManager(new DateTime(date.Year, date.Month, date.Day, 0, 0, 0));
-            }
+            ViewBag.Auditoriums = db.Auditorium;
+
+            return View(reservManager);
+        }
+
+        [HttpGet]
+        public ActionResult Table()
+        {
+            ReservationManager reservManager = new ReservationManager(DateTime.Now);
 
             ViewBag.Auditoriums = db.Auditorium;
 
             return View(reservManager);
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
+        [HttpPost]
+        public ActionResult TableForDate(string date)
+        {
+            string[] parts = date.Split('.');
+
+            int year = int.Parse(parts[2]), month = int.Parse(parts[1]), day = int.Parse(parts[0]);
+
+            ReservationManager reservManager = new ReservationManager(new DateTime(year, month, day, 0, 0, 0));
+
+            ViewBag.Auditoriums = db.Auditorium;
+
+            return PartialView("Table", reservManager);
+        }
+
+        [HttpPost]
         public ActionResult RemoveReservation(string id)
         {
             int rId = int.Parse(id);
+
             Reservation reserv = db.Reservation.Where(r => r.ReservationId.Equals(rId)).First();
 
-            date = reserv.StartDate;
-            
             db.RemoveReservation(reserv);
 
-            return Redirect("Home/Index");
+            ReservationManager reservManager = new ReservationManager(reserv.StartDate);
+
+            ViewBag.Auditoriums = db.Auditorium;
+
+            return PartialView("Table", reservManager);
         }
     }
 }

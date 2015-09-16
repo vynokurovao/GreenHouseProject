@@ -60,6 +60,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -396,6 +397,7 @@
     <Content Include="Views\Registration\Create.cshtml" />
     <Content Include="Views\Cabinet\Index.cshtml" />
     <Content Include="Views\Login\Create.cshtml" />
+    <Content Include="Views\Home\Table.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -1,0 +1,46 @@
+﻿@model GreenHouse.ContexManager.ReservationManager
+
+<table class="table-bordered" id ='slider'>
+    <thead>
+        <tr>
+            <th></th>
+            @foreach (var auditory in ViewBag.Auditoriums)
+            {
+                <th id="@auditory.AuditoriumId"> @auditory.AuditoriumName</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var tr in Model.Table)
+        {
+            <tr>
+                <td></td>
+                @foreach (var td in tr)
+                {
+                    if (td != null)
+                    {
+                        <td class="reservation">
+                            <div data-toggle="popover" data-html="true" data-placement="right"
+                                 data-content="<div class='custompopover'><h6>@td.User.FirstName @td.User.Surname</h6>
+                                 <h6>@td.Purpose</h6> <button  onclick='$.GreenHouse.CancelClick(@td.ReservationId)'
+                                 class='btn btn-group-sm'>Отменить</button> </div>">@td.User.FirstName @td.User.Surname</div>
+                        </td>
+
+                    }
+                    else
+                    {
+                        <td>
+                            <div class="new-reservation" data-toggle="popover" data-html="true" data-placement="right"
+                                 data-content="<div class='custompopover'><h6>Цель</h6> <input type='text'/> <button class='btn btn-group-sm'>Бронировать</button> </div>">
+                                                        </div>
+                        </td>
+                    }
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

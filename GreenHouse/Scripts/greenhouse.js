@@ -10,10 +10,18 @@ $(function () {
     });
 
     $('#datetimepicker12').on("changeDate", function (e) {
-        var day = e.date.getUTCDate() + 1;
+        var day = e.date.getDate();
         var month = e.date.getMonth() + 1;
         var year = e.date.getFullYear();
+
+        var Date = { Date: day + '.' + month + '.' + year }
+
         $('#forDate').html('на ' + day + '.' + month + '.' + year);
+
+        $.post("/Home/TableForDate", Date, null, "html").done(function (x) {
+            console.log(x);
+            $("#cont").html(x);
+        });
     });
 });
 
@@ -25,7 +33,10 @@ $(function () {
 
         CancelClick: function (id) {
             var Id = {id: id };
-            $.post("/Home/RemoveReservation", Id, null, "json");
+            $.post("/Home/RemoveReservation", Id, null, "html").done(function (x) {
+                console.log(x);
+                $("#cont").html(x);
+            });
         },
         
         btnRight_Click: function () {
