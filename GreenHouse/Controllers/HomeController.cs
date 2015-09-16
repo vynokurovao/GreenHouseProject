@@ -10,74 +10,43 @@ namespace GreenHouse.Controllers
 {
     public class HomeController : Controller
     {
+        private DateTime date = new DateTime(0);
 
-        public Reservation GetAuditoriumReservation(int AuditoriumId, int year, int month, int day, int hour, Entities e)
-        {
-            Reservation reservation = null;
-
-            foreach (Reservation reserv in e.Reservation)
-            {
-                if (reserv.TargetAuditorium == AuditoriumId && reserv.StartDate == new DateTime(year, month, day, hour, 0, 0))
-                {
-                    reservation = reserv;
-                }
-            }
-
-            return reservation;
-        }
-
+        public Entities db = new Entities();
 
         public ActionResult Index()
         {
-            Entities db = new Entities();
-
+            //для инициализации бд
             //DBInitialization init = new DBInitialization();
             //init.Initialization(db);
 
-            #region ToTables
-            List<Reservation> ToTable9 = new List<Reservation>();
-            List<Reservation> ToTable10 = new List<Reservation>();
-            List<Reservation> ToTable11 = new List<Reservation>();
-            List<Reservation> ToTable12 = new List<Reservation>();
-            List<Reservation> ToTable13 = new List<Reservation>();
-            List<Reservation> ToTable14 = new List<Reservation>();
+            ReservationManager reservManager = new ReservationManager(DateTime.Now);
 
-            
-            foreach (Auditorium auditory in db.Auditorium)
+            if (date.Ticks == 0)
             {
-                Reservation reserv = GetAuditoriumReservation(auditory.AuditoriumId, 2015, 9, 9, 9, db);
-                ToTable9.Add(reserv);
-
-                reserv = GetAuditoriumReservation(auditory.AuditoriumId, 2015, 9, 9, 10, db);
-                ToTable10.Add(reserv);
-
-                reserv = GetAuditoriumReservation(auditory.AuditoriumId, 2015, 9, 9, 11, db);
-                ToTable11.Add(reserv);
-
-                reserv = GetAuditoriumReservation(auditory.AuditoriumId, 2015, 9, 9, 12, db);
-                ToTable12.Add(reserv);
-
-                reserv = GetAuditoriumReservation(auditory.AuditoriumId, 2015, 9, 9, 13, db);
-                ToTable13.Add(reserv);
-
-                reserv = GetAuditoriumReservation(auditory.AuditoriumId, 2015, 9, 9, 14, db);
-                ToTable14.Add(reserv);
+                reservManager = new ReservationManager(new DateTime(2015, 9, 9, 0, 0, 0));
             }
-            #endregion
+            else
+            {
+                reservManager = new ReservationManager(new DateTime(date.Year, date.Month, date.Day, 0, 0, 0));
+            }
 
-            #region PutToTablesIntoViewBag
-            ViewBag.ToTable9 = ToTable9;
-            ViewBag.ToTable10 = ToTable10;
-            ViewBag.ToTable11 = ToTable11;
-            ViewBag.ToTable12 = ToTable12;
-            ViewBag.ToTable13 = ToTable13;
-            ViewBag.ToTable14 = ToTable14;
-            #endregion
-
-            ViewBag.Auditoriums_Count = db.Auditorium.Count();
             ViewBag.Auditoriums = db.Auditorium;
 
-            return View();
+            return View(reservManager);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult RemoveReservation(string id)
+        {
+            int rId = int.Parse(id);
+            Reservation reserv = db.Reservation.Where(r => r.ReservationId.Equals(rId)).First();
+
+            date = reserv.StartDate;
+            
+            db.RemoveReservation(reserv);
+
+            return Redirect("Home/Index");
         }
     }
 }

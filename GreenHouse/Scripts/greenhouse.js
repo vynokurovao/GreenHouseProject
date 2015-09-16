@@ -15,7 +15,6 @@ $(function () {
         var year = e.date.getFullYear();
         $('#forDate').html('на ' + day + '.' + month + '.' + year);
     });
-
 });
 
 (function ($) {
@@ -24,6 +23,11 @@ $(function () {
 
     $.extend($.GreenHouse, {
 
+        CancelClick: function (id) {
+            var Id = {id: id };
+            $.post("/Home/RemoveReservation", Id, null, "json");
+        },
+        
         btnRight_Click: function () {
             on_screen_pic = 9;
             slider_diff = 60;
