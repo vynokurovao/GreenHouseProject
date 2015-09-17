@@ -343,6 +343,7 @@
     <Content Include="Content\images\rooms\r-315-details.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\icomoon.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Models\DBAuditoriumModel.Context.tt">
@@ -355,6 +356,10 @@
       <DependentUpon>DBAuditoriumModel.edmx</DependentUpon>
       <LastGenOutput>DBAuditoriumModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\angular\angular.js" />
+    <Content Include="Scripts\angular\controllers\RoomsController.js" />
+    <Content Include="Scripts\angular\modules\GreenHouseApp.js" />
+    <Content Include="Scripts\angular\services\RoomsService.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.ru.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -366,6 +371,9 @@
     <Content Include="Models\DBAuditoriumModel.edmx.diagram">
       <DependentUpon>DBAuditoriumModel.edmx</DependentUpon>
     </Content>
+    <Content Include="fonts\icomoon.eot" />
+    <Content Include="fonts\icomoon.ttf" />
+    <Content Include="fonts\icomoon.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\greenhouse.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -398,6 +406,7 @@
     <Content Include="Views\Cabinet\Index.cshtml" />
     <Content Include="Views\Login\Create.cshtml" />
     <Content Include="Views\Home\Table.cshtml" />
+    <Content Include="Views\Shared\Rooms.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

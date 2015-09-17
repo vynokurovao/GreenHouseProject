@@ -27,6 +27,12 @@ namespace GreenHouse
                       "~/Scripts/bootstrap-datepicker.js",
                       "~/Scripts/bootstrap-datepicker.ru.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angular")
+                .Include("~/Scripts/angular/angular.js")
+                .IncludeDirectory("~/Scripts/angular/modules", "*.js")
+                .IncludeDirectory("~/Scripts/angular/controllers", "*.js")
+                .IncludeDirectory("~/Scripts/angular/services", "*.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap-datepicker.css",
