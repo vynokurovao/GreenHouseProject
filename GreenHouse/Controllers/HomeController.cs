@@ -18,8 +18,10 @@ namespace GreenHouse.Controllers
             //для инициализации бд
             //DBInitialization init = new DBInitialization();
             //init.Initialization(db);
-
-            Session["IsAuthenticated"] = "false";
+            if (Session["IsAuthenticated"] == null)
+            {
+                Session["IsAuthenticated"] = false;
+            }
 
             ReservationManager reservManager = new ReservationManager(DateTime.Now);
 

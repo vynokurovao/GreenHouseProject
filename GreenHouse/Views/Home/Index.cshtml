@@ -93,12 +93,21 @@
                                                 if (td.ReservationId != -1)
                                                 {
                                                     <td class="reservation">
-                                                        @if (Session["IsAuthenticated"].ToString() == "true" && (Session["UserRole"].ToString() == "admin" || Session["UserEmail"].ToString() == td.User.Email.ToString()))
+                                                        @if (Session["IsAuthenticated"].ToString() == "true" )
                                                         {
+                                                            if (Session["UserRole"].ToString() == "admin" || Session["UserEmail"].ToString() == td.User.Email.ToString())
+                                                            {
                                                             <div data-toggle="popover" data-html="true" data-placement="right"
                                                                  data-content="<div class='custompopover'><h6>@td.User.FirstName @td.User.Surname</h6>
                                                             <h6>@td.Purpose</h6> <button  onclick='$.GreenHouse.CancelClick(@td.ReservationId)'
                                                             class='btn btn-group-sm'>Отменить</button> </div>">@td.User.FirstName @td.User.Surname</div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div data-toggle="popover" data-html="true" data-placement="right"
+                                                                     data-content="<div class='custompopover'><h6>@td.User.FirstName @td.User.Surname</h6>
+                                                            <h6>@td.Purpose</h6> </div>">@td.User.FirstName @td.User.Surname</div>
+                                                            }
                                                         }
                                                         else
                                                         {
