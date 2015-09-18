@@ -1,0 +1,55 @@
+﻿
+@if (Session["IsAuthenticated"] == "true")
+{
+    string rol = Session["UserRole"].ToString();
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li style="padding:0px">
+
+                @if (rol == "admin")
+                {
+                    @Html.ActionLink(@Session["UserEmail"].ToString(), "Index", "Cabinet");
+                    @Html.ActionLink(@Session["UserRole"].ToString(), "Index", "Cabinet");
+                }
+                else
+                {
+                    @Html.ActionLink(@Session["UserEmail"].ToString(), "Index", "Cabinet")
+                }
+
+            </li>
+            <li>
+                |
+            </li>
+            <li>
+                @Html.ActionLink("Выйти", "LogOut", "Home")
+            </li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-right">
+        <li>
+            <span class="btnregistr" data-toggle="modal" data-target="#Registration">
+                @Ajax.ActionLink("Логин", "Create", "Login", new AjaxOptions
+               {
+                   HttpMethod = "Get",
+                   InsertionMode = InsertionMode.Replace,
+                   UpdateTargetId = "ModalContent"
+               })
+            </span>
+            |
+            <span class="btnregistr" data-toggle="modal" data-target="#Registration">
+                @Ajax.ActionLink("Регистрация", "Create", "Registration", new AjaxOptions
+               {
+                   HttpMethod = "GET",
+                   InsertionMode = InsertionMode.Replace,
+                   UpdateTargetId = "ModalContent"
+               })
+            </span>
+        </li>
+    </ul>
+}

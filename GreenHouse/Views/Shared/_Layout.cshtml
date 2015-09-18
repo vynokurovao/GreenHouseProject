@@ -39,28 +39,7 @@
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse navbar-right navbar-btn" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-right">
-                                <li>
-                                    <span class="btnregistr" data-toggle="modal" data-target="#Registration">
-                                        @Ajax.ActionLink("Логин", "Create", "Login", new AjaxOptions
-                                   {
-                                       HttpMethod = "GET",
-                                       InsertionMode = InsertionMode.Replace,
-                                       UpdateTargetId = "ModalContent"
-                                   })
-                                    </span>
-                                    |
-                                    <span class="btnregistr" data-toggle="modal" data-target="#Registration">
-                                        @Ajax.ActionLink("Регистрация", "Create", "Registration", new AjaxOptions
-                                   {
-                                       HttpMethod = "GET",
-                                       InsertionMode = InsertionMode.Replace,
-                                       UpdateTargetId = "ModalContent"
-                                   })
-                                    </span>
-                                </li>
-                            </ul>
-
+                            @Html.Partial("_LoginPartial")
                         </div><!-- /.navbar-collapse -->
                         <div class="logo" style="background: url(../../Content/images/logo.png) no-repeat; background-size: 139px 30px; position: absolute;  width: 139px; height: 30px; top: 0; left: 30px;">
                         </div>

@@ -11,7 +11,14 @@
     };
 }
 
+@if (ViewBag.Close == true)
+{
+    <script type="text/javascript">
+        location.reload();
+    </script>
+}
 <div id="login_form">
+
     @using (Ajax.BeginForm("Add", "Login", ajaxOptions))
     {
         @Html.AntiForgeryToken()

@@ -31,10 +31,30 @@ $(function () {
 
     $.extend($.GreenHouse, {
 
+        ReservClick: function (year, month, day, hour, auditorium) {
+
+            var purposeid = "#" + auditorium + "-" + hour;
+
+            var purpose = $(purposeid).val();
+
+            var model =
+                {
+                    year: year,
+                    month: month,
+                    day: day,
+                    hour: hour,
+                    purpose: purpose,
+                    auditorium: auditorium
+                };
+
+            $.post("/Home/AddReservation", model, null, "html").done(function (x) {
+                $("#cont").html(x);
+            });
+        },
+
         CancelClick: function (id) {
             var Id = {id: id };
             $.post("/Home/RemoveReservation", Id, null, "html").done(function (x) {
-                console.log(x);
                 $("#cont").html(x);
             });
         },
@@ -63,8 +83,35 @@ $(function () {
             }
         },
 
-        btnToday_Click: function () {
-            $('#datetimepicker12').datepicker('setDate', new Date('2015-09-11'));
+        btnToday_Click: function (year, month, day) {
+
+            var date = day + '.' + month + '.'+ year 
+
+            $('#datetimepicker12').datepicker('setDate', date);
+        },
+
+        btnReview_Click: function ()
+        {
+            $('#calendar-week').removeClass('hidden');
+
+            $('#calendar-close').addClass('hidden');
+
+           /* $.post("/Home/RoomDate", $('#calendar-week').val(), "html").done(function (x) {
+                $("#cont").html(x);
+            });*/
+        },
+
+        btnWeekCalendar_Click: function ()
+        {
+            var value = $('#btnWeekCalendar').html();
+            if (value == 'День')
+            {
+                $('#btnWeekCalendar').html('Неделя');
+            } else
+            {
+                $('#btnWeekCalendar').html('День');
+            }
+            
         },
 
         btnToggleCalendar_Click: function (elem) {

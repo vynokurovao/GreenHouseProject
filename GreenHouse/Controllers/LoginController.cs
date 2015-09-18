@@ -33,15 +33,33 @@ namespace GreenHouse.Controllers
                     if (users.AsEnumerable().Count() == 0)
                     {
                         ModelState.AddModelError("", "Данные введены не верно");
+
+                        ViewBag.Close = false;
+
                         return PartialView("Create", userInfo);
                     }
                     else
                     {
-                        return PartialView();
+                        foreach (User curuser in users)
+                        {
+                            Session["IsAuthenticated"] = "true";
+
+                            Session["UserName"] = curuser.Surname + " " + curuser.FirstName;
+
+                            string rol = curuser.Role1.RoleName;
+
+                            Session["UserRole"] = rol;
+
+                            Session["UserEmail"] = curuser.Email;
+                        }
+
+                        ViewBag.Close = true;
+
+                        return PartialView("Create", userInfo);
                     }
                 }
             }
-      
+
             return PartialView("Create", userInfo);
         }
     }

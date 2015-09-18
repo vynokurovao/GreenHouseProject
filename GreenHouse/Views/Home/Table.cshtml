@@ -1,6 +1,6 @@
 ﻿@model GreenHouse.ContexManager.ReservationManager
 
-<table class="table-bordered" id ='slider'>
+<table class="table-bordered" id='slider'>
     <thead>
         <tr>
             <th></th>
@@ -18,22 +18,38 @@
                 <td></td>
                 @foreach (var td in tr)
                 {
-                    if (td != null)
+                    if (td.ReservationId != -1)
                     {
                         <td class="reservation">
-                            <div data-toggle="popover" data-html="true" data-placement="right"
-                                 data-content="<div class='custompopover'><h6>@td.User.FirstName @td.User.Surname</h6>
-                                 <h6>@td.Purpose</h6> <button  onclick='$.GreenHouse.CancelClick(@td.ReservationId)'
-                                 class='btn btn-group-sm'>Отменить</button> </div>">@td.User.FirstName @td.User.Surname</div>
+                            @if (Session["IsAuthenticated"].ToString() == "true" && (Session["UserRole"].ToString() == "admin" || Session["UserEmail"].ToString() == td.User.Email.ToString()))
+                            {
+                                <div data-toggle="popover" data-html="true" data-placement="right"
+                                     data-content="<div class='custompopover'><h6>@td.User.FirstName @td.User.Surname</h6>
+                                                            <h6>@td.Purpose</h6> <button  onclick='$.GreenHouse.CancelClick(@td.ReservationId)'
+                                                            class='btn btn-group-sm'>Отменить</button> </div>">@td.User.FirstName @td.User.Surname</div>
+                            }
+                            else
+                            {
+                                <div data-toggle="popover" data-html="true" data-placement="right"
+                                     data-content="<div class='custompopover'><h6>@td.User.FirstName @td.User.Surname</h6>
+                                                            <h6>@td.Purpose</h6> </div>">@td.User.FirstName @td.User.Surname</div>
+                            }
                         </td>
-
                     }
                     else
                     {
                         <td>
-                            <div class="new-reservation" data-toggle="popover" data-html="true" data-placement="right"
-                                 data-content="<div class='custompopover'><h6>Цель</h6> <input type='text'/> <button class='btn btn-group-sm'>Бронировать</button> </div>">
-                                                        </div>
+                            @if (Session["IsAuthenticated"] == "true")
+                            {
+                                <div class="new-reservation" data-toggle="popover" data-html="true" data-placement="right"
+                                     data-content="<div class='custompopover'><h6>Цель</h6> <input id='@td.TargetAuditorium-@td.Hour' type='text'/> <button onclick='$.GreenHouse.ReservClick(@td.StartDate.Year, @td.StartDate.Month,  @td.StartDate.Day, @td.Hour, @td.TargetAuditorium )' class='btn btn-group-sm'>Бронировать</button> </div>">
+                                                            </div>
+                            }
+                            else
+                            {
+                                <div class="new-reservation">
+                                </div>
+                            }
                         </td>
                     }
                 }
@@ -41,6 +57,17 @@
         }
     </tbody>
 </table>
+<script>
+    $(function () {
+        $('[data-toggle="popover"]').popover({
+            html: true
+        });
+    });
+</script>
+
+
+
+
 
 
 

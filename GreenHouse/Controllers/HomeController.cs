@@ -19,6 +19,8 @@ namespace GreenHouse.Controllers
             //DBInitialization init = new DBInitialization();
             //init.Initialization(db);
 
+            Session["IsAuthenticated"] = "false";
+
             ReservationManager reservManager = new ReservationManager(DateTime.Now);
 
             ViewBag.Auditoriums = db.Auditorium;
@@ -64,6 +66,65 @@ namespace GreenHouse.Controllers
             ViewBag.Auditoriums = db.Auditorium;
 
             return PartialView("Table", reservManager);
+        }
+
+        //[HttpPost]
+        //public ActionResult RoomDate(string auditoriumName)
+        //{
+        //    return PartialView("Table", reservManager);
+        //}
+
+        //[HttpPost]
+        //public ActionResult RoomWeek(string auditoriumName)
+        //{
+        //    return PartialView("Table", reservManager);
+        //}
+
+        [HttpPost]
+        public ActionResult AddReservation(NewResevation newReservation)
+        {
+
+            Reservation reservation = new Reservation();
+
+            string email = Session["UserEmail"].ToString();
+
+            reservation.CreatedBy = db.User.Where(u => u.Email.Equals(email)).First().UserId;
+
+            reservation.StartDate = new DateTime(newReservation.year, newReservation.month, newReservation.day, newReservation.hour, 0, 0);
+
+            reservation.FinishDate = new DateTime(newReservation.year, newReservation.month, newReservation.day, newReservation.hour + 1, 0, 0);
+
+            reservation.Type = true;
+
+            reservation.Purpose = newReservation.purpose;
+
+            reservation.TargetAuditorium = newReservation.auditorium;
+
+            db.AddReservation(reservation);
+
+
+            ReservationManager reservManager = new ReservationManager(reservation.StartDate);
+
+            ViewBag.Auditoriums = db.Auditorium;
+
+            return PartialView("Table", reservManager);
+        }
+
+        [HttpGet]
+        public ActionResult LogOut()
+        {
+
+            Session["IsAuthenticated"] = "false";
+
+            Session["UserName"] = null;
+
+            Session["UserRole"] = null;
+
+            Session["UserEmail"] = null;
+
+            ViewBag.Close = false;
+
+            return Redirect("Index");
         }
     }
 }

@@ -8,7 +8,9 @@
 }
 
 ul.navbar-nav li a {
-	padding: 25px 15px;
+	padding: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .radio-warning input[type="radio"]:checked + label::before {
@@ -547,7 +549,7 @@ div.room315_200 {
 }
 
 .new-reservation{
-    height:10px;
+    height: 25px;
     width: 100%;
 }
 

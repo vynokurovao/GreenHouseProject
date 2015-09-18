@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace GreenHouse.ContexManager
 {
@@ -10,9 +9,9 @@ namespace GreenHouse.ContexManager
     {
         static Entities db;
 
-        private List<List<Reservation>> table;
+        private List<List<TD>> table;
 
-        public List<List<Reservation>> Table
+        public List<List<TD>> Table
         {
             get
             {
@@ -48,19 +47,62 @@ namespace GreenHouse.ContexManager
             return reservation;
         }
 
-        public List<List<Reservation>> GetDateReservation(DateTime date)
+        private TD ConvertToTD(Reservation reservation)
         {
-            List<List<Reservation>> table = new List<List<Reservation>>();
+            TD td = new TD();
+
+            td.User = reservation.User;
+
+            td.ReservationId = reservation.ReservationId;
+
+            td.Auditorium = reservation.Auditorium;
+
+            td.CreatedBy = reservation.CreatedBy;
+
+            td.FinishDate = reservation.FinishDate;
+
+            td.StartDate = reservation.StartDate;
+
+            td.TargetAuditorium = reservation.TargetAuditorium;
+
+            td.Type = reservation.Type;
+
+            td.Purpose = reservation.Purpose;
+
+            return td;
+        }
+
+
+        public List<List<TD>> GetDateReservation(DateTime date)
+        {
+            List<List<TD>> table = new List<List<TD>>();
 
             for (int i = 9; i <= 21; i++)
             {
-                List<Reservation> row = new List<Reservation>();
+                List<TD> row = new List<TD>();
 
                 foreach (Auditorium auditory in db.Auditorium)
                 {
                     Reservation reserv = GetAuditoriumReservation(auditory.AuditoriumId, new DateTime(date.Year, date.Month, date.Day, i, 0, 0));
 
-                    row.Add(reserv);
+                    TD td = new TD();
+
+                    if (reserv == null)
+                    {
+                        td.ReservationId = -1;
+
+                        td.StartDate = new DateTime(date.Year, date.Month, date.Day, i, 0, 0);
+
+                        td.TargetAuditorium = auditory.AuditoriumId;
+                    }
+                    else
+                    {
+                        td = ConvertToTD(reserv);
+                    }
+
+                    td.Hour = i;
+
+                    row.Add(td);
                 }
 
                 table.Add(row);

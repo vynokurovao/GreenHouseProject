@@ -15,9 +15,9 @@
                 <h2>Забронировать</h2>
                 <br />
                 <div class="form-group">
-                    <input class="form-control" placeholder="Номер комнаты">
+                    <input id="room-name" class="form-control" placeholder="Номер комнаты">
                 </div>
-                <button type="submit" class="btn btn-primary">Обзор</button>
+                <button type="submit" class="btn btn-primary" onclick="$.GreenHouse.btnReview_Click()">Обзор</button>
             </form>
         </div>
     </div>
@@ -36,11 +36,20 @@
 <div class="row">
     <div class="col-xs-2"></div>
     <div class="col-xs-4">
-        <label id="forDate">на @DateTime.Now</label>
+        <label id="forDate">на @DateTime.Now.Date</label>
     </div>
 
     <div class="col-xs-2"></div>
-    <div>
+    <div id="calendar-week" class="hidden">
+        <div class="col-xs-1">
+            <h6>Календарь</h6>
+        </div>
+        <div class="col-xs-2">
+            <button id="btnWeekCalendar" class="btn-primary" onclick="$.GreenHouse.btnWeekCalendar_Click()">День</button>
+        </div>
+    </div>
+
+    <div id="calendar-close">
         <div class="col-xs-1">
             <h6>Календарь</h6>
         </div>
@@ -56,6 +65,7 @@
         <table>
             <tr>
                 <td style="vertical-align:top;">
+
                     <button class="btn-group-sm" onclick="$.GreenHouse.btnLeft_Click()"><</button>
                 </td>
 
@@ -77,26 +87,41 @@
                                     @foreach (var tr in Model.Table)
                                     {
                                         <tr>
-                                            <td>
-                                                
-                                            </td>
+                                            <td></td>
                                             @foreach (var td in tr)
                                             {
-                                                if (td != null)
+                                                if (td.ReservationId != -1)
                                                 {
                                                     <td class="reservation">
-                                                        <div  data-toggle="popover" data-html="true" data-placement="right" 
-                                                             data-content="<div class='custompopover'><h6>@td.User.FirstName @td.User.Surname</h6> 
-                                                            <h6>@td.Purpose</h6> <button  onclick='$.GreenHouse.CancelClick(@td.ReservationId)' 
+                                                        @if (Session["IsAuthenticated"].ToString() == "true" && (Session["UserRole"].ToString() == "admin" || Session["UserEmail"].ToString() == td.User.Email.ToString()))
+                                                        {
+                                                            <div data-toggle="popover" data-html="true" data-placement="right"
+                                                                 data-content="<div class='custompopover'><h6>@td.User.FirstName @td.User.Surname</h6>
+                                                            <h6>@td.Purpose</h6> <button  onclick='$.GreenHouse.CancelClick(@td.ReservationId)'
                                                             class='btn btn-group-sm'>Отменить</button> </div>">@td.User.FirstName @td.User.Surname</div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div data-toggle="popover" data-html="true" data-placement="right"
+                                                                 data-content="<div class='custompopover'><h6>@td.User.FirstName @td.User.Surname</h6>
+                                                            <h6>@td.Purpose</h6> </div>">@td.User.FirstName @td.User.Surname</div>
+                                                        }
                                                     </td>
                                                 }
                                                 else
                                                 {
                                                     <td>
-                                                        <div class="new-reservation" data-toggle="popover" data-html="true" data-placement="right" 
-                                                             data-content="<div class='custompopover'><h6>Цель</h6> <input type='text'/> <button class='btn btn-group-sm'>Бронировать</button> </div>">
-                                                        </div>
+                                                        @if (Session["IsAuthenticated"] == "true")
+                                                        {
+                                                            <div class="new-reservation" data-toggle="popover" data-html="true" data-placement="right"
+                                                                 data-content="<div class='custompopover'><h6>Цель</h6> <input id='@td.TargetAuditorium-@td.Hour' type='text'/> <button onclick='$.GreenHouse.ReservClick(@td.StartDate.Year, @td.StartDate.Month,  @td.StartDate.Day, @td.Hour, @td.TargetAuditorium )' class='btn btn-group-sm'>Бронировать</button> </div>">
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="new-reservation">
+                                                            </div>
+                                                        }
                                                     </td>
                                                 }
                                             }
@@ -119,7 +144,7 @@
             <div class="col-xs-8 text-center">
                 <div id="calendarContainer">
                     <div id="datetimepicker12"></div>
-                    <button class="btn-primary" onclick="$.GreenHouse.btnToday_Click()">Today</button>
+                    <button class="btn-primary" onclick="$.GreenHouse.btnToday_Click(@DateTime.Now.Date.Year, @DateTime.Now.Date.Month, @DateTime.Now.Date.Day)">Today</button>
                 </div>
             </div>
         </div>
