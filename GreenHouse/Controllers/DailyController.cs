@@ -28,10 +28,7 @@ namespace Internship.Controllers
                 {
                     equipment.Add(addEq.AdditionalEquipmentName, false);
                 }
-                //bool Wifi = false;
-                //bool Projector = false;
-                //bool Monitor = false;
-                //bool Microphone = false;
+
                 foreach (AdditionalEquipment ae in auditorium.AdditionalEquipment)
                 {
                     if (equipment.ContainsKey(ae.AdditionalEquipmentName))

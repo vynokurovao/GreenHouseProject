@@ -501,6 +501,10 @@ div.room315_200 {
     background-image: url(./images/rooms/r-315-200.png)
 }
 
+.position {
+    position : absolute;
+}
+
 @font-face {
 	font-family: 'icomoon';
 	src:url('../fonts/icomoon.eot?7msi71');
@@ -529,6 +533,7 @@ div.room315_200 {
 .icon-microphone:before {
 	content: "\e608";
 }
+
 .icon-peoples:before {
 	content: "\e609";
 }
@@ -544,6 +549,11 @@ div.room315_200 {
 .icon-projector:before {
     content: "\e603";
 }
+
+.icon-tick:before {
+    content: "\e605";
+}
+
 #table-container {
     margin: 0px;
 }
