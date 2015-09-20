@@ -13,5 +13,6 @@ namespace GreenHouse.Models
         public int month { get; set; }
         public int day { get; set; }
         public int hour { get; set; }
+        public bool type { get; set; }
     }
 }

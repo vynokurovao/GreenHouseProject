@@ -96,7 +96,7 @@ namespace GreenHouse.Controllers
 
             reservation.FinishDate = new DateTime(newReservation.year, newReservation.month, newReservation.day, newReservation.hour + 1, 0, 0);
 
-            reservation.Type = true;
+            reservation.Type = newReservation.type;
 
             reservation.Purpose = newReservation.purpose;
 

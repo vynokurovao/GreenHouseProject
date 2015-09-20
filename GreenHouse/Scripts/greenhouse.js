@@ -44,7 +44,30 @@ $(function () {
                     day: day,
                     hour: hour,
                     purpose: purpose,
-                    auditorium: auditorium
+                    auditorium: auditorium,
+                    type: 1
+                };
+
+            $.post("/Home/AddReservation", model, null, "html").done(function (x) {
+                $("#cont").html(x);
+            });
+        },
+
+        LockClick: function (year, month, day, hour, auditorium) {
+
+            var purposeid = "#" + auditorium + "-" + hour;
+
+            var purpose = $(purposeid).val();
+
+            var model =
+                {
+                    year: year,
+                    month: month,
+                    day: day,
+                    hour: hour,
+                    purpose: purpose,
+                    auditorium: auditorium,
+                    type: 0
                 };
 
             $.post("/Home/AddReservation", model, null, "html").done(function (x) {
