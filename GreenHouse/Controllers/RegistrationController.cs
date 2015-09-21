@@ -23,23 +23,45 @@ namespace GreenHouse.Controllers
         [HttpPost]
         public ActionResult Add(RegistrationModel userInfo)
         {
-            if (ModelState.IsValid)
+            Entities db = new Entities();
+
+            IQueryable<User> existUser = db.User.Where(user => user.Email.Equals(userInfo.Email));
+
+            if (ModelState.IsValid && existUser.Count() == 0)
             {
                 User user = new User();
+
                 user.FirstName = userInfo.FirstName;
+
                 user.Surname = userInfo.Surname;
+
                 user.Email = userInfo.Email;
+
                 user.Password = userInfo.Password;
 
-                using (Entities db = new Entities())
-                {
-                    user.Role1 = db.Role.Where(role => role.RoleName.Equals("Client")).First();
-                    db.User.Add(user);
-                    db.SaveChanges();
-                }
-                return PartialView(user);
+                user.Role1 = db.Role.Where(role => role.RoleName.Equals("Client")).First();
+
+                db.User.Add(user);
+
+                db.SaveChanges();
+
+                Session["IsAuthenticated"] = "true";
+
+                Session["UserName"] = user.Surname + " " + user.FirstName;
+
+                string rol = user.Role1.RoleName;
+
+                Session["UserRole"] = rol;
+
+                Session["UserEmail"] = user.Email;
+
+                ViewBag.Close = true;
+
+                return PartialView("Create", userInfo);
             }
-            
+
+            ViewBag.Close = false;
+
             return PartialView("Create", userInfo);
         }
     }

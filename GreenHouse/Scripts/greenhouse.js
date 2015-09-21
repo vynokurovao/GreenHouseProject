@@ -19,7 +19,6 @@ $(function () {
         $('#forDate').html('на ' + day + '.' + month + '.' + year);
 
         $.post("/Home/TableForDate", Date, null, "html").done(function (x) {
-            console.log(x);
             $("#cont").html(x);
         });
     });
@@ -45,7 +44,7 @@ $(function () {
                     hour: hour,
                     purpose: purpose,
                     auditorium: auditorium,
-                    type: 1
+                    type: true
                 };
 
             $.post("/Home/AddReservation", model, null, "html").done(function (x) {
@@ -67,7 +66,7 @@ $(function () {
                     hour: hour,
                     purpose: purpose,
                     auditorium: auditorium,
-                    type: 0
+                    type: false
                 };
 
             $.post("/Home/AddReservation", model, null, "html").done(function (x) {
@@ -98,7 +97,8 @@ $(function () {
             on_screen_pic = 9;
             slider_diff = 60;
             var x = $("#cont").position();
-            if (x.left <= 0) {
+            if (x.left <= 0)
+            {
                 newcoord = (x.left + slider_diff);
                 if (newcoord >= 0)
                     newcoord = 0;
@@ -115,26 +115,57 @@ $(function () {
 
         btnReview_Click: function ()
         {
+            var date =  $('#forDate').html();
+
+            var auditoriumName = $("#room-name").val();
+
+            var model =
+                {
+                    date: date,
+                    auditorium: auditoriumName
+                };
+
             $('#calendar-week').removeClass('hidden');
 
             $('#calendar-close').addClass('hidden');
 
-           /* $.post("/Home/RoomDate", $('#calendar-week').val(), "html").done(function (x) {
+            $("#td").css({ width: '500px' });
+
+            $.post("/Home/RoomDate", model, "html").done(function (x) {
                 $("#cont").html(x);
-            });*/
+            });
         },
 
         btnWeekCalendar_Click: function ()
         {
+            var date = $('#forDate').html();
+
+            var auditoriumName = $("#room-name").val();
+
+            var model =
+                {
+                    date: date,
+                    auditorium: auditoriumName
+                };
+
             var value = $('#btnWeekCalendar').html();
             if (value == 'День')
             {
                 $('#btnWeekCalendar').html('Неделя');
+
+                $.post("/Home/RoomWeek", model, "html").done(function (x) {
+                    $("#cont").html(x);
+                });
             } else
             {
                 $('#btnWeekCalendar').html('День');
+
+                $.post("/Home/RoomDate", model, "html").done(function (x) {
+                    $("#cont").html(x);
+                });
             }
             
+
         },
 
         btnToggleCalendar_Click: function (elem) {
@@ -173,20 +204,6 @@ $(function () {
         btnCancelUpdatePassword_Click: function () {
             $('#btn_new_pass_room').show('slow');
             $('#new_password').addClass('hidden');
-        },
-
-        bookRoom: function (id) {
-            var td = $("#" + id);
-            var content = td.next().find('textarea').val();
-
-            $.ajax('/Daily/BookRoom', {
-                method: "POST",
-                data: { date: id, content: content },
-                success: function (data) {
-                    console.log(data);
-                }
-            });
-            td.popover('hide');
         }
     });
 })(jQuery);

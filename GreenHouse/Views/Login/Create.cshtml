@@ -65,7 +65,12 @@
                 </div>
             </div>
             <div class="form-group text-center">
-                <a href="#" style="color:gray">Регистрация</a>
+                @Ajax.ActionLink("Регистрация", "Create", "Registration", new AjaxOptions
+           {
+               HttpMethod = "GET",
+               InsertionMode = InsertionMode.Replace,
+               UpdateTargetId = "ModalContent"
+           })
             </div>
         </div>
     }

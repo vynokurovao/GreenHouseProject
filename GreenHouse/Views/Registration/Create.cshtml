@@ -6,9 +6,18 @@
     var ajaxOptions = new AjaxOptions
     {
         HttpMethod = "POST",
+
         InsertionMode = InsertionMode.Replace,
+
         UpdateTargetId = "registration_form",
     };
+}
+
+@if (ViewBag.Close == true)
+{
+    <script type="text/javascript">
+        location.reload();
+    </script>
 }
 
 <div id="registration_form">
@@ -82,7 +91,12 @@
             </div>
         </div>
         <div class="form-group text-center">
-            <a href="#" style="color:gray">Войти</a>
+            @Ajax.ActionLink("Войти", "Create", "Login", new AjaxOptions
+       {
+           HttpMethod = "Get",
+           InsertionMode = InsertionMode.Replace,
+           UpdateTargetId = "ModalContent"
+       })
         </div>
     </div>
 }

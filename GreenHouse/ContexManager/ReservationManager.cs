@@ -1,6 +1,7 @@
 ﻿using GreenHouse.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace GreenHouse.ContexManager
@@ -22,6 +23,7 @@ namespace GreenHouse.ContexManager
                 table = value;
             }
         }
+        
 
         public ReservationManager(DateTime date)
         {
@@ -110,5 +112,117 @@ namespace GreenHouse.ContexManager
 
             return table;
         }
+
+        public List<List<TD>> GetWeekReservation(DateTime date, string auditoriumName)
+        {
+            List<List<TD>> table = new List<List<TD>>();
+
+            DayOfWeek dayOfWeek = date.DayOfWeek;
+
+            DateTime startdate = date;
+
+            IQueryable<Auditorium> auditorium = db.Auditorium
+                       .Where(auditor => auditor.AuditoriumName.Equals(auditoriumName));
+
+            for (int i = 9; i <= 21; i++)
+            {
+                startdate = date;
+
+                startdate = startdate.Subtract(new TimeSpan((int)dayOfWeek - 1, 0, 0, 0));
+
+                List<TD> row = new List<TD>();
+
+                for (int day = 0; day < 7; day++)
+                {
+                    foreach (Auditorium auditory in auditorium)
+                    {
+                        Reservation reserv = GetAuditoriumReservation(auditory.AuditoriumId, new DateTime(startdate.Year, startdate.Month, startdate.Day, i, 0, 0));
+
+                        TD td = new TD();
+
+                        if (reserv == null)
+                        {
+                            td.ReservationId = -1;
+
+                            td.StartDate = new DateTime(date.Year, date.Month, date.Day, i, 0, 0);
+
+                            td.TargetAuditorium = auditory.AuditoriumId;
+                        }
+                        else
+                        {
+                            td = ConvertToTD(reserv);
+                        }
+
+                        td.Hour = i;
+
+                        row.Add(td);
+                    }
+
+                    startdate = startdate.AddDays(1);
+                }
+
+                table.Add(row);
+            }
+            return table;
+        }
+
+        public List<List<TD>> GetDayRoomReservation(DateTime date, string auditoriumName)
+        {
+            IQueryable < Auditorium > auditorium = db.Auditorium
+                        .Where(auditor => auditor.AuditoriumName.Equals(auditoriumName));
+
+            for (int i = 9; i <= 21; i++)
+            {
+                List<TD> row = new List<TD>();
+
+                foreach (Auditorium auditory in auditorium)
+                {
+                    Reservation reserv = GetAuditoriumReservation(auditory.AuditoriumId, new DateTime(date.Year, date.Month, date.Day, i, 0, 0));
+
+                    TD td = new TD();
+
+                    if (reserv == null)
+                    {
+                        td.ReservationId = -1;
+
+                        td.StartDate = new DateTime(date.Year, date.Month, date.Day, i, 0, 0);
+
+                        td.TargetAuditorium = auditory.AuditoriumId;
+                    }
+                    else
+                    {
+                        td = ConvertToTD(reserv);
+                    }
+
+                    td.Hour = i;
+
+                    row.Add(td);
+                }
+                table.Add(row);
+            }
+
+            return table;
+        }
+
+        public List<string> GetDays(DateTime date)
+        {
+            DayOfWeek dayOfWeek = date.DayOfWeek;
+
+            DateTime startdate = date;
+
+            startdate = startdate.Subtract(new TimeSpan((int)dayOfWeek - 1, 0, 0, 0));
+
+            List<string> list = new List<string>();
+
+            for (int i = 0; i < 7; i++)
+            {
+                list.Add(startdate.DayOfWeek.ToString() + " " + startdate.Year.ToString() + "." + startdate.Month.ToString() + "." + startdate.Day.ToString());
+
+                startdate = startdate.AddDays(1);
+            }
+
+            return list;
+        }
+
     }
 }
