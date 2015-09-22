@@ -14,5 +14,6 @@ namespace GreenHouse.Models
         public int day { get; set; }
         public int hour { get; set; }
         public bool type { get; set; }
+        public byte view { get; set; } // 0 - for all auditoiums, 1 - for 1 auditorium, 2 - for a week
     }
 }

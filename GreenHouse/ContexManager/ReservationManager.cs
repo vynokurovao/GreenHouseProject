@@ -144,7 +144,7 @@ namespace GreenHouse.ContexManager
                         {
                             td.ReservationId = -1;
 
-                            td.StartDate = new DateTime(date.Year, date.Month, date.Day, i, 0, 0);
+                            td.StartDate = new DateTime(startdate.Year, startdate.Month, startdate.Day, i, 0, 0);
 
                             td.TargetAuditorium = auditory.AuditoriumId;
                         }

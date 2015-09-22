@@ -36,6 +36,22 @@ $(function () {
 
             var purpose = $(purposeid).val();
 
+            var view = 0;
+
+            if (!$('#calendar-week').hasClass('hidden'))
+            {
+                var interval = $('#btnWeekCalendar').html();
+
+                if (interval == "Неделя")
+                {
+                    view = 1;
+                }
+                else
+                {
+                    view = 2;
+                }
+            }
+
             var model =
                 {
                     year: year,
@@ -44,7 +60,8 @@ $(function () {
                     hour: hour,
                     purpose: purpose,
                     auditorium: auditorium,
-                    type: true
+                    type: true,
+                    view: view
                 };
 
             $.post("/Home/AddReservation", model, null, "html").done(function (x) {
@@ -58,6 +75,19 @@ $(function () {
 
             var purpose = $(purposeid).val();
 
+            var view = 0;
+
+            if (!$('#calendar-week').hasClass('hidden')) {
+                var interval = $('#btnWeekCalendar').html();
+
+                if (interval == "Неделя") {
+                    view = 1;
+                }
+                else {
+                    view = 2;
+                }
+            }
+
             var model =
                 {
                     year: year,
@@ -66,7 +96,8 @@ $(function () {
                     hour: hour,
                     purpose: purpose,
                     auditorium: auditorium,
-                    type: false
+                    type: false,
+                    view: view
                 };
 
             $.post("/Home/AddReservation", model, null, "html").done(function (x) {
@@ -75,8 +106,27 @@ $(function () {
         },
 
         CancelClick: function (id) {
-            var Id = {id: id };
-            $.post("/Home/RemoveReservation", Id, null, "html").done(function (x) {
+
+            var view = 0;
+
+            if (!$('#calendar-week').hasClass('hidden')) {
+                var interval = $('#btnWeekCalendar').html();
+
+                if (interval == "Неделя") {
+                    view = 1;
+                }
+                else {
+                    view = 2;
+                }
+            }
+
+            var model =
+                {
+                    reservation: id,
+                    view: view
+                };
+
+            $.post("/Home/RemoveReservation", model, null, "html").done(function (x) {
                 $("#cont").html(x);
             });
         },
@@ -125,6 +175,8 @@ $(function () {
                     auditorium: auditoriumName
                 };
 
+            $('#btnWeekCalendar').html('Неделя');
+
             $('#calendar-week').removeClass('hidden');
 
             $('#calendar-close').addClass('hidden');
@@ -149,16 +201,16 @@ $(function () {
                 };
 
             var value = $('#btnWeekCalendar').html();
-            if (value == 'День')
+            if (value == 'Неделя')
             {
-                $('#btnWeekCalendar').html('Неделя');
+                $('#btnWeekCalendar').html('День');
 
                 $.post("/Home/RoomWeek", model, "html").done(function (x) {
                     $("#cont").html(x);
                 });
             } else
             {
-                $('#btnWeekCalendar').html('День');
+                $('#btnWeekCalendar').html('Неделя');
 
                 $.post("/Home/RoomDate", model, "html").done(function (x) {
                     $("#cont").html(x);

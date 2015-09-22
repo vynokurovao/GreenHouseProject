@@ -18,6 +18,7 @@ namespace GreenHouse.Controllers
             //для инициализации бд
             //DBInitialization init = new DBInitialization();
             //init.Initialization(db);
+
             if (Session["IsAuthenticated"] == null)
             {
                 Session["IsAuthenticated"] = false;
@@ -55,17 +56,54 @@ namespace GreenHouse.Controllers
         }
 
         [HttpPost]
-        public ActionResult RemoveReservation(string id)
+        public ActionResult RemoveReservation(ReservationForRemove reservForRemote)
         {
-            int rId = int.Parse(id);
+            int rId = int.Parse(reservForRemote.reservation);
 
-            Reservation reserv = db.Reservation.Where(r => r.ReservationId.Equals(rId)).First();
+            IQueryable<Reservation> reservations = db.Reservation.Where(r => r.ReservationId.Equals(rId));
+
+            Reservation reserv = new Reservation();
+            
+            foreach (Reservation r in reservations)
+            {
+                reserv = r;
+            }
 
             db.RemoveReservation(reserv);
 
             ReservationManager reservManager = new ReservationManager(reserv.StartDate);
 
-            ViewBag.Auditoriums = db.Auditorium;
+            if (reservForRemote.view == 0)
+            {
+                ViewBag.Auditoriums = db.Auditorium;
+            }
+            else if (reservForRemote.view == 1)
+            {
+                IQueryable<Auditorium> auditorium = db.Auditorium.Where(auditor => auditor.AuditoriumId.Equals(reserv.TargetAuditorium));
+
+                foreach (Auditorium a in auditorium)
+                {
+                    reservManager.Table = new List<List<TD>>();
+
+                    reservManager.Table = reservManager.GetDayRoomReservation(reserv.StartDate, a.AuditoriumName);
+
+                    ViewBag.Auditoriums = db.Auditorium.Where(auditor => auditor.AuditoriumName.Equals(a.AuditoriumName));
+                }
+
+            }
+            else if (reservForRemote.view == 2)
+            {
+                IQueryable<Auditorium> auditorium = db.Auditorium.Where(auditor => auditor.AuditoriumId.Equals(reserv.TargetAuditorium));
+
+                foreach (Auditorium a in auditorium)
+                {
+                    reservManager.Table = new List<List<TD>>();
+
+                    reservManager.Table = reservManager.GetWeekReservation(reserv.StartDate, a.AuditoriumName);
+
+                    ViewBag.days = reservManager.GetDays(reserv.StartDate);
+                }
+            }
 
             return PartialView("Table", reservManager);
         }
@@ -83,11 +121,18 @@ namespace GreenHouse.Controllers
 
             ReservationManager reservManager = new ReservationManager(date);
 
-            reservManager.Table = new List<List<TD>>();
+            if (model.auditorium != null)
+            {
+                reservManager.Table = new List<List<TD>>();
 
-            reservManager.Table = reservManager.GetDayRoomReservation(date, model.auditorium);
+                reservManager.Table = reservManager.GetDayRoomReservation(date, model.auditorium);
 
-            ViewBag.Auditoriums = db.Auditorium.Where(auditor => auditor.AuditoriumName.Equals(model.auditorium)); ;
+                ViewBag.Auditoriums = db.Auditorium.Where(auditor => auditor.AuditoriumName.Equals(model.auditorium));
+            }
+            else
+            {
+                ViewBag.Auditoriums = db.Auditorium;
+            }
 
             return PartialView("Table", reservManager);
         }
@@ -110,9 +155,7 @@ namespace GreenHouse.Controllers
             reservManager.Table = reservManager.GetWeekReservation(date, model.auditorium);
 
             ViewBag.days = reservManager.GetDays(date);
-
-
-
+            
             return PartialView("Table", reservManager);
         }
 
@@ -138,10 +181,39 @@ namespace GreenHouse.Controllers
 
             db.AddReservation(reservation);
 
-
             ReservationManager reservManager = new ReservationManager(reservation.StartDate);
 
-            ViewBag.Auditoriums = db.Auditorium;
+            if (newReservation.view == 0)
+            {
+                ViewBag.Auditoriums = db.Auditorium;
+            }
+            else if (newReservation.view == 1)
+            {
+                IQueryable<Auditorium> auditorium = db.Auditorium.Where(auditor => auditor.AuditoriumId.Equals(newReservation.auditorium));
+
+                foreach (Auditorium a in auditorium)
+                {
+                    reservManager.Table = new List<List<TD>>();
+
+                    reservManager.Table = reservManager.GetDayRoomReservation(reservation.StartDate, a.AuditoriumName);
+
+                    ViewBag.Auditoriums = db.Auditorium.Where(auditor => auditor.AuditoriumName.Equals(a.AuditoriumName));
+                }
+
+            }
+            else if (newReservation.view == 2)
+            {
+                IQueryable<Auditorium> auditorium = db.Auditorium.Where(auditor => auditor.AuditoriumId.Equals(newReservation.auditorium));
+
+                foreach (Auditorium a in auditorium)
+                {
+                    reservManager.Table = new List<List<TD>>();
+
+                    reservManager.Table = reservManager.GetWeekReservation(reservation.StartDate, a.AuditoriumName);
+
+                    ViewBag.days = reservManager.GetDays(reservation.StartDate);
+                }
+            }
 
             return PartialView("Table", reservManager);
         }

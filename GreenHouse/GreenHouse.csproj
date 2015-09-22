@@ -170,6 +170,7 @@
       <DependentUpon>DBAuditoriumModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ReservationAuditoriumDay.cs" />
+    <Compile Include="Models\ReservationForRemove.cs" />
     <Compile Include="Models\Role.cs">
       <DependentUpon>DBAuditoriumModel.tt</DependentUpon>
     </Compile>
@@ -377,6 +378,7 @@
     <Content Include="fonts\icomoon.eot" />
     <Content Include="fonts\icomoon.ttf" />
     <Content Include="fonts\icomoon.woff" />
+    <None Include="Properties\PublishProfiles\gr h.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\greenhouse.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -411,6 +413,7 @@
     <Content Include="Views\Home\Table.cshtml" />
     <Content Include="Views\Shared\Rooms.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\WeekTable.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
