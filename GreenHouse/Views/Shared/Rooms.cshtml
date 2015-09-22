@@ -2,12 +2,40 @@
     <div class="row">
         <div class="col-xs-2"></div>
         <div class="col-xs-10" data-ng-controller="RoomsController">
+            
             <div class="mapContainer">
-                <h3>План Этажа</h3>
-                <h4>{{ rooms.length }} комнат</h4>
+                <div class="filter">
+                    <input type="range" step="25" id="capacity" />
+                    <table class="white">
+                        <tr><td class="white">Техническая база</td></tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="wi-fi" name="Wi-fi" data-ng-click="updateRooms(rooms)"/>
+                                <label for="wi-fi"><span></span>Wi-Fi</label>
+                            </td>
+                            <td>
+                                <input type="checkbox" id="proj" name="Projector" data-ng-click="updateRooms(rooms)"/>
+                                <label for="proj"><span></span>Проектор</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="mon" name="Monitor" data-ng-click="updateRooms(rooms)"/>
+                                <label for="mon"><span></span>Монитор</label>
+                            </td>
+                            <td>
+                                <input type="checkbox" id="mic" name="Microphone" data-ng-click="updateRooms(rooms)"/>
+                                <label for="mic"><span></span>Микрофон</label>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3 class="white">План Этажа</h3>
+                <h4 class="white">{{ filteredRooms.length }} комнат</h4>
 
                 <div class="mapImgContainer">
-                    <div data-ng-repeat="room in rooms">
+                    <div data-ng-repeat="room in filteredRooms">
                         <div id="room{{ room.number }}" class="{{ getClass(room) }}"></div>
                     </div>
 
@@ -15,31 +43,31 @@
                     <img src="@Url.Content("~/Content/Images/map.png")" usemap="#roommap" />
                     <map name="roommap">
 
-                        <area shape="rect" coords="504,164,611,257" data-ng-click="selectRoom(301)" />
-                        <area shape="rect" coords="464,164,501,257" data-ng-click="selectRoom(302)" />
-                        <area shape="rect" coords="295,164,336,256" data-ng-click="selectRoom(303)" />
-                        <area shape="rect" coords="173,192,285,256" data-ng-click="selectRoom(304)" />
-                        <area shape="rect" coords="173,82,264,130" data-ng-click="selectRoom(305)" />
-                        <area shape="rect" coords="198,29,264,77" data-ng-click="selectRoom(306)" />
-                        <area shape="rect" coords="38,29,125,86" data-ng-click="selectRoom(307)" />
-                        <area shape="rect" coords="38,92,125,129" data-ng-click="selectRoom(308)" />
-                        <area shape="rect" coords="38,133,125,173" data-ng-click="selectRoom(309)" />
-                        <area shape="rect" coords="38,177,125,239" data-ng-click="selectRoom(310)" />
+                        <area id="301" shape="rect" coords="504,164,611,257" data-ng-click="selectRoom(301)" />
+                        <area id="302" shape="rect" coords="464,164,501,257" data-ng-click="selectRoom(302)" />
+                        <area id="303" shape="rect" coords="295,164,336,256" data-ng-click="selectRoom(303)" />
+                        <area id="304" shape="rect" coords="173,192,285,256" data-ng-click="selectRoom(304)" />
+                        <area id="305" shape="rect" coords="173,82,264,130" data-ng-click="selectRoom(305)" />
+                        <area id="306" shape="rect" coords="198,29,264,77" data-ng-click="selectRoom(306)" />
+                        <area id="307" shape="rect" coords="38,29,125,86" data-ng-click="selectRoom(307)" />
+                        <area id="308" shape="rect" coords="38,92,125,129" data-ng-click="selectRoom(308)" />
+                        <area id="309" shape="rect" coords="38,133,125,173" data-ng-click="selectRoom(309)" />
+                        <area id="310" shape="rect" coords="38,177,125,239" data-ng-click="selectRoom(310)" />
 
-                        <area shape="circle" coords="105,320,67" data-ng-click="selectRoom(311)" />
-                        <area shape="circle" coords="55,270,25" data-ng-click="selectRoom(311)" />
-                        <area shape="circle" coords="155,370,25" data-ng-click="selectRoom(311)" />
+                        <area id="311" shape="circle" coords="105,320,67" data-ng-click="selectRoom(311)" />
+                        <area id="311" shape="circle" coords="55,270,25" data-ng-click="selectRoom(311)" />
+                        <area id="311" shape="circle" coords="155,370,25" data-ng-click="selectRoom(311)" />
 
-                        <area shape="rect" coords="192,307,345,396" data-ng-click="selectRoom(312)" />
-                        <area shape="rect" coords="350,307,455,396" data-ng-click="selectRoom(313)" />
-                        <area shape="rect" coords="465,307,610,396" data-ng-click="selectRoom(314)" />
-                        <area shape="rect" coords="621,307,665,337" data-ng-click="selectRoom(315)" />
+                        <area id="312" shape="rect" coords="192,307,345,396" data-ng-click="selectRoom(312)" />
+                        <area id="313" shape="rect" coords="350,307,455,396" data-ng-click="selectRoom(313)" />
+                        <area id="314" shape="rect" coords="465,307,610,396" data-ng-click="selectRoom(314)" />
+                        <div id="315"><area shape="rect" coords="621,307,665,337" data-ng-click="selectRoom(315)" /></div>
                     </map>
                 </div>
             </div>
             
-            <div class="roominfo" data-ng-show="selectedRoom" style="position: absolute; top: {{ top }}px; left: {{ left }}px;">
-                <h3>Комната {{ selectedRoom.number }}</h3>
+            <div class="roominfo" data-ng-show="selectedRoom" style="position: absolute; top: {{ top1 }}px; left: {{ left1 }}px;">
+                <h3>Комната {{ selectedRoom.number }}</h3>               
                 <table>
                     <tr><td><span class="icon-peoples"></span>Кол-во мест {{ selectedRoom.places }}</td></tr>
                     <tr ng-show="selectedRoom.wifi"><td><span class="icon-wifi"></span>Wifi   <span class="icon-tick"></span></td></tr>

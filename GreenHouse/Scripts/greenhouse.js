@@ -3,6 +3,7 @@ $(function () {
         html: true
     });
 
+
     $('#datetimepicker12').datepicker({
         inline: true,
         sideBySide: true,
@@ -22,6 +23,29 @@ $(function () {
             $("#cont").html(x);
         });
     });
+
+    //$('#wi-fi').click(function () {
+
+    //    var checked = $("#wi-fi").is(':checked');
+    //    if (checked) {
+    //        $("#wi-fi").attr("checked", true);
+    //    } else {
+    //        $("#wi-fi").attr("checked", false);
+    //    }
+
+    //    $("#wi-fi").checked;
+    //    var model = {
+    //        wifi: $('#wi-fi').is(':checked'),
+    //        projector: $('#proj').is(':checked'),
+    //        monitor: $('#mon').is(':checked'),
+    //        microphone: $('#mic').is(':checked'),
+    //        capacity: $('#capacity').is(':checked')
+    //    }
+
+    //    $.post("/Daily/GetRooms", model, null, "html").done(function (x) {
+    //    });
+
+    //});
 });
 
 (function ($) {
@@ -259,3 +283,4 @@ $(function () {
         }
     });
 })(jQuery);
+

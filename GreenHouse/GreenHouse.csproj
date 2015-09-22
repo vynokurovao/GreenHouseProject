@@ -345,6 +345,8 @@
     <Content Include="Content\images\rooms\r-315-active.png" />
     <Content Include="Content\images\rooms\r-315-block.png" />
     <Content Include="Content\images\rooms\r-315-details.png" />
+    <Content Include="Content\images\slider_bg.jpg" />
+    <Content Include="Content\images\thumb.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\icomoon.svg" />
@@ -395,7 +397,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

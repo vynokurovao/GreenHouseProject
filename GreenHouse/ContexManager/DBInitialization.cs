@@ -10,11 +10,11 @@ namespace GreenHouse.ContexManager
 
         public void Initialization(Entities context)
         {
-            
+
             var roles = new List<Role>
             {
-                new Role { RoleId =1, RoleName= "admin"},
-                new Role { RoleId =2, RoleName= "Client"}
+                new Role { RoleId =11, RoleName= "admin"},
+                new Role { RoleId =12, RoleName= "Client"}
             };
             roles.ForEach(r => context.Role.Add(r));
             context.SaveChanges();
@@ -23,7 +23,7 @@ namespace GreenHouse.ContexManager
             var users = new List<User>
             {
                 new User { Role = 1, Email = "levvania@mail.ru", Surname = "Левицкий", FirstName = "Иван", Password = "pass" },
-                new User { Role = 2, Email = "rahuba@ukr.net", Surname = "Рахуба", FirstName = "Олександр", Password = "pass" },
+                new User { Role = 4, Email = "rahuba@ukr.net", Surname = "Рахуба", FirstName = "Олександр", Password = "pass" },
             };
             users.ForEach(u => context.User.Add(u));
             context.SaveChanges();

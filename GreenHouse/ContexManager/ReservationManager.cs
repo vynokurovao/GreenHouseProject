@@ -79,6 +79,8 @@ namespace GreenHouse.ContexManager
         {
             List<List<TD>> table = new List<List<TD>>();
 
+            db = new Entities();
+
             for (int i = 9; i <= 21; i++)
             {
                 List<TD> row = new List<TD>();
