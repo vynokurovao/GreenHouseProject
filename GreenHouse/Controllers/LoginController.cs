@@ -44,7 +44,9 @@ namespace GreenHouse.Controllers
                         {
                             Session["IsAuthenticated"] = "true";
 
-                            Session["UserName"] = curuser.Surname + " " + curuser.FirstName;
+                            Session["UserSurname"] = curuser.Surname;
+
+                            Session["UserFirstName"] = curuser.FirstName;
 
                             string rol = curuser.Role1.RoleName;
 
@@ -61,6 +63,25 @@ namespace GreenHouse.Controllers
             }
 
             return PartialView("Create", userInfo);
+        }
+
+        [HttpGet]
+        public ActionResult LogOut()
+        {
+
+            Session["IsAuthenticated"] = "false";
+
+            Session["UserSurname"] = null;
+
+            Session["UserFirstName"] = null;
+
+            Session["UserRole"] = null;
+
+            Session["UserEmail"] = null;
+
+            ViewBag.Close = false;
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -10,7 +10,6 @@ namespace GreenHouse.Controllers
 {
     public class HomeController : Controller
     {
-
         public Entities db = new Entities();
 
         public ActionResult Index()
@@ -218,21 +217,6 @@ namespace GreenHouse.Controllers
             return PartialView("Table", reservManager);
         }
 
-        [HttpGet]
-        public ActionResult LogOut()
-        {
 
-            Session["IsAuthenticated"] = "false";
-
-            Session["UserName"] = null;
-
-            Session["UserRole"] = null;
-
-            Session["UserEmail"] = null;
-
-            ViewBag.Close = false;
-
-            return Redirect("Index");
-        }
     }
 }

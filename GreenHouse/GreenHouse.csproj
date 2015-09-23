@@ -131,6 +131,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="ContexManager\Password.cs" />
     <Compile Include="ContexManager\ReservationManager.cs" />
     <Compile Include="ContexManager\DBInitialization.cs" />
     <Compile Include="ContexManager\TD.cs" />
@@ -417,9 +418,11 @@
     <Content Include="Views\Home\Table.cshtml" />
     <Content Include="Views\Shared\Rooms.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\WeekTable.cshtml" />
+    <Content Include="Views\Cabinet\ChangePlace.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Table\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

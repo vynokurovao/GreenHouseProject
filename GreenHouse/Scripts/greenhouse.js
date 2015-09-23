@@ -88,8 +88,14 @@ $(function () {
                     view: view
                 };
 
-            $.post("/Home/AddReservation", model, null, "html").done(function (x) {
-                $("#cont").html(x);
+            $.ajax({
+                url: "/Home/AddReservation",
+                type: "POST",
+                data: model,
+                dataType: "html",
+                success: function (x) {
+                    $("#cont").html(x);
+                }
             });
         },
 
@@ -104,10 +110,12 @@ $(function () {
             if (!$('#calendar-week').hasClass('hidden')) {
                 var interval = $('#btnWeekCalendar').html();
 
-                if (interval == "Неделя") {
+                if (interval == "Неделя")
+                {
                     view = 1;
                 }
-                else {
+                else
+                {
                     view = 2;
                 }
             }
@@ -123,10 +131,17 @@ $(function () {
                     type: false,
                     view: view
                 };
-
-            $.post("/Home/AddReservation", model, null, "html").done(function (x) {
-                $("#cont").html(x);
+            $.ajax({
+                url: "/Home/AddReservation",
+                type: "POST",
+                data: model,
+                dataType: "html",
+                success: function(x) 
+                { 
+                    $("#cont").html(x);
+                }
             });
+
         },
 
         CancelClick: function (id) {
@@ -236,35 +251,112 @@ $(function () {
             {
                 $('#btnWeekCalendar').html('Неделя');
 
-                $.post("/Home/RoomDate", model, "html").done(function (x) {
+                $.post("/Home/RoomDate", model, "html").done(function (x)
+                {
                     $("#cont").html(x);
                 });
             }
-            
-
         },
 
         btnToggleCalendar_Click: function (elem) {
+
             element = $(elem);
+
             $('#calendarContainer').toggle();
 
-            if ($('#table-container').hasClass('col-xs-7')) {
+            if ($('#table-container').hasClass('col-xs-7'))
+            {
                 $('#lenta').width(875);
-                $("#cont").animate({ left: "0px" }, 150);
-                $('#table-container').removeClass('col-xs-7').addClass('col-xs-10');
-                element.html('Показать');
 
+                $("#cont").animate({ left: "0px" }, 150);
+
+                $('#table-container').removeClass('col-xs-7').addClass('col-xs-10');
+
+                element.html('Показать');
             }
-            else if ($('#table-container').hasClass('col-xs-10')) {
+            else if ($('#table-container').hasClass('col-xs-10'))
+            {
                 $('#lenta').width(600);
+
                 $('#table-container').removeClass('col-xs-10').addClass('col-xs-7');
+
                 element.html('Скрыть');
             }
         },
 
-        btnUpdateUserData_Click: function () {
+        btnSaveUserData_Click: function ()
+        {
+            $('#user_data').show('slow');
+
+            $('#update_user_data').addClass('hidden');
+
+            var model =
+                {
+                    Email: $("#email").val(),
+
+                    FirstName: $("#firstname").val(),
+
+                    Surname: $("#surname").val()
+                };
+
+            $("#email").val("");
+
+            $("#firstname").val("");
+            
+            $("#surname").val("");
+
+            $.post("/Cabinet/Save", model, "html").done(function (x) {
+                $("#change-place").html(x);
+            });
+        },
+
+        btnUpdateUserData_Click: function ()
+        {
             $('#user_data').hide('slow');
+
             $('#update_user_data').removeClass('hidden');
+        },
+
+        btnSavePassword_Click: function () {
+
+            var pass = $("#newpass").val();
+
+            var confirm = $("#confirm").val();
+
+            if (pass == "" || confirm == "")
+            {
+                $("#notconfirm").val("Заполните все поля");
+
+                $("#notconfirm").removeClass("hidden");
+            }
+            else if (pass == confirm)
+            {
+                $('#user_data').show('slow');
+
+                $('#update_user_data').addClass('hidden');
+
+                var model =
+               {
+                   password: pass,
+
+                   confirm: confirm
+               };
+
+                $("#notconfirm").val("Пароль успешно изменен");
+
+                $("#notconfirm").removeClass("hidden");
+
+                $.post("/Cabinet/SavePassword", model, "html").done(function (x)
+                {
+                    $("#change-place").html(x);
+                });
+            }
+            else
+            {
+                $("#notconfirm").val("Пароли не совпадают");
+
+                $("#notconfirm").removeClass("hidden");
+            }
         },
 
         btnCancelUpdateUserData_Click: function () {

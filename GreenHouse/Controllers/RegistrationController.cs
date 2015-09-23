@@ -47,7 +47,9 @@ namespace GreenHouse.Controllers
 
                 Session["IsAuthenticated"] = "true";
 
-                Session["UserName"] = user.Surname + " " + user.FirstName;
+                Session["UserSurname"] = user.Surname;
+
+                Session["UserFirstName"] = user.FirstName;
 
                 string rol = user.Role1.RoleName;
 
