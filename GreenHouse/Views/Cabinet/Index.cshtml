@@ -1,6 +1,4 @@
-﻿@model GreenHouse.Models.User
-
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -11,14 +9,6 @@
         background: none;
     }
 </style>
-<div id="change-place">
-    @Html.Partial("~/Views/Cabinet/ChangePlace.cshtml")
-</div>
-<div class="row">
-    <h2>Забронированные комнаты</h2>
-    @*@foreach (var reservation in Model.)
-    {
-        <div>@reservation.Purpose</div>
-        <div>@reservation.StartDate</div>
-    }*@
+<div id="change-place" class="col-xs-12">
+    @Html.Partial(@"~/Views/Cabinet/ChangePlace.cshtml")
 </div>

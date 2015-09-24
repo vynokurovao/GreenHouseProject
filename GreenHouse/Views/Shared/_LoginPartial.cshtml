@@ -7,7 +7,7 @@
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
-            <li style="padding:0px">
+            <li>
 
                 @if (rol == "admin")
                 {
@@ -33,7 +33,7 @@ else
 {
     <ul class="nav navbar-right">
         <li>
-            <span class="btnregistr" data-toggle="modal" data-target="#Registration">
+            <span data-toggle="modal" data-target="#Registration">
                 @Ajax.ActionLink("Логин", "Create", "Login", new AjaxOptions
                {
                    HttpMethod = "Get",
@@ -42,7 +42,7 @@ else
                })
             </span>
             |
-            <span class="btnregistr" data-toggle="modal" data-target="#Registration">
+            <span data-toggle="modal" data-target="#Registration">
                 @Ajax.ActionLink("Регистрация", "Create", "Registration", new AjaxOptions
                {
                    HttpMethod = "GET",

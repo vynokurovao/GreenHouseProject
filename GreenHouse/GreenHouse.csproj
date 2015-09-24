@@ -135,6 +135,7 @@
     <Compile Include="ContexManager\ReservationManager.cs" />
     <Compile Include="ContexManager\DBInitialization.cs" />
     <Compile Include="ContexManager\TD.cs" />
+    <Compile Include="ContexManager\UserReservation.cs" />
     <Compile Include="Controllers\CabinetController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />

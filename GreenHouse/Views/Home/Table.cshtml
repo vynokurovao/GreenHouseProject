@@ -30,7 +30,7 @@
                 {
                     if (td.ReservationId != -1)
                     {
-                        <td id="td" class="reservation">
+                        <td class="reservation">
                             @if (td.Type)
                             { 
                                 if (Session["IsAuthenticated"].ToString() == "true" && (Session["UserRole"].ToString() == "admin" || Session["UserEmail"].ToString() == td.User.Email.ToString()))

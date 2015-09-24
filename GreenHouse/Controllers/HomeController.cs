@@ -31,6 +31,35 @@ namespace GreenHouse.Controllers
         }
 
         [HttpGet]
+        public ActionResult IndexRoomDate(ReservationAuditoriumDay model)
+        {
+            string[] stringDate = model.date.Split(' ');
+
+            string[] parts = stringDate[1].Split('.');
+
+            int year = int.Parse(parts[2]), month = int.Parse(parts[1]), day = int.Parse(parts[0]);
+
+            DateTime date = new DateTime(year, month, day, 0, 0, 0);
+
+            ReservationManager reservManager = new ReservationManager(date);
+
+            if (model.auditorium != null)
+            {
+                reservManager.Table = new List<List<TD>>();
+
+                reservManager.Table = reservManager.GetDayRoomReservation(date, model.auditorium);
+
+                ViewBag.Auditoriums = db.Auditorium.Where(auditor => auditor.AuditoriumName.Equals(model.auditorium));
+            }
+            else
+            {
+                ViewBag.Auditoriums = db.Auditorium;
+            }
+
+            return View("Index", reservManager);
+        }
+
+        [HttpGet]
         public ActionResult Table()
         {
             ReservationManager reservManager = new ReservationManager(DateTime.Now);
