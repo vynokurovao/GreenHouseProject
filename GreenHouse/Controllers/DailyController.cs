@@ -6,7 +6,7 @@ using System.Web.Helpers;
 using System.Web.Mvc;
 using GreenHouse.Models;
 
-namespace Internship.Controllers
+namespace GreenHouse.Controllers
 {
     public class DailyController : Controller
     {

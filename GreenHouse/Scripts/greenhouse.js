@@ -226,19 +226,8 @@ $(function () {
             };
             var x = "result";
 
-            window.location.href = "/Home/IndexRoomDate"
+            window.location.href = "/Home/IndexRoomDate";
 
-            //$.post("/Home/IndexRoomDate", model, "html").done(function (x)
-            //{
-
-            //    $('#btnWeekCalendar').html('Неделя');
-
-            //    $('#calendar-week').removeClass('hidden');
-
-            //    $('#calendar-close').addClass('hidden');
-
-            //    $("#td").css({ width: '500px' });
-            //});
         },
 
         btnWeekCalendar_Click: function() {

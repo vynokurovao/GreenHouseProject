@@ -25,10 +25,15 @@
         @foreach (var tr in Model.Table)
         {
             <tr>
-                <td></td>
                 @foreach (var td in tr)
                 {
-                    if (td.ReservationId != -1)
+                    if (td.ReservationId == -2)
+                    {
+                        <td>
+                            <h5>@td.Purpose:00</h5>
+                        </td>
+                    }
+                    else if (td.ReservationId != -1)
                     {
                         <td class="reservation">
                             @if (td.Type)

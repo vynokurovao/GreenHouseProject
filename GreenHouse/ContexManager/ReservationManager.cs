@@ -84,6 +84,14 @@ namespace GreenHouse.ContexManager
             {
                 List<TD> row = new List<TD>();
 
+                TD first = new TD();
+
+                first.ReservationId = -2;
+
+                first.Purpose = i.ToString();
+
+                row.Add(first);
+
                 foreach (Auditorium auditory in db.Auditorium)
                 {
                     Reservation reserv = GetAuditoriumReservation(auditory.AuditoriumId, new DateTime(date.Year, date.Month, date.Day, i, 0, 0));
