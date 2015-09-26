@@ -14,75 +14,90 @@
             $scope.filteredRooms = $scope.rooms;
         });
 
+        $scope.mapCapacity = function (sliderValue) {
+            switch (sliderValue) {
+                case 0:
+                    return 0;
+                case 1:
+                    return 30;
+                case 2:
+                    return 70;
+                case 3:
+                    return 100;
+                case 4:
+                    return 200;
+            }
+        }
+
+        $scope.checkRoom = function (room, constraints) {
+            if (room.places >= constraints.capacity)
+                return false;
+
+            if (constraints.wifi && !room.wifi)
+                return false;
+
+            if (constraints.projector && !room.projector)
+                return false;
+
+            if (constraints.monitor && !room.monitor)
+                return false;
+
+            if (constraints.microphone && !room.microphone)
+                return false;
+
+            return true;
+        }
+
         $scope.updateRooms = function (rooms) {
             var filteredRooms = [];
-            var wifi = $('#wi-fi').is(':checked');
-            var projector = $('#proj').is(':checked');
-            var monitor = $('#mon').is(':checked');
-            var microphone = $('#mic').is(':checked');
 
-            if (wifi) {
-                angular.forEach(rooms, function (room) {
-                    if (room.wifi) {
-                        filteredRooms.push(room);
-                    }
-                });
+            var constraints = {
+                capacity : $scope.mapCapacity( parseInt($('#capacity').val())),
+                wifi : $('#wi-fi').is(':checked'),
+                projector : $('#proj').is(':checked'),
+                monitor : $('#mon').is(':checked'),
+                microphone : $('#mic').is(':checked')
             }
-            else {
-                angular.forEach(rooms, function (room) {
+
+            angular.forEach(rooms, function (room) {
+                if ($scope.checkRoom(room, constraints)) {
                     filteredRooms.push(room);
-                })
-            }
+                }
+            })
+            $scope.filteredRooms = filteredRooms;
+        };
 
-            var nfilteredRooms = [];
-            if (projector) {
-                angular.forEach(filteredRooms, function (room) {
-                    if (room.projector) {
-                        nfilteredRooms.push(room);
-                    }
-                });
+        $scope.sliderMoveLeft = function () {
+            var currentValue = parseInt($('#capacity').val());
+            if (currentValue > 0) {
+                $('#capacity').val(currentValue - 1);
             }
-            else {
-                angular.forEach(filteredRooms, function (room) {
-                    nfilteredRooms.push(room);
-                })
-            }
+            $scope.updateRooms($scope.rooms);
+        };
 
-            var nnfilteredRooms = [];
-            if (monitor) {
-                angular.forEach(nfilteredRooms, function (room) {
-                    if (room.monitor) {
-                        nnfilteredRooms.push(room);
-                    }
-                })
+        $scope.sliderMoveRight = function () {
+            var currentValue = parseInt($('#capacity').val());
+            if (currentValue < 4) {
+                $('#capacity').val(currentValue + 1);
             }
-            else {
-                angular.forEach(nfilteredRooms, function (room) {
-                    nnfilteredRooms.push(room);
-                })
-            }
-
-            var nnnfilteredRooms = [];
-            if (microphone) {
-                angular.forEach(nnfilteredRooms, function (room) {
-                    if (room.microphone) {
-                        nnnfilteredRooms.push(room);
-                    }
-                })
-            }
-            else {
-                angular.forEach(nnfilteredRooms, function (room) {
-                    nnnfilteredRooms.push(room);
-                })
-            }
-
-            $scope.filteredRooms = nnnfilteredRooms;
+            $scope.updateRooms($scope.rooms);
         };
 
         $scope.selectedRoom = null;
 
         $scope.selectRoom = function (roomNumber) {
-            $scope.selectedRoom = $filter('filter')($scope.rooms, { number: roomNumber })[0];
+            var contains = false;
+            angular.forEach($scope.filteredRooms, function(room) {
+                if (room.number == roomNumber) {
+                    contains = true;
+                }
+            })
+            if (contains === true) {
+                $scope.selectedRoom = $filter('filter')($scope.rooms, { number: roomNumber })[0];
+            }
+            else {
+                return;
+            }
         }
 
         $scope.getClass = function (room) {
@@ -103,5 +118,30 @@
                 return "room" + room.number + "_200";
             }
         }
+
+        $scope.selectedNewRoom = null;
+
+        $scope.addNewRoom = function (roomNumber) {
+            var contains = false;
+            angular.forEach($scope.filteredRooms, function (room) {
+                if (room.number == roomNumber) {
+                    contains = true;
+                }
+            })
+            if (contains === false) {
+                $scope.selectedNewRoom = roomNumber;
+                $('#newRoomInfo').removeClass('hidden');
+                var roomId = "#Room" + roomNumber;
+                var newRoomId = "newRoom" + roomNumber;
+                var roomClass = "add" + roomNumber;
+                var curroom = $(roomId);
+                curroom.attr('id', newRoomId);
+                curroom.addClass(roomClass);
+            }
+            else {
+                return;
+            }
+        }
+
     }
 })()

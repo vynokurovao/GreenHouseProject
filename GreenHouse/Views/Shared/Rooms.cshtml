@@ -5,9 +5,20 @@
             
             <div class="mapContainer">
                 <div class="filter">
-                    <input type="range" step="25" id="capacity" />
+                    <div class="white">Количество посадочных мест:</div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button class="slideBtn" data-ng-click="sliderMoveLeft()"><</button>
+                            <input type="range" step="1" id="capacity" value="4" max="4" data-ng-click="updateRooms(rooms)" />
+                            <button class="slideBtn" data-ng-click="sliderMoveRight()">></button>
+                        </div>
+                       
+                    </div>
+                    <div class="points">
+                        до 10  до 30  до 70  до 100  до 200
+                    </div>
                     <table class="white">
-                        <tr><td class="white">Техническая база</td></tr>
+                        <tr><td class="white">Техническая база:</td></tr>
                         <tr>
                             <td>
                                 <input type="checkbox" id="wi-fi" name="Wi-fi" data-ng-click="updateRooms(rooms)"/>
@@ -32,13 +43,15 @@
                 </div>
 
                 <h3 class="white">План Этажа</h3>
-                <h4 class="white">{{ filteredRooms.length }} комнат</h4>
+                <h4 class="white">{{ rooms.length }} комнат</h4>
 
                 <div class="mapImgContainer">
+                    <div data-ng-repeat="room in rooms">
+                        <div id="room_{{room.number}}">{{room.number}}</div>
+                    </div>
                     <div data-ng-repeat="room in filteredRooms">
                         <div id="room{{ room.number }}" class="{{ getClass(room) }}"></div>
                     </div>
-
 
                     <img src="@Url.Content("~/Content/Images/map.png")" usemap="#roommap" />
                     <map name="roommap">
@@ -46,7 +59,7 @@
                         <area id="301" shape="rect" coords="504,164,611,257" data-ng-click="selectRoom(301)" />
                         <area id="302" shape="rect" coords="464,164,501,257" data-ng-click="selectRoom(302)" />
                         <area id="303" shape="rect" coords="295,164,336,256" data-ng-click="selectRoom(303)" />
-                        <area id="304" shape="rect" coords="173,192,285,256" data-ng-click="selectRoom(304)" />
+                        <area id="304" shape="poly" coords="173,192, 285,192, 285,256, 200, 256, 173, 223" data-ng-click="selectRoom(304)" />
                         <area id="305" shape="rect" coords="173,82,264,130" data-ng-click="selectRoom(305)" />
                         <area id="306" shape="rect" coords="198,29,264,77" data-ng-click="selectRoom(306)" />
                         <area id="307" shape="rect" coords="38,29,125,86" data-ng-click="selectRoom(307)" />
@@ -61,7 +74,7 @@
                         <area id="312" shape="rect" coords="192,307,345,396" data-ng-click="selectRoom(312)" />
                         <area id="313" shape="rect" coords="350,307,455,396" data-ng-click="selectRoom(313)" />
                         <area id="314" shape="rect" coords="465,307,610,396" data-ng-click="selectRoom(314)" />
-                        <div id="315"><area shape="rect" coords="621,307,665,337" data-ng-click="selectRoom(315)" /></div>
+                        <area id="315" shape="rect" coords="621,307,665,337" data-ng-click="selectRoom(315)" />
                     </map>
                 </div>
             </div>

@@ -120,7 +120,7 @@ h2{
     border-collapse: collapse;
 }
 
-    #slider td {
+#slider td {
         padding-top: 10px; 
         padding-bottom: 10px;
         margin:0px;
@@ -149,9 +149,20 @@ div.mapContainer {
     color: white;
 }
 
+.black {
+    color: black;
+}
+
 div.mapImgContainer {
     position: relative;
     height: 400px;
+    z-index: 1;
+}
+
+div.min-mapImageContainer {
+    position: absolute;
+    height: 261px;
+    width: 436px;
     z-index: 1;
 }
 
@@ -170,6 +181,13 @@ div#room301 {
     left: 504px;
     width: 107px;
     height: 93px;
+}
+
+div#room_301 {
+    color: white;
+    font-size: 14px;
+    top: 200px;
+    left: 545px;
 }
 
 div.room301_30 {
@@ -195,6 +213,13 @@ div#room302 {
     height: 93px;
 }
 
+div#room_302 {
+    color: white;
+    font-size: 14px;
+    top: 200px;
+    left: 470px;
+}
+
 div.room302_30 {
     background-image: url(./images/rooms/r-302-30.png)
 }
@@ -216,6 +241,13 @@ div#room303 {
     left: 295px;
     width: 41px;
     height: 92px;
+}
+
+div#room_303 {
+    color: white;
+    font-size: 14px;
+    top: 200px;
+    left: 304px;
 }
 
 div.room303_30 {
@@ -241,6 +273,13 @@ div#room304 {
     height: 64px;
 }
 
+div#room_304 {
+    color: white;
+    font-size: 14px;
+    top: 210px;
+    left: 220px;
+}
+
 div.room304_30 {
     background-image: url(./images/rooms/r-304-30.png)
 }
@@ -262,6 +301,13 @@ div#room305 {
     left: 173px;
     width: 91px;
     height: 48px;
+}
+
+div#room_305 {
+    color: white;
+    font-size: 14px;
+    top: 95px;
+    left: 205px;
 }
 
 div.room305_30 {
@@ -287,6 +333,13 @@ div#room306 {
     height: 48px;
 }
 
+div#room_306 {
+    color: white;
+    font-size: 14px;
+    top: 43px;
+    left: 217px;
+}
+
 div.room306_30 {
     background-image: url(./images/rooms/r-306-30.png)
 }
@@ -308,6 +361,13 @@ div#room307 {
     left: 38px;
     width: 87px;
     height: 57px;
+}
+
+div#room_307 {
+    color: white;
+    font-size: 14px;
+    top: 50px;
+    left: 70px;
 }
 
 div.room307_30 {
@@ -333,6 +393,13 @@ div#room308 {
     height: 37px;
 }
 
+div#room_308 {
+    color: white;
+    font-size: 14px;
+    top: 102px;
+    left: 70px;
+}
+
 div.room308_30 {
     background-image: url(./images/rooms/r-308-30.png)
 }
@@ -354,6 +421,13 @@ div#room309 {
     left: 38px;
     width: 87px;
     height: 40px;
+}
+
+div#room_309 {
+    color: white;
+    font-size: 14px;
+    top: 142px;
+    left: 70px;
 }
 
 div.room309_30 {
@@ -379,6 +453,13 @@ div#room310 {
     height: 62px;
 }
 
+div#room_310 {
+    color: white;
+    font-size: 14px;
+    top: 196px;
+    left: 70px;
+}
+
 div.room310_30 {
     background-image: url(./images/rooms/r-310-30.png)
 }
@@ -400,6 +481,13 @@ div#room311 {
     left: 30px;
     width: 157px;
     height: 152px;
+}
+
+div#room_311 {
+    color: white;
+    font-size: 14px;
+    top: 310px;
+    left: 93px;
 }
 
 div.room311_30 {
@@ -425,6 +513,13 @@ div#room312 {
     height: 89px;   
 }
 
+div#room_312 {
+    color: white;
+    font-size: 14px;
+    top: 337px;
+    left: 255px;
+}
+
 div.room312_30 {
     background-image: url(./images/rooms/r-312-30.png)
 }
@@ -446,6 +541,13 @@ div#room313 {
     left: 350px;
     width: 105px;
     height: 89px;
+}
+
+div#room_313 {
+    color: white;
+    font-size: 14px;
+    top: 337px;
+    left: 390px;
 }
 
 div.room313_30 {
@@ -471,6 +573,13 @@ div#room314 {
     height: 89px;
 }
 
+div#room_314 {
+    color: white;
+    font-size: 14px;
+    top: 337px;
+    left: 525px;
+}
+
 div.room314_30 {
     background-image: url(./images/rooms/r-314-30.png)
 }
@@ -494,6 +603,13 @@ div#room315 {
     height: 30px;
 }
 
+div#room_315 {
+    color: white;
+    font-size: 14px;
+    top: 310px;
+    left: 631px;
+}
+
 div.room315_30 {
     background-image: url(./images/rooms/r-315-30.png)
 }
@@ -508,6 +624,382 @@ div.room315_100 {
 
 div.room315_200 {
     background-image: url(./images/rooms/r-315-200.png)
+}
+
+div#Room301 {
+    top: 97px;
+    left: 320px;
+    width: 80px;
+    height: 64px;
+    background-image: url(images/rooms/r-301-active.png)
+}
+
+div#newRoom301 {
+    top: 97px;
+    left: 320px;
+    width: 80px;
+    height: 64px;
+    background-image: url(images/rooms/r-301-block.png);
+    z-index: 1;
+}
+
+.add301 {
+    top: 118px;
+    left: 346px;
+    width: 23px;
+    height: 23px;
+    background-image: url(images/icon-add-light.png);
+    z-index: 2;
+}
+
+div#Room302 {
+    top: 97px;
+    left: 295px;
+    width: 25px;
+    height: 64px;
+    background-image: url(images/rooms/r-302-active.png)
+}
+
+div#newRoom302 {
+    top: 97px;
+    left: 295px;
+    width: 25px;
+    height: 64px;
+    background-image: url(images/rooms/r-302-block.png)
+}
+
+.add302 {
+    top: 119px;
+    left: 296px;
+    width: 23px;
+    height: 23px;
+    background-image: url(images/icon-add-light.png);
+    z-index: 2;
+}
+
+div#Room303 {
+    top: 97px;
+    left: 180px;
+    width: 30px;
+    height: 64px;
+    background-image: url(images/rooms/r-303-active.png)
+}
+
+div#newRoom303 {
+    top: 97px;
+    left: 180px;
+    width: 30px;
+    height: 64px;
+    background-image: url(images/rooms/r-303-block.png)
+}
+
+.add303 {
+    top: 119px;
+    left: 184px;
+    width: 23px;
+    height: 23px;
+    background-image: url(images/icon-add-light.png);
+    z-index: 2;
+}
+
+div#Room304 {
+    top: 115px;
+    left: 99px;
+    width: 77px;
+    height: 46px;
+    background-image: url(images/rooms/r-304-active.png)
+}
+
+div#newRoom304 {
+    top: 115px;
+    left: 99px;
+    width: 77px;
+    height: 46px;
+    background-image: url(images/rooms/r-304-block.png)
+}
+
+.add304 {
+    top: 127px;
+    left: 130px;
+    width: 23px;
+    height: 23px;
+    background-image: url(images/icon-add-light.png);
+    z-index: 2;
+}
+
+div#Room305 {
+    top: 40px;
+    left: 99px;
+    width: 65px;
+    height: 40px;
+    background-image: url(images/rooms/r-305-active.png)
+}
+
+div#newRoom305 {
+    top: 40px;
+    left: 99px;
+    width: 65px;
+    height: 40px;
+    background-image: url(images/rooms/r-305-block.png)
+}
+
+.add305 {
+    top: 46px;
+    left: 118px;
+    width: 23px;
+    height: 23px;
+    background-image: url(images/icon-add-light.png);
+    z-index: 2;
+}
+
+div#Room306 {
+    top: 5px;
+    left: 116px;
+    width: 46px;
+    height: 35px;
+    background-image: url(images/rooms/r-306-active.png)
+}
+
+div#newRoom306 {
+    top: 5px;
+    left: 116px;
+    width: 46px;
+    height: 35px;
+    background-image: url(images/rooms/r-306-block.png)
+}
+
+.add306 {
+    top: 10px;
+    left: 125px;
+    width: 23px;
+    height: 23px;
+    background-image: url(images/icon-add-light.png);
+    z-index: 2;
+}
+
+div#Room307 {
+    top: 5px;
+    left: 9px;
+    width: 59px;
+    height: 45px;
+    background-image: url(images/rooms/r-307-active.png)
+}
+
+div#newRoom307 {
+    top: 5px;
+    left: 9px;
+    width: 59px;
+    height: 45px;
+    background-image: url(images/rooms/r-307-block.png)
+}
+
+.add307 {
+    top: 13px;
+    left: 26px;
+    width: 23px;
+    height: 23px;
+    background-image: url(images/icon-add-light.png);
+    z-index: 2;
+}
+
+div#Room308 {
+    top: 50px;
+    left: 9px;
+    width: 59px;
+    height: 25px;
+    background-image: url(images/rooms/r-308-active.png)
+}
+
+div#newRoom308 {
+    top: 50px;
+    left: 9px;
+    width: 59px;
+    height: 25px;
+    background-image: url(images/rooms/r-308-block.png)
+}
+
+.add308 {
+    top: 50px;
+    left: 26px;
+    width: 23px;
+    height: 23px;
+    background-image: url(images/icon-add-light.png);
+    z-index: 2;
+}
+
+div#Room309 {
+    top: 77px;
+    left: 9px;
+    width: 59px;
+    height: 26px;
+    background-image: url(images/rooms/r-309-active.png)
+}
+
+div#newRoom309 {
+    top: 77px;
+    left: 9px;
+    width: 59px;
+    height: 26px;
+    background-image: url(images/rooms/r-309-block.png)
+}
+
+.add309 {
+    top: 79px;
+    left: 26px;
+    width: 23px;
+    height: 23px;
+    background-image: url(images/icon-add-light.png);
+    z-index: 2;
+}
+
+div#Room310 {
+    top: 107px;
+    left: 9px;
+    width: 59px;
+    height: 43px;
+    background-image: url(images/rooms/r-310-active.png)
+}
+
+div#newRoom310 {
+    top: 107px;
+    left: 9px;
+    width: 59px;
+    height: 43px;
+    background-image: url(images/rooms/r-309-block.png)
+}
+
+.add310 {
+    top: 115px;
+    left: 26px;
+    width: 23px;
+    height: 23px;
+    background-image: url(images/icon-add-light.png);
+    z-index: 2;
+}
+
+div#Room311 {
+    top: 153px;
+    left: 3px;
+    width: 105px;
+    height: 106px;
+    background-image: url(images/rooms/r-311-active.png)
+}
+
+div#newRoom311 {
+    top: 153px;
+    left: 3px;
+    width: 105px;
+    height: 106px;
+    background-image: url(images/rooms/r-311-block.png)
+}
+
+.add311 {
+    top: 192px;
+    left: 41px;
+    width: 23px;
+    height: 23px;
+    background-image: url(images/icon-add-light.png);
+    z-index: 2;
+}
+
+div#Room312 {
+    top: 194px;
+    left: 112px;
+    width: 101px;
+    height: 62px;
+    background-image: url(images/rooms/r-312-active.png)
+}
+
+div#newRoom312 {
+    top: 194px;
+    left: 112px;
+    width: 101px;
+    height: 62px;
+    background-image: url(images/rooms/r-312-block.png)
+}
+
+.add312 {
+    top: 210px;
+    left: 152px;
+    width: 23px;
+    height: 23px;
+    background-image: url(images/icon-add-light.png);
+    z-index: 2;
+}
+
+div#Room313 {
+    top: 194px;
+    left: 218px;
+    width: 71px;
+    height: 62px;
+    background-image: url(images/rooms/r-313-active.png)
+}
+
+div#newRoom313 {
+    top: 194px;
+    left: 218px;
+    width: 71px;
+    height: 62px;
+    background-image: url(images/rooms/r-313-block.png)
+}
+
+.add313 {
+    top: 210px;
+    left: 241px;
+    width: 23px;
+    height: 23px;
+    background-image: url(images/icon-add-light.png);
+    z-index: 2;
+}
+
+div#Room314 {
+    top: 194px;
+    left: 295px;
+    width: 99px;
+    height: 62px;
+    background-image: url(images/rooms/r-314-active.png)
+}
+
+div#newRoom314 {
+    top: 194px;
+    left: 295px;
+    width: 99px;
+    height: 62px;
+    background-image: url(images/rooms/r-314-block.png)
+}
+
+.add314 {
+    top: 210px;
+    left: 331px;
+    width: 23px;
+    height: 23px;
+    background-image: url(images/icon-add-light.png);
+    z-index: 2;
+}
+
+div#Room315 {
+    top: 194px;
+    left: 400px;
+    width: 30px;
+    height: 21px;
+    background-image: url(images/rooms/r-315-active.png)
+}
+
+div#newRoom315 {
+    top: 194px;
+    left: 400px;
+    width: 30px;
+    height: 21px;
+    background-image: url(images/rooms/r-315-block.png)
+}
+
+.add315 {
+    top: 194px;
+    left: 404px;
+    width: 21px;
+    height: 21px;
+    background-image: url(images/icon-add-light.png);
+    z-index: 2;
 }
 
 @font-face {
@@ -537,26 +1029,32 @@ div.room315_200 {
 
 .icon-microphone:before {
 	content: "\e608";
+    font-size: 25px;
 }
 
 .icon-peoples:before {
 	content: "\e609";
+    font-size: 25px;
 }
 
 .icon-monitor:before {
     content: "\e600";
+    font-size: 25px;
 }
 
 .icon-wifi:before {
     content: "\e601";
+    font-size: 25px;
 }
 
 .icon-projector:before {
     content: "\e603";
+    font-size: 25px;
 }
 
 .icon-tick:before {
     content: "\e605";
+    font-size: 25px;
 }
 
 #table-container {
@@ -661,9 +1159,23 @@ input[type=range]:focus::-ms-fill-upper {
 .filter {
     position: absolute;
     top: 50px;
-    left: 530px;
+    left: 450px;
     z-index: 3;
 } 
+
+.slideBtn {
+    width: 40px;
+    height: 40px;
+    color: white;
+    border:none;
+    background-color:transparent;
+    font-size: 25px;
+}
+
+.points {
+    font-size: 16px;
+    color: white;
+}
 
 input[type="checkbox"] {
     display:none;
@@ -706,3 +1218,13 @@ input[type="checkbox"]:checked + label span {
 #new-room{
     background-color:#f3f7f6;
 }
+
+.roomCap{
+    height: 35px;
+}
+
+.pad15 {
+    padding-top: 15px;
+}
+
+
