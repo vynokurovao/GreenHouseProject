@@ -27,6 +27,8 @@ namespace GreenHouse.Controllers
 
             ViewBag.Auditoriums = db.Auditorium;
 
+            ViewBag.id = "td";
+
             return View(reservManager);
         }
 
@@ -88,6 +90,8 @@ namespace GreenHouse.Controllers
 
             if (reservForRemote.view == 0)
             {
+                ViewBag.id = "td";
+
                 ViewBag.Auditoriums = db.Auditorium;
             }
             else if (reservForRemote.view == 1)
@@ -99,6 +103,8 @@ namespace GreenHouse.Controllers
                     reservManager.Table = new List<List<TD>>();
 
                     reservManager.Table = reservManager.GetDayRoomReservation(reserv.StartDate, a.AuditoriumName);
+
+                    ViewBag.id = "td-day";
 
                     ViewBag.Auditoriums = db.Auditorium.Where(auditor => auditor.AuditoriumName.Equals(a.AuditoriumName));
                 }
@@ -114,6 +120,8 @@ namespace GreenHouse.Controllers
 
                     reservManager.Table = reservManager.GetWeekReservation(reserv.StartDate, a.AuditoriumName);
 
+                    ViewBag.id = "td";
+
                     ViewBag.days = reservManager.GetDays(reserv.StartDate);
                 }
             }
@@ -124,9 +132,9 @@ namespace GreenHouse.Controllers
         [HttpPost]
         public ActionResult RoomDate(ReservationAuditoriumDay model)
         {
-            string[] stringDate = model.date.Split(' ');
+            string[] parse = model.date.Split(' ');
 
-            string[] parts = stringDate[1].Split('.');
+            string[] parts = parse[parse.Length - 1].Split('.');
 
             int year = int.Parse(parts[2]), month = int.Parse(parts[1]), day = int.Parse(parts[0]);
 
@@ -140,10 +148,16 @@ namespace GreenHouse.Controllers
 
                 reservManager.Table = reservManager.GetDayRoomReservation(date, model.auditorium);
 
-                ViewBag.Auditoriums = db.Auditorium.Where(auditor => auditor.AuditoriumName.Equals(model.auditorium));
+                ViewBag.id = "td-day";
+
+                ViewBag.Room = model.auditorium;
+
+                ViewBag.Date = date;
             }
             else
             {
+                ViewBag.id = "td";
+
                 ViewBag.Auditoriums = db.Auditorium;
             }
 
@@ -153,9 +167,9 @@ namespace GreenHouse.Controllers
         [HttpPost]
         public ActionResult RoomWeek(ReservationAuditoriumDay model)
         {
-            string[] stringDate = model.date.Split(' ');
+            string[] parse = model.date.Split(' ');
 
-            string[] parts = stringDate[1].Split('.');
+            string[] parts = parse[parse.Length - 1].Split('.');
 
             int year = int.Parse(parts[2]), month = int.Parse(parts[1]), day = int.Parse(parts[0]);
 
@@ -167,7 +181,9 @@ namespace GreenHouse.Controllers
 
             reservManager.Table = reservManager.GetWeekReservation(date, model.auditorium);
 
-            ViewBag.days = reservManager.GetDays(date);
+            ViewBag.id = "td";
+
+            ViewBag.week = reservManager.GetDays(date);
             
             return PartialView("Table", reservManager);
         }
@@ -198,6 +214,8 @@ namespace GreenHouse.Controllers
 
             if (newReservation.view == 0)
             {
+                ViewBag.id = "td";
+
                 ViewBag.Auditoriums = db.Auditorium;
             }
             else if (newReservation.view == 1)
@@ -211,6 +229,8 @@ namespace GreenHouse.Controllers
                     reservManager.Table = reservManager.GetDayRoomReservation(reservation.StartDate, a.AuditoriumName);
 
                     ViewBag.Auditoriums = db.Auditorium.Where(auditor => auditor.AuditoriumName.Equals(a.AuditoriumName));
+
+                    ViewBag.id = "td-day";
                 }
 
             }
@@ -222,6 +242,8 @@ namespace GreenHouse.Controllers
                 {
                     reservManager.Table = new List<List<TD>>();
 
+                    ViewBag.id = "td";
+
                     reservManager.Table = reservManager.GetWeekReservation(reservation.StartDate, a.AuditoriumName);
 
                     ViewBag.days = reservManager.GetDays(reservation.StartDate);
@@ -230,7 +252,5 @@ namespace GreenHouse.Controllers
 
             return PartialView("Table", reservManager);
         }
-
-
     }
 }

@@ -43,6 +43,8 @@ namespace GreenHouse.Controllers
         {
             Entities db = new Entities();
 
+            UserReservation userReservation = new UserReservation();
+
             foreach (User user in db.User)
             {
                 if (Session["UserEmail"].ToString() == user.Email)
@@ -67,20 +69,22 @@ namespace GreenHouse.Controllers
 
                         Session["UserEmail"] = modifyUser.Email;
                     }
+
+                    userReservation = new UserReservation(user);
                 }
             }
 
             db.SaveChanges();
 
-            db.Dispose();
-
-            return PartialView("ChangePlace");
+            return PartialView("ChangePlace", userReservation);
         }
 
         [HttpPost]
         public ActionResult SavePassword(Password newpass)
         {
             Entities db = new Entities();
+
+            UserReservation userReservation = new UserReservation();
 
             foreach (User user in db.User)
             {
@@ -89,15 +93,15 @@ namespace GreenHouse.Controllers
                     if (newpass.password != null && newpass.confirm!=null)
                     {
                         user.Password = newpass.password;
+
+                        userReservation = new UserReservation(user);
                     }
                 }
             }
 
             db.SaveChanges();
 
-            db.Dispose();
-
-            return PartialView("ChangePlace");
+            return PartialView("ChangePlace",userReservation);
         }
     }
 }

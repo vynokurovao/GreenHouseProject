@@ -189,15 +189,8 @@ $(function () {
         },
 
         btnReview_Click: function() {
-            var date = $('#forDate').html();
 
             var auditoriumName = $("#room-name").val();
-
-            var model =
-            {
-                date: date,
-                auditorium: auditoriumName
-            };
 
             $('#btnWeekCalendar').html('Неделя');
 
@@ -205,32 +198,11 @@ $(function () {
 
             $('#calendar-close').addClass('hidden');
 
-            $.post("/Home/RoomDate", model, "html").done(function(x) {
-                $("#cont").html(x);
-            });
+            window.location.href = "/Room/ShowRoom?room=" + auditoriumName;
         },
 
-        btnRoom_Click: function(room, year, month, day) {
-
-            var date = "на " + day + "." + month + "." + year;
-
-            var auditoriumName = room;
-
-            var model =
-            {
-                date: date,
-                auditorium: auditoriumName
-            };
-            var x = "result";
-
-            window.location.href = "/Room/Index/room=" + room;
-
-        },
-
-        btnWeekCalendar_Click: function() {
-            var date = $('#forDate').html();
-
-            var auditoriumName = $("#room-name").val();
+        btnWeekCalendar_Click: function (auditoriumName) {
+            var date = $('#th-date').html();
 
             var model =
             {
@@ -243,11 +215,15 @@ $(function () {
             if (value == 'Неделя') {
                 $('#btnWeekCalendar').html('День');
 
+                $("#td").addClass("td-day");
+
                 $.post("/Home/RoomWeek", model, "html").done(function(x) {
                     $("#cont").html(x);
                 });
             } else {
                 $('#btnWeekCalendar').html('Неделя');
+
+                $("#td").removeClass("td-day");
 
                 $.post("/Home/RoomDate", model, "html").done(function(x) {
                     $("#cont").html(x);

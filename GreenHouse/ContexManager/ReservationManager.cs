@@ -35,6 +35,8 @@ namespace GreenHouse.ContexManager
         {
             Reservation reservation = null;
 
+            db = new Entities();
+
             foreach (Reservation reserv in db.Reservation)
             {
                 if (reserv.TargetAuditorium == AuditoriumId && reserv.StartDate == date)
@@ -241,7 +243,7 @@ namespace GreenHouse.ContexManager
 
             for (int i = 0; i < 7; i++)
             {
-                list.Add(startdate.DayOfWeek.ToString() + " " + startdate.Year.ToString() + "." + startdate.Month.ToString() + "." + startdate.Day.ToString());
+                list.Add(startdate.DayOfWeek.ToString() + " " + startdate.Day.ToString() + "." + startdate.Month.ToString() + "." + startdate.Year.ToString());
 
                 startdate = startdate.AddDays(1);
             }

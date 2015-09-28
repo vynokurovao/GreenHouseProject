@@ -32,6 +32,32 @@ namespace GreenHouse.Controllers
 
             ViewBag.Auditoriums = db.Auditorium.Where(auditor => auditor.AuditoriumName.Equals(room));
 
+            ViewBag.id = "td-day";
+
+            return View("Room", reservManager);
+        }
+
+        public ActionResult ShowRoom(string room)
+        {
+            if (Session["IsAuthenticated"] == null)
+            {
+                Session["IsAuthenticated"] = false;
+            }
+
+            DateTime date = DateTime.Now;
+
+            ReservationManager reservManager = new ReservationManager(date);
+
+            reservManager.Table = new List<List<TD>>();
+
+            reservManager.Table = reservManager.GetDayRoomReservation(date, room);
+
+            ViewBag.Date = date;
+
+            ViewBag.Room = room;
+
+            ViewBag.id = "td-day";
+
             return View("Room", reservManager);
         }
     }
