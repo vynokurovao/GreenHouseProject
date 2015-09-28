@@ -3,7 +3,6 @@ $(function () {
         html: true
     });
 
-
     $('#datetimepicker12').datepicker({
         inline: true,
         sideBySide: true,
@@ -206,8 +205,6 @@ $(function () {
 
             $('#calendar-close').addClass('hidden');
 
-            $("#td").css({ width: '500px' });
-
             $.post("/Home/RoomDate", model, "html").done(function(x) {
                 $("#cont").html(x);
             });
@@ -226,7 +223,7 @@ $(function () {
             };
             var x = "result";
 
-            window.location.href = "/Home/IndexRoomDate";
+            window.location.href = "/Room/Index/room=" + room;
 
         },
 

@@ -41,22 +41,7 @@ namespace GreenHouse.Controllers
 
             DateTime date = new DateTime(year, month, day, 0, 0, 0);
 
-            ReservationManager reservManager = new ReservationManager(date);
-
-            if (model.auditorium != null)
-            {
-                reservManager.Table = new List<List<TD>>();
-
-                reservManager.Table = reservManager.GetDayRoomReservation(date, model.auditorium);
-
-                ViewBag.Auditoriums = db.Auditorium.Where(auditor => auditor.AuditoriumName.Equals(model.auditorium));
-            }
-            else
-            {
-                ViewBag.Auditoriums = db.Auditorium;
-            }
-
-            return View("Index", reservManager);
+            return RedirectToAction("Index", "Room", new {date = date, room = model.auditorium });
         }
 
         [HttpGet]

@@ -141,6 +141,7 @@
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\DailyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -420,6 +421,7 @@
     <Content Include="Views\Shared\Rooms.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Cabinet\ChangePlace.cshtml" />
+    <Content Include="Views\Room\Room.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Table\" />

@@ -141,6 +141,14 @@ namespace GreenHouse.ContexManager
 
                 List<TD> row = new List<TD>();
 
+                TD first = new TD();
+
+                first.ReservationId = -2;
+
+                first.Purpose = i.ToString();
+
+                row.Add(first);
+
                 for (int day = 0; day < 7; day++)
                 {
                     foreach (Auditorium auditory in auditorium)
@@ -183,6 +191,14 @@ namespace GreenHouse.ContexManager
             for (int i = 9; i <= 21; i++)
             {
                 List<TD> row = new List<TD>();
+
+                TD first = new TD();
+
+                first.ReservationId = -2;
+
+                first.Purpose = i.ToString();
+
+                row.Add(first);
 
                 foreach (Auditorium auditory in auditorium)
                 {
