@@ -144,6 +144,4 @@
         }
 
     }
-
-    roomsCtrl.$inject= ['$scope', '$filter', 'roomsService'];
 })()

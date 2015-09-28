@@ -18,6 +18,4 @@
             return request;
         }
     }
-
-    roomsService.$inject = ["$http"];
 })()
