@@ -9,9 +9,18 @@ $(function () {
         language: 'ru'
     });
 
+    $('#datetimepicker').datepicker({
+        inline: true,
+        sideBySide: true,
+        language: 'ru'
+    });
+
     $('#datetimepicker12').on("changeDate", function (e) {
+
         var day = e.date.getDate();
+
         var month = e.date.getMonth() + 1;
+
         var year = e.date.getFullYear();
 
         var Date = { Date: day + '.' + month + '.' + year }
@@ -21,6 +30,35 @@ $(function () {
         $.post("/Home/TableForDate", Date, null, "html").done(function (x) {
             $("#cont").html(x);
         });
+    });
+
+    $('#datetimepicker').on("changeDate", function (e) {
+
+        var day = e.date.getDate();
+
+        var month = e.date.getMonth() + 1;
+
+        var year = e.date.getFullYear();
+
+        var model = {
+            date: 'на ' + day + '.' + month + '.' + year,
+            auditorium: $("#room_name").html()
+    }
+        var interval = $('#btnWeekCalendar').html();
+
+        if (interval != null) {
+
+            if (interval == "Неделя") {
+                $.post("/Home/RoomDate", model, null, "html").done(function (x) {
+                    $("#cont").html(x);
+                });
+            } else {
+                $.post("/Home/RoomWeek", model, null, "html").done(function (x) {
+                    $("#cont").html(x);
+                });
+            }
+        }
+        
     });
 });
 
@@ -37,8 +75,9 @@ $(function () {
 
             var view = 0;
 
-            if (!$('#calendar-week').hasClass('hidden')) {
-                var interval = $('#btnWeekCalendar').html();
+            var interval = $('#btnWeekCalendar').html();
+
+            if (interval != null) {
 
                 if (interval == "Неделя") {
                     view = 1;
@@ -78,8 +117,9 @@ $(function () {
 
             var view = 0;
 
-            if (!$('#calendar-week').hasClass('hidden')) {
-                var interval = $('#btnWeekCalendar').html();
+            var interval = $('#btnWeekCalendar').html();
+
+            if (interval != null) {
 
                 if (interval == "Неделя") {
                     view = 1;
@@ -132,9 +172,9 @@ $(function () {
 
             var view = 0;
 
-            if (!$('#calendar-week').hasClass('hidden')) {
-                var interval = $('#btnWeekCalendar').html();
+            var interval = $('#btnWeekCalendar').html();
 
+            if (interval != null) {
                 if (interval == "Неделя") {
                     view = 1;
                 } else {
@@ -154,25 +194,24 @@ $(function () {
         },
 
         btnRight_Click: function() {
-            on_screen_pic = 9;
-            slider_diff = 60;
+            var on_screen_pic = 9;
+            var slider_diff = 60;
             var x = $("#cont").position();
             if (Math.abs(x.left) + slider_diff * on_screen_pic < $("#slider").width()) {
-                newcoord = (x.left - slider_diff);
+                var newcoord = (x.left - slider_diff);
                 if (Math.abs(newcoord) + slider_diff >= $("#slider").width())
                     newcoord = -$("#slider").width() + slider_diff;
                 $("#cont").animate({ left: newcoord + "px" }, 150);
             }
         },
         btnLeft_Click: function() {
-            on_screen_pic = 9;
 
-            slider_diff = 60;
+            var slider_diff = 60;
 
             var x = $("#cont").position();
 
             if (x.left <= 0) {
-                newcoord = (x.left + slider_diff);
+                var newcoord = (x.left + slider_diff);
 
                 if (newcoord >= 0)
                     newcoord = 0;
@@ -183,9 +222,105 @@ $(function () {
 
         btnToday_Click: function(year, month, day) {
 
-            var date = day + '.' + month + '.' + year
+            var date = day + '.' + month + '.' + year;
 
             $('#datetimepicker12').datepicker('setDate', date);
+        },
+
+        btnReservOnPeriod_Click: function (room, date, nowYear, nowMonth, nowDay, nowHour) {
+
+            var interval = $('#btnWeekCalendar').html();
+
+            var period = true;
+
+            var hour = 9;
+
+            var view = 0;
+
+            if (interval != null) {
+                if (interval == "Неделя") {
+                    period = true;
+
+                    view = 1;
+                } else {
+                    period = false;
+
+                    view = 2;
+                }
+            }
+            var day = date.getDate();
+
+            var month = date.getMonth() + 1;
+
+            var year = date.getFullYear();
+
+            var Date = day + '.' + month + '.' + year;
+
+            var dateModel= {
+                year: year,
+                month: month,
+                day: day
+            }
+
+            var model = {
+                auditorium: room,
+                period: period,
+                date: Date
+            }
+
+            if (year == nowYear && month == nowMonth && day == nowDay) {
+                hour = nowHour + 1;
+            }
+
+            $.post("/Room/IsCanBlockOnPeriod", model, null, "html").done(function (x) {
+                   if (x == 2) {
+
+                       $('#info').removeClass("hidden");
+                       $('#info').html("Вы не можете заблокировать эту комнату, так как указаное время уже прошло.");
+                   }
+                   else if (x == 1) {
+
+                       var model =
+                       {
+                           year: year,
+                           month: month,
+                           day: day,
+                           hour: hour,
+                           finish_year: year,
+                           finish_month: month,
+                           finish_day: day,
+                           finish_hour: 22,
+                           purpose: "",
+                           auditorium_name: room,
+                           type: false,
+                           view: view
+                       };
+                       $.ajax({
+                           url: "/Home/AddReservation",
+                           type: "POST",
+                           data: model,
+                           dataType: "html",
+                           success: function (result) {
+                               $("#cont").html(result);
+                           }
+                       });
+
+                   } else {
+
+                       $('#info').removeClass("hidden");
+                       $('#info').html("Вы не можете заблокировать эту комнату, так как для нее существует бронь.");
+                       $('#info1').removeClass("hidden");
+                       $('#info1').html("Отмените все запланиронные события в данной комнате и попробуйте еще раз.");
+                   }
+               });
+           
+        },
+
+        btnRoomToday_Click: function (year, month, day) {
+
+            var date = day + '.' + month + '.' + year;
+
+            $('#datetimepicker').datepicker('setDate', date);
         },
 
         btnReview_Click: function() {
@@ -351,7 +486,20 @@ $(function () {
         btnAddNewRoom_Click: function() {
             $('#btn_new_pass_room').show();
             $('#new-room').addClass('hidden');
+        },
+
+        btnPast_Click: function () {
+            $('#info').removeClass("hidden");
+            $('#info').html("Резервировать комнату в прошлом нельзя");
+        },
+
+        btnHide_Info: function() {
+            $('#info').addClass("hidden");
+            $('#info').html("");
+            $('#info1').addClass("hidden");
+            $('#info1').html("");
         }
+
     });
 })(jQuery);
 

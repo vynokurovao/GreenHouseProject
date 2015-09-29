@@ -5,7 +5,7 @@
         <tr>
             @if (ViewBag.Room != null)
             {
-                <th id="th-date">@DateTime.Now.Date.Day.@DateTime.Now.Date.Month.@DateTime.Now.Date.Year</th>
+                <th id="th-date">@ViewBag.Date.Day.@ViewBag.Date.Month.@ViewBag.Date.Year</th>
             }
             else if (ViewBag.week != null)
             {
@@ -32,12 +32,23 @@
                 {
                     if (td.ReservationId != -1 && td.ReservationId != -2)
                     {
-
                         if (td.Type)
                         {
-                            if (Session["IsAuthenticated"].ToString() == "true" && (Session["UserRole"].ToString() == "admin" || Session["UserEmail"].ToString() == td.User.Email.ToString()))
+                            if (@td.StartDate < DateTime.Now)
                             {
-                                <td class="reservation">
+                                <td class="reservation"  onclick="$.GreenHouse.btnHide_Info()">
+                                    <div style="font-size: 10px;" id=@ViewBag.id data-toggle="popover" data-html="true" data-placement="right"
+                                         data-content="<div class='custompopover'>
+                                                                <h6>@td.User.FirstName @td.User.Surname</h6>
+                                                                <h6>@td.Purpose</h6> </div>">
+                                                                @td.User.FirstName @td.User.Surname
+                                    </div>
+                                </td>
+                            }
+                            else if (Session["IsAuthenticated"].ToString() == "true" && (Session["UserRole"].ToString() == "admin" || Session["UserEmail"].ToString() == td.User.Email.ToString()))
+                            {
+
+                                <td class="reservation" onclick="$.GreenHouse.btnHide_Info()" >
                                     <div id=@ViewBag.id data-toggle="popover" data-html="true" data-placement="right"
                                          data-content="<div class='custompopover'>
                                             <h6>@td.User.FirstName @td.User.Surname</h6>
@@ -48,7 +59,7 @@
                             }
                             else
                             {
-                                <td class="reservation">
+                                <td class="reservation"  onclick="$.GreenHouse.btnHide_Info()">
                                     <div style="font-size: 10px;" id=@ViewBag.id data-toggle="popover" data-html="true" data-placement="right"
                                          data-content="<div class='custompopover'>
                                                                 <h6>@td.User.FirstName @td.User.Surname</h6>
@@ -60,9 +71,17 @@
                         }
                         else
                         {
-                            if (Session["IsAuthenticated"].ToString() == "true" && Session["UserRole"].ToString() == "admin")
+                            if (@td.StartDate < DateTime.Now)
                             {
-                                <td style='background-color: #dddddd'>
+                            <td style='background-color: #dddddd'  onclick="$.GreenHouse.btnHide_Info()">
+                                    <div id=@ViewBag.id >
+                                        <span class="icon-lock"></span>
+                                    </div>
+                                </td>
+                            }
+                            else if (Session["IsAuthenticated"].ToString() == "true" && Session["UserRole"].ToString() == "admin")
+                            {
+                                <td style='background-color: #dddddd' onclick="$.GreenHouse.btnHide_Info()">
                                     <div id=@ViewBag.id data-toggle="popover" data-html="true" data-placement="right"
                                          data-content="<div class='custompopover' >
                                          <span class='icon-unlock'></span>
@@ -72,7 +91,7 @@
                             }
                             else
                             {
-                                <td style='background-color: #dddddd'>
+                                <td style='background-color: #dddddd' onclick="$.GreenHouse.btnHide_Info()">
                                     <div id=@ViewBag.id >
                                         <span class="icon-lock"></span>
                                     </div>
@@ -80,14 +99,20 @@
                             }
                         }
                     }
-                    else
+                    else if (td.ReservationId != -2)
                     {
                         <td>
                             @if (Session["IsAuthenticated"].ToString() == "true")
                             {
-                                if (Session["UserRole"].ToString() == "admin")
+                                if (@td.StartDate < DateTime.Now)
                                 {
-                                    <div id=@ViewBag.id.ToString() class="new-reservation" data-toggle="popover" data-html="true" data-placement="right"
+                                    <div id=@ViewBag.id class="new-reservation" onclick="$.GreenHouse.btnPast_Click()">
+                                    </div>
+                                }
+                                else if (Session["UserRole"].ToString() == "admin")
+                                {
+                                    
+                                    <div  onclick='$.GreenHouse.btnHide_Info()' id=@ViewBag.id.ToString() class="new-reservation" data-toggle="popover" data-html="true" data-placement="right"
                                          data-content="<div class='custompopover'>
                                                 <h6>Цель</h6>
                                                 <textarea maxlength='50' cols='25' rows='3' style='resize: none;' id='@td.TargetAuditorium-@td.Hour'></textarea>
@@ -96,18 +121,18 @@
                                                     <button onclick='$.GreenHouse.ReservClick(@td.StartDate.Year, @td.StartDate.Month,  @td.StartDate.Day, @td.Hour, @td.TargetAuditorium )' class='btn btn-group-sm'>Бронировать</button>
                                                 </div>
                                             </div>">
-                                         </div>
+                                    </div>
                                 }
                                 else
                                 {
-                                    <div id=@ViewBag.id class="new-reservation" data-toggle="popover" data-html="true" data-placement="right"
+                                    <div  onclick='$.GreenHouse.btnHide_Info()' id=@ViewBag.id class="new-reservation" data-toggle="popover" data-html="true" data-placement="right"
                                          data-content="<div class='custompopover'><h6>Цель</h6> <textarea maxlength='200' cols='25' rows='3' style='resize: none;' id='@td.TargetAuditorium-@td.Hour'></textarea> <button onclick='$.GreenHouse.ReservClick(@td.StartDate.Year, @td.StartDate.Month,  @td.StartDate.Day, @td.Hour, @td.TargetAuditorium )' class='btn btn-group-sm'>Бронировать</button> </div>">
-                                                                </div>
+                                    </div>
                                 }
                             }
                             else
                             {
-                                <div id=@ViewBag.id class="new-reservation">
+                                <div id=@ViewBag.id class="new-reservation"  onclick="$.GreenHouse.btnHide_Info()">
                                 </div>
                             }
                         </td>

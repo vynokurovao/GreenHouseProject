@@ -39,7 +39,7 @@ namespace GreenHouse.ContexManager
 
             foreach (Reservation reserv in db.Reservation)
             {
-                if (reserv.TargetAuditorium == AuditoriumId && reserv.StartDate == date)
+                if (reserv.TargetAuditorium == AuditoriumId && ( reserv.StartDate <= date && reserv.FinishDate > date))
                 {
                     reservation = reserv;
 
@@ -189,7 +189,7 @@ namespace GreenHouse.ContexManager
         {
             IQueryable < Auditorium > auditorium = db.Auditorium
                         .Where(auditor => auditor.AuditoriumName.Equals(auditoriumName));
-
+            
             for (int i = 9; i <= 21; i++)
             {
                 List<TD> row = new List<TD>();
@@ -250,6 +250,7 @@ namespace GreenHouse.ContexManager
 
             return list;
         }
+        
 
     }
 }

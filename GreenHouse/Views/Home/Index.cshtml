@@ -5,6 +5,14 @@
     ViewBag.Title = "Start Page";
 }
 
+<script type="text/javascript">
+    $(document).ready(function(){
+        var date = @DateTime.Now.Day + '.' + @DateTime.Now.Month + '.' + @DateTime.Now.Year;
+
+        $('#datetimepicker12').datepicker('setDate', date);
+    })
+</script>
+
 <br />
 <br />
 
@@ -110,3 +118,4 @@
 <br />
 
 @Html.Partial("~/Views/Shared/Rooms.cshtml")
+<script></script>

@@ -53,6 +53,8 @@ namespace GreenHouse.Controllers
 
             ViewBag.Auditoriums = db.Auditorium;
 
+            ViewBag.id = "td";
+
             return View(reservManager);
         }
 
@@ -66,6 +68,8 @@ namespace GreenHouse.Controllers
             ReservationManager reservManager = new ReservationManager(new DateTime(year, month, day, 0, 0, 0));
 
             ViewBag.Auditoriums = db.Auditorium;
+
+            ViewBag.id = "td";
 
             return PartialView("Table", reservManager);
         }
@@ -106,6 +110,10 @@ namespace GreenHouse.Controllers
 
                     ViewBag.id = "td-day";
 
+                    ViewBag.Room = a.AuditoriumName;
+
+                    ViewBag.Date = reserv.StartDate;
+
                     ViewBag.Auditoriums = db.Auditorium.Where(auditor => auditor.AuditoriumName.Equals(a.AuditoriumName));
                 }
 
@@ -122,7 +130,7 @@ namespace GreenHouse.Controllers
 
                     ViewBag.id = "td";
 
-                    ViewBag.days = reservManager.GetDays(reserv.StartDate);
+                    ViewBag.week = reservManager.GetDays(reserv.StartDate);
                 }
             }
 
@@ -191,7 +199,6 @@ namespace GreenHouse.Controllers
         [HttpPost]
         public ActionResult AddReservation(NewResevation newReservation)
         {
-
             Reservation reservation = new Reservation();
 
             string email = Session["UserEmail"].ToString();
@@ -200,14 +207,38 @@ namespace GreenHouse.Controllers
 
             reservation.StartDate = new DateTime(newReservation.year, newReservation.month, newReservation.day, newReservation.hour, 0, 0);
 
-            reservation.FinishDate = new DateTime(newReservation.year, newReservation.month, newReservation.day, newReservation.hour + 1, 0, 0);
+
+            if (newReservation.finish_year == 0)
+            {
+                reservation.FinishDate = new DateTime(newReservation.year, newReservation.month, newReservation.day, newReservation.hour + 1, 0, 0);
+            }
+            else
+            {
+                if (newReservation.view == 1)
+                {
+                    reservation.FinishDate = new DateTime(newReservation.year, newReservation.month, newReservation.day, newReservation.finish_hour, 0, 0);
+                }
+                else
+                {
+                    
+                }
+                
+            }
 
             reservation.Type = newReservation.type;
 
             reservation.Purpose = newReservation.purpose;
 
-            reservation.TargetAuditorium = newReservation.auditorium;
+            if (newReservation.auditorium == 0)
+            {
+                reservation.TargetAuditorium = db.Auditorium.Where(a => a.AuditoriumName.Equals(newReservation.auditorium_name)).First().AuditoriumId;
 
+                newReservation.auditorium = reservation.TargetAuditorium;
+            }
+            else
+            {
+                reservation.TargetAuditorium = newReservation.auditorium;
+            }
             db.AddReservation(reservation);
 
             ReservationManager reservManager = new ReservationManager(reservation.StartDate);
@@ -226,13 +257,16 @@ namespace GreenHouse.Controllers
                 {
                     reservManager.Table = new List<List<TD>>();
 
+                    ViewBag.Room = a.AuditoriumName;
+
+                    ViewBag.Date = reservation.StartDate;
+
                     reservManager.Table = reservManager.GetDayRoomReservation(reservation.StartDate, a.AuditoriumName);
 
                     ViewBag.Auditoriums = db.Auditorium.Where(auditor => auditor.AuditoriumName.Equals(a.AuditoriumName));
 
                     ViewBag.id = "td-day";
                 }
-
             }
             else if (newReservation.view == 2)
             {
@@ -244,9 +278,9 @@ namespace GreenHouse.Controllers
 
                     ViewBag.id = "td";
 
-                    reservManager.Table = reservManager.GetWeekReservation(reservation.StartDate, a.AuditoriumName);
+                    ViewBag.week = reservManager.GetDays(reservation.StartDate);
 
-                    ViewBag.days = reservManager.GetDays(reservation.StartDate);
+                    reservManager.Table = reservManager.GetWeekReservation(reservation.StartDate, a.AuditoriumName);
                 }
             }
 

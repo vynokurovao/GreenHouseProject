@@ -9,5 +9,6 @@ namespace GreenHouse.Models
     {
         public string auditorium { get; set; }
         public string date { get; set; }
+        public bool period { get; set; } //true - for a day, false for a week
     }
 }
