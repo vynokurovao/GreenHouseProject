@@ -120,11 +120,20 @@ h2{
     border-collapse: collapse;
 }
 
-#slider td {
-        padding-top: 0px; 
+    #slider td {
+        padding-top: 0px;
         padding-bottom: 0px;
-        margin:0px;
-        min-width:55px;
+        margin: 0px;
+        height: 40px;
+        min-width: 55px;
+    }
+
+        #slider th {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        margin: 0px;
+        height: 40px;
+        min-width: 55px;
     }
 
 #cont {
@@ -1261,4 +1270,29 @@ input[type="checkbox"]:checked + label span {
 .table-left {
     padding: 0px;
     height: 25px;
+}
+
+.table-left td {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        margin: 0px;
+        height: 40px;
+        min-width: 55px;
+    }
+.table-left th {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        margin: 0px;
+        height: 40px;
+        min-width: 55px;
+    }
+.btn-primary {
+    background-color: #438e11;
+}
+
+#info {
+    color: #ff0000;
+}
+#info1 {
+    color: #ff0000;
 }
