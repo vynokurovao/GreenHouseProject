@@ -6,7 +6,8 @@
     function roomsService($http) {
         // Return public API
         return ({
-            getRooms: getRooms
+            getRooms: getRooms,
+            addNewRoom: addNewRoom
         });
 
         function getRooms() {
@@ -17,5 +18,17 @@
 
             return request;
         }
+
+        function addNewRoom(newRoom) {
+            var request = $http({
+                method: "POST",
+                url: '/Daily/AddNewRoom',
+                data: newRoom
+            });
+
+            return request;
+        }
     }
+
+    roomsService.$inject = ["$http"];
 })()

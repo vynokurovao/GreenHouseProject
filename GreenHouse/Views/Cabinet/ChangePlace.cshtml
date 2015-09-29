@@ -121,7 +121,7 @@
             <h3>Добавить новую комнату</h3>
             <div class="hidden" id="newRoomInfo">
                 <h3>Комната {{ selectedNewRoom }}</h3>
-                <input class="roomCap" placeholder="Количество мест" />
+                <input class="roomCap" placeholder="Количество мест" ng-model="newRoom.capacity"/>
                 <div class="row">
                     <div class="pad15">
                         <div class="col-xs-3">
@@ -129,16 +129,16 @@
                             <label> Wi-Fi</label>
                         </div>
                         <div class="col-xs-3">
-                            <input type="checkbox" id="wi-fi" name="Wi-fi" />
-                            <label for="wi-fi"><span></span></label>
+                            <input type="checkbox" id="wi-fi" name="Wi-fi" ng-model="newRoom.wifi"/>
+                            <label for="wi-fi"><span class="grey"></span></label>
                         </div>
                         <div class="col-xs-3">
                             <span class="icon-monitor"></span>
                             <label>Монитор</label>
                         </div>
                         <div class="col-xs-3">
-                            <input type="checkbox" id="mon" name="Monitor" />
-                            <label for="mon"><span></span></label>
+                            <input type="checkbox" id="mon" name="Monitor" ng-model="newRoom.monitor"/>
+                            <label for="mon"><span class="grey"></span></label>
                         </div>
                     </div>
                 </div>
@@ -149,16 +149,16 @@
                             <label>Проектор</label>
                         </div>
                         <div class="col-xs-3">
-                            <input type="checkbox" id="proj" name="Projector" />
-                            <label for="proj"><span></span></label>
+                            <input type="checkbox" id="proj" name="Projector" ng-model="newRoom.projector"/>
+                            <label for="proj"><span class="grey"></span></label>
                         </div>
                         <div class="col-xs-3">
                             <span class="icon-microphone"></span>
                             <label>Микрофон</label>
                         </div>
                         <div class="col-xs-3">
-                            <input type="checkbox" id="mic" name="Microphone" />
-                            <label for="mic"><span></span></label>
+                            <input type="checkbox" id="mic" name="Microphone" ng-model="newRoom.microphone"/>
+                            <label for="mic"><span class="grey"></span></label>
                         </div>
                     </div>
                 </div>
@@ -196,7 +196,7 @@
 
             <div class="pad15">
                 <button type="button" class="btn btn-primary btn-lg" onclick="$.GreenHouse.btnCancelNewRoom_Click()">Отмена</button>
-                <button type="button" class="btn btn-primary btn-lg" onclick="$.GreenHouse.btnAddNewRoom_Click()">Добавить</button>
+                <button type="button" class="btn btn-primary btn-lg" ng-click="addRoom(newRoom)">Добавить</button>
             </div>
         </div>
     </div>

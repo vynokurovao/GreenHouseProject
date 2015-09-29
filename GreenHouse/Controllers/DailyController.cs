@@ -48,5 +48,76 @@ namespace GreenHouse.Controllers
             }
             return Json(model, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public void AddNewRoom(NewRoomModel room)
+        {
+            Entities db = new Entities();
+
+            if (ModelState.IsValid)
+            {
+                Auditorium auditorium = new Auditorium();
+
+                auditorium.AuditoriumName = room.Name;
+                auditorium.Capacity = room.Capacity;
+
+                db.Auditorium.Add(auditorium);
+                db.SaveChanges();
+
+                //var auditoryId = from auditory in db.Auditorium
+                //         where auditory.AuditoriumName == room.Name
+                //         select auditorium.AuditoriumId;
+
+                //var id = auditoryId.First();
+                List<AdditionalEquipment> ae = new List<AdditionalEquipment>();
+                if (room.Wifi)
+                {
+                    var wifi = from addEquipm in db.AdditionalEquipment
+                               where addEquipm.AdditionalEquipmentName == "Wifi"
+                               select addEquipm;
+                    foreach (var ae1 in db.AdditionalEquipment)
+                    {
+                        if (ae1.AdditionalEquipmentName == "Wifi")
+                        {
+                            ae1.Auditorium.Add(auditorium);
+                        }
+
+                    }
+                    
+
+                    ae.Add(wifi.First());
+                }
+
+                //if (room.Monitor)
+                //{
+                //    var monitor = from addEquipm in db.AdditionalEquipment
+                //               where addEquipm.AdditionalEquipmentName == "Монитор"
+                //               select addEquipm;
+
+                //    auditorium.AdditionalEquipment.Add(monitor.First());
+                //}
+
+                //if (room.Projector)
+                //{
+                //    var projector = from addEquipm in db.AdditionalEquipment
+                //                  where addEquipm.AdditionalEquipmentName == "Проектор"
+                //                  select addEquipm;
+
+                //    auditorium.AdditionalEquipment.Add(projector.First());
+                //}
+
+                //if (room.Microphone)
+                //{
+                //    var microphone = from addEquipm in db.AdditionalEquipment
+                //                    where addEquipm.AdditionalEquipmentName == "Микрофон"
+                //                    select addEquipm;
+
+                //    auditorium.AdditionalEquipment.Add(microphone.First());
+                //}
+                auditorium.AdditionalEquipment = ae;
+                db.SaveChanges();
+            } 
+        }
+
     }
 }

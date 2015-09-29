@@ -1,0 +1,68 @@
+﻿<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-10" data-ng-controller="RoomsController">
+
+            <div class="mapContainer" >
+                <div class="mapImgContainer">
+                    <div data-ng-repeat="room in rooms">
+                        <div id="room_{{ room.number }}">{{ room.number }}</div>
+                    </div>
+                    @*<div data-ng-init="activeRoom = selectActiveRoom(301)">*@
+                    <div data-ng-show="selectActiveRoom(@ViewBag.Room)">
+                        <div id="room{{ activeRoom.number }}" class="room{{ activeRoom.number }}_active"></div>
+                    </div>
+
+                    <img src="@Url.Content("~/Content/Images/map.png")" usemap="#roommap" />
+
+                </div>
+            </div>
+
+            <div class="informWindow">
+
+                <div data-ng-show="activeRoom">
+                    <div><h3 class="whiteHeader">Комната {{ activeRoom.number }}</h3></div>
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <span class="icon-peoples"></span>
+                        </div>
+                        <div class="col-xs-3">
+                            Количество мест
+                        </div>
+                        <div class="col-xs-1"  style="background-color:white; color:darkgrey; padding-left: 5px; margin-left: 12px;">
+                            {{ activeRoom.places }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="pad10">
+                            <div class="col-xs-1"><span class="icon-wifi"></span></div>
+                            <div class="col-xs-3">Wifi</div>
+                            <div class="col-xs-2" ng-show="activeRoom.wifi"><span class="icon-tick"></span></div>
+                            <div class="col-xs-2" ng-hide="activeRoom.wifi">-</div>
+
+                            <div class="col-xs-1"><span class="icon-monitor"></span></div>
+                            <div class="col-xs-3">Монитор</div>
+                            <div class="col-xs-1" ng-show="activeRoom.monitor"><span class="icon-tick"></span></div>
+                            <div class="col-xs-1" ng-hide="activeRoom.monitor">-</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="pad10">
+                            <div class="col-xs-1"><span class="icon-projector"></span></div>
+                            <div class="col-xs-3">Проектор</div>
+                            <div class="col-xs-2" ng-show="activeRoom.projector"><span class="icon-tick"></span></div>
+                            <div class="col-xs-2" ng-hide="activeRoom.projector">-</div>
+
+                            <div class="col-xs-1"><span class="icon-microphone"></span></div>
+                            <div class="col-xs-3">Микрофон</div>
+                            <div class="col-xs-1" ng-show="activeRoom.microphone"><span class="icon-tick"></span></div>
+                            <div class="col-xs-1" ng-hide="activeRoom.microphone">-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -6,8 +6,8 @@
     function roomsCtrl($scope, $filter, roomsService) {
         $scope.top = 50;
         $scope.left = 530;
-        $scope.top1 = 50;
-        $scope.left1 = 330;
+        $scope.top1 = 40;
+        $scope.left1 = 340;
 
         roomsService.getRooms().then(function (response) {
             $scope.rooms = response.data;
@@ -85,6 +85,10 @@
 
         $scope.selectedRoom = null;
 
+        $scope.unselectRoom = function () {
+            $scope.selectedRoom = null;
+        }
+
         $scope.selectRoom = function (roomNumber) {
             var contains = false;
             angular.forEach($scope.filteredRooms, function(room) {
@@ -96,6 +100,7 @@
                 $scope.selectedRoom = $filter('filter')($scope.rooms, { number: roomNumber })[0];
             }
             else {
+                $scope.selectedRoom = null;
                 return;
             }
         }
@@ -143,5 +148,20 @@
             }
         }
 
+        $scope.addRoom = function (newRoom) {
+            newRoom.Name = $scope.selectedNewRoom;
+            roomsService.addNewRoom(newRoom);
+        }
+
+
+        $scope.activeRoom = null;
+
+        $scope.selectActiveRoom = function (roomNumber) {
+            //var activeRoom = null;
+            $scope.activeRoom = $filter('filter')($scope.rooms, { number: roomNumber })[0];
+            //return activeRoom;
+        }
     }
+
+    roomsCtrl.$inject = ['$scope', '$filter', 'roomsService'];
 })()
