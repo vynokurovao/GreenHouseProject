@@ -98,9 +98,9 @@
             })
             if (contains === true) {
                 $scope.selectedRoom = $filter('filter')($scope.rooms, { number: roomNumber })[0];
+                event.stopPropagation();
             }
             else {
-                $scope.selectedRoom = null;
                 return;
             }
         }
@@ -158,8 +158,12 @@
 
         $scope.selectActiveRoom = function (roomNumber) {
             //var activeRoom = null;
-            $scope.activeRoom = $filter('filter')($scope.rooms, { number: roomNumber })[0];
+            if (angular.isDefined($scope.rooms)) {
+                $scope.activeRoom = $filter('filter')($scope.rooms, { number: roomNumber })[0];
+            }
             //return activeRoom;
+
+            return true;
         }
     }
 

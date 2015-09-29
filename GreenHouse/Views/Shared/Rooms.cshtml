@@ -1,7 +1,7 @@
 ﻿<div class="container-fluid">
     <div class="row">
         <div class="col-xs-2"></div>
-        <div class="col-xs-10" data-ng-controller="RoomsController">
+        <div class="col-xs-10">
             
             <div class="mapContainer">
                 <div class="filterInfo">
@@ -99,7 +99,7 @@
             
                 <div class="roominfo" data-ng-show="selectedRoom">
                     <div class="info_{{ selectedRoom.number }}" data-ng-click="unselectRoom()">
-                        <h3 class="grayHeader">Комната {{ selectedRoom.number }}</h3>
+                        <h4 class="grayHeader">Комната {{ selectedRoom.number }}</h4>
                         <div class="row">
                             <div class="col-xs-2"><span class="icon-peoples"></span></div>
                             <div class="col-xs-6">Количество мест</div>
