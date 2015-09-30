@@ -208,7 +208,7 @@ namespace GreenHouse.Controllers
             reservation.StartDate = new DateTime(newReservation.year, newReservation.month, newReservation.day, newReservation.hour, 0, 0);
 
 
-            if (newReservation.finish_year == 0)
+            if (newReservation.finish_hour == 0)
             {
                 reservation.FinishDate = new DateTime(newReservation.year, newReservation.month, newReservation.day, newReservation.hour + 1, 0, 0);
             }
@@ -220,9 +220,10 @@ namespace GreenHouse.Controllers
                 }
                 else
                 {
-                    
+                    reservation.FinishDate =
+                        GetLastDayWeek(new DateTime(newReservation.year, newReservation.month, newReservation.day,
+                            newReservation.finish_hour, 0, 0));
                 }
-                
             }
 
             reservation.Type = newReservation.type;
@@ -239,6 +240,7 @@ namespace GreenHouse.Controllers
             {
                 reservation.TargetAuditorium = newReservation.auditorium;
             }
+
             db.AddReservation(reservation);
 
             ReservationManager reservManager = new ReservationManager(reservation.StartDate);
@@ -285,6 +287,17 @@ namespace GreenHouse.Controllers
             }
 
             return PartialView("Table", reservManager);
+        }
+
+        public DateTime GetLastDayWeek(DateTime date)
+        {
+            DayOfWeek dayOfWeek = date.DayOfWeek;
+
+            date = date.Subtract(new TimeSpan((int)dayOfWeek - 1, 0, 0, 0));
+
+            date = date.AddDays(7);
+
+            return date;
         }
     }
 }

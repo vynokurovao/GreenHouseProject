@@ -59,62 +59,43 @@ namespace GreenHouse.Controllers
                 Auditorium auditorium = new Auditorium();
 
                 auditorium.AuditoriumName = room.Name;
+
                 auditorium.Capacity = room.Capacity;
 
                 db.Auditorium.Add(auditorium);
+
                 db.SaveChanges();
 
-                //var auditoryId = from auditory in db.Auditorium
-                //         where auditory.AuditoriumName == room.Name
-                //         select auditorium.AuditoriumId;
+                int auditoriumId = db.Auditorium.Where(aud => aud.AuditoriumName.Equals(room.Name)).First().AuditoriumId;
 
-                //var id = auditoryId.First();
-                List<AdditionalEquipment> ae = new List<AdditionalEquipment>();
                 if (room.Wifi)
                 {
-                    var wifi = from addEquipm in db.AdditionalEquipment
-                               where addEquipm.AdditionalEquipmentName == "Wifi"
-                               select addEquipm;
-                    foreach (var ae1 in db.AdditionalEquipment)
-                    {
-                        if (ae1.AdditionalEquipmentName == "Wifi")
-                        {
-                            ae1.Auditorium.Add(auditorium);
-                        }
+                    int wifi = db.AdditionalEquipment.Where(addeq => addeq.AdditionalEquipmentName.Equals("Wifi")).First().AdditionalEquipmentId;
 
-                    }
-                    
-
-                    ae.Add(wifi.First());
+                    db.InsertAudEq(auditoriumId, wifi);
                 }
 
-                //if (room.Monitor)
-                //{
-                //    var monitor = from addEquipm in db.AdditionalEquipment
-                //               where addEquipm.AdditionalEquipmentName == "Монитор"
-                //               select addEquipm;
+                if (room.Monitor)
+                {
+                    int monitor = db.AdditionalEquipment.Where(addeq => addeq.AdditionalEquipmentName.Equals("Монитор")).First().AdditionalEquipmentId;
 
-                //    auditorium.AdditionalEquipment.Add(monitor.First());
-                //}
+                    db.InsertAudEq(auditoriumId, monitor);
+                }
 
-                //if (room.Projector)
-                //{
-                //    var projector = from addEquipm in db.AdditionalEquipment
-                //                  where addEquipm.AdditionalEquipmentName == "Проектор"
-                //                  select addEquipm;
+                if (room.Projector)
+                {
+                    int projector = db.AdditionalEquipment.Where(addeq => addeq.AdditionalEquipmentName.Equals("Проектор")).First().AdditionalEquipmentId;
 
-                //    auditorium.AdditionalEquipment.Add(projector.First());
-                //}
+                    db.InsertAudEq(auditoriumId, projector);
+                }
 
-                //if (room.Microphone)
-                //{
-                //    var microphone = from addEquipm in db.AdditionalEquipment
-                //                    where addEquipm.AdditionalEquipmentName == "Микрофон"
-                //                    select addEquipm;
+                if (room.Microphone)
+                {
+                    int microphone = db.AdditionalEquipment.Where(addeq => addeq.AdditionalEquipmentName.Equals("Микрофон")).First().AdditionalEquipmentId;
 
-                //    auditorium.AdditionalEquipment.Add(microphone.First());
-                //}
-                auditorium.AdditionalEquipment = ae;
+                    db.InsertAudEq(auditoriumId, microphone);
+                }
+                
                 db.SaveChanges();
             } 
         }

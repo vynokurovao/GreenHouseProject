@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DBAuditoriumModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DBAuditoriumModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AdditionalEquipment">
           <Key>
             <PropertyRef Name="AdditionalEquipmentId" />
@@ -20,8 +20,6 @@
           <Property Name="AuditoriumName" Type="nvarchar" MaxLength="5" Nullable="false" />
           <Property Name="Capacity" Type="smallint" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'C:\USERS\РЕМАРК\DOCUMENTS\GREENHOUSEPROJECT\GREENHOUSE\APP_DATA\DBAUDITORIUM.MDF.dbo.AuditoriumEquipment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="AuditoriumEquipment">
           <Key>
             <PropertyRef Name="Auditorium" />
@@ -120,18 +118,17 @@ warning 6002: The table/view 'C:\USERS\РЕМАРК\DOCUMENTS\GREENHOUSEPROJECT\
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="InsertAudEq" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="audId" Type="int" Mode="In" />
+          <Parameter Name="addEqId" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="DBAuditoriumModelStoreContainer">
           <EntitySet Name="AdditionalEquipment" EntityType="Self.AdditionalEquipment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Auditorium" EntityType="Self.Auditorium" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AuditoriumEquipment" EntityType="Self.AuditoriumEquipment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AuditoriumEquipment" EntityType="Self.AuditoriumEquipment" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[AuditoriumEquipment].[Auditorium] AS [Auditorium], 
-[AuditoriumEquipment].[AdditionalEquipment] AS [AdditionalEquipment]
-FROM [dbo].[AuditoriumEquipment] AS [AuditoriumEquipment]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_AuditoriumEquipment_AdditionalEquipment" Association="Self.FK_AuditoriumEquipment_AdditionalEquipment">
             <End Role="AdditionalEquipment" EntitySet="AdditionalEquipment" />
             <End Role="AuditoriumEquipment" EntitySet="AuditoriumEquipment" />
@@ -273,6 +270,10 @@ FROM [dbo].[AuditoriumEquipment] AS [AuditoriumEquipment]</DefiningQuery>
             <End Role="AdditionalEquipment" EntitySet="AdditionalEquipment" />
             <End Role="Auditorium" EntitySet="Auditorium" />
           </AssociationSet>
+          <FunctionImport Name="InsertAudEq">
+            <Parameter Name="audId" Mode="In" Type="Int32" />
+            <Parameter Name="addEqId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -338,6 +339,7 @@ FROM [dbo].[AuditoriumEquipment] AS [AuditoriumEquipment]</DefiningQuery>
               <ScalarProperty Name="AuditoriumId" ColumnName="Auditorium" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="InsertAudEq" FunctionName="DBAuditoriumModel.Store.InsertAudEq" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -354,7 +356,7 @@ FROM [dbo].[AuditoriumEquipment] AS [AuditoriumEquipment]</DefiningQuery>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

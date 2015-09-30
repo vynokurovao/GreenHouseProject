@@ -131,7 +131,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="ContexManager\Date.cs" />
     <Compile Include="ContexManager\Password.cs" />
     <Compile Include="ContexManager\ReservationManager.cs" />
     <Compile Include="ContexManager\DBInitialization.cs" />
@@ -152,10 +151,6 @@
     <Compile Include="Models\Auditorium.cs">
       <DependentUpon>DBAuditoriumModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\NewResevation.cs" />
-    <Compile Include="Models\NewRoomModel.cs" />
-    <Compile Include="Models\RegistrationModel.cs" />
     <Compile Include="Models\DBAuditoriumModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -171,6 +166,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBAuditoriumModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\NewResevation.cs" />
+    <Compile Include="Models\NewRoomModel.cs" />
+    <Compile Include="Models\RegistrationModel.cs" />
     <Compile Include="Models\Reservation.cs">
       <DependentUpon>DBAuditoriumModel.tt</DependentUpon>
     </Compile>
@@ -182,6 +181,7 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>DBAuditoriumModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Validation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -375,6 +375,9 @@
     <Content Include="Scripts\bootstrap-datepicker.ru.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\icomoon.eot" />
+    <Content Include="fonts\icomoon.ttf" />
+    <Content Include="fonts\icomoon.woff" />
     <EntityDeploy Include="Models\DBAuditoriumModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DBAuditoriumModel.Designer.cs</LastGenOutput>
@@ -382,9 +385,6 @@
     <Content Include="Models\DBAuditoriumModel.edmx.diagram">
       <DependentUpon>DBAuditoriumModel.edmx</DependentUpon>
     </Content>
-    <Content Include="fonts\icomoon.eot" />
-    <Content Include="fonts\icomoon.ttf" />
-    <Content Include="fonts\icomoon.woff" />
     <None Include="Properties\PublishProfiles\gr h.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\greenhouse.js" />
@@ -423,10 +423,8 @@
     <Content Include="Views\Shared\Rooms.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Cabinet\ChangePlace.cshtml" />
-
     <Content Include="Views\Room\Room.cshtml" />
     <Content Include="Views\Shared\SelectedRoom.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Table\" />

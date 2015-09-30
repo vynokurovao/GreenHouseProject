@@ -37,6 +37,7 @@ namespace GreenHouse.Controllers
             return View("Room", reservManager);
         }
 
+
         public ActionResult ShowRoom(string room)
         {
             if (Session["IsAuthenticated"] == null)
@@ -89,37 +90,14 @@ namespace GreenHouse.Controllers
                 reservManager.Table = reservManager.GetWeekReservation(date, model.auditorium);
             }
 
-            foreach (List<TD> tr in reservManager.Table)
+            if (
+                (from tr in reservManager.Table from td in tr where td.ReservationId > 0 select td).Any(
+                    td => td.FinishDate > DateTime.Now || td.StartDate > DateTime.Now))
             {
-                foreach (TD td in tr)
-                {
-                    if (td.ReservationId > 0)
-                    {
-                        if (td.FinishDate > DateTime.Now || td.StartDate > DateTime.Now)
-                        {
-                            return 0; //reservation is exist
-                        }
-                    }
-                }
+                return 0; //reservation is exist
             }
 
             return result;
         }
-
-        //public DateTime GetLastDayWeek(Date _date)
-        //{
-        //    DateTime date = new DateTime(_date.year, _date.month, _date.day, 0, 0, 0);
-
-        //    DayOfWeek dayOfWeek = date.DayOfWeek;
-
-        //    DateTime startdate = date;
-
-        //    startdate = startdate.Subtract(new TimeSpan((int)dayOfWeek - 1, 0, 0, 0));
-
-        //    startdate.AddDays(7);
-
-        //    return startdate;
-        //}
-
     }
 }

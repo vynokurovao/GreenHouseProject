@@ -32,7 +32,7 @@ $(function () {
         });
     });
 
-    $('#datetimepicker').on("changeDate", function (e) {
+    $('#datetimepicker').on("changeDate", function(e) {
 
         var day = e.date.getDate();
 
@@ -43,22 +43,27 @@ $(function () {
         var model = {
             date: 'на ' + day + '.' + month + '.' + year,
             auditorium: $("#room_name").html()
-    }
+        }
         var interval = $('#btnWeekCalendar').html();
 
         if (interval != null) {
 
             if (interval == "Неделя") {
-                $.post("/Home/RoomDate", model, null, "html").done(function (x) {
+                $.post("/Home/RoomDate", model, null, "html").done(function(x) {
                     $("#cont").html(x);
                 });
             } else {
-                $.post("/Home/RoomWeek", model, null, "html").done(function (x) {
+                $.post("/Home/RoomWeek", model, null, "html").done(function(x) {
                     $("#cont").html(x);
                 });
             }
         }
-        
+
+        $('#info').addClass("hidden");
+        $('#info').html("");
+        $('#info1').addClass("hidden");
+        $('#info1').html("");
+
     });
 });
 
@@ -195,12 +200,20 @@ $(function () {
 
         btnRight_Click: function() {
             var on_screen_pic = 9;
+
             var slider_diff = 60;
+
             var x = $("#cont").position();
-            if (Math.abs(x.left) + slider_diff * on_screen_pic < $("#slider").width()) {
+
+            if (Math.abs(x.left) + slider_diff * on_screen_pic < $("#slider").width())
+            {
                 var newcoord = (x.left - slider_diff);
+
                 if (Math.abs(newcoord) + slider_diff >= $("#slider").width())
+                {
                     newcoord = -$("#slider").width() + slider_diff;
+                }
+
                 $("#cont").animate({ left: newcoord + "px" }, 150);
             }
         },
@@ -213,8 +226,9 @@ $(function () {
             if (x.left <= 0) {
                 var newcoord = (x.left + slider_diff);
 
-                if (newcoord >= 0)
+                if (newcoord >= 0) {
                     newcoord = 0;
+                }
 
                 $("#cont").animate({ left: newcoord + "px" }, 150);
             }
@@ -256,12 +270,6 @@ $(function () {
 
             var Date = day + '.' + month + '.' + year;
 
-            var dateModel= {
-                year: year,
-                month: month,
-                day: day
-            }
-
             var model = {
                 auditorium: room,
                 period: period,
@@ -286,9 +294,6 @@ $(function () {
                            month: month,
                            day: day,
                            hour: hour,
-                           finish_year: year,
-                           finish_month: month,
-                           finish_day: day,
                            finish_hour: 22,
                            purpose: "",
                            auditorium_name: room,
@@ -390,9 +395,7 @@ $(function () {
         },
 
         btnSaveUserData_Click: function() {
-            $('#user_data').show();
-
-            $('#update_user_data').addClass('hidden');
+           
 
             var model =
             {
@@ -403,14 +406,31 @@ $(function () {
                 Surname: $("#surname").val()
             };
 
-            $("#email").val("");
+            $("#information").removeClass("hidden");
 
-            $("#firstname").val("");
+            $.getJSON("/Cabinet/ValidateUserData", model).done(function (result)
+            {
+                if (result.IsValid)
+                {
+                    $.post("/Cabinet/Save", model, "html").done(function (x)
+                    {
+                        $("#change-place").html(x);
+                    });
 
-            $("#surname").val("");
+                    $('#user_data').show();
 
-            $.post("/Cabinet/Save", model, "html").done(function(x) {
-                $("#change-place").html(x);
+                    $('#update_user_data').addClass('hidden');
+
+                    $("#email").val("");
+
+                    $("#firstname").val("");
+
+                    $("#surname").val("");
+                }
+                else
+                {
+                    $("#information").html(result.Message);
+                }
             });
         },
 
@@ -461,6 +481,7 @@ $(function () {
         btnCancelUpdateUserData_Click: function() {
             $('#user_data').show();
             $('#update_user_data').addClass('hidden');
+            $("#information").addClass("hidden");
         },
 
         btnUpdatePassword_Click: function() {
@@ -471,6 +492,7 @@ $(function () {
         btnCancelUpdatePassword_Click: function() {
             $('#btn_new_pass_room').show();
             $('#new_password').addClass('hidden');
+            $("#information").addClass("hidden");
         },
 
         btnNewRoom_Click: function() {
@@ -481,11 +503,13 @@ $(function () {
         btnCancelNewRoom_Click: function() {
             $('#btn_new_pass_room').show();
             $('#new-room').addClass('hidden');
+            $("#information").addClass("hidden");
         },
 
         btnAddNewRoom_Click: function() {
             $('#btn_new_pass_room').show();
             $('#new-room').addClass('hidden');
+            $("#information").addClass("hidden");
         },
 
         btnPast_Click: function () {

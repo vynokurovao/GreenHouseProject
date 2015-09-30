@@ -250,7 +250,5 @@ namespace GreenHouse.ContexManager
 
             return list;
         }
-        
-
     }
 }
