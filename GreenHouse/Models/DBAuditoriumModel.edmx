@@ -118,6 +118,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="DeleteAuditoriumEquipment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="auditoriumId" Type="int" Mode="In" />
+          <Parameter Name="additionalEquipmentId" Type="int" Mode="In" />
+        </Function>
         <Function Name="InsertAudEq" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="audId" Type="int" Mode="In" />
           <Parameter Name="addEqId" Type="int" Mode="In" />
@@ -270,6 +274,10 @@
             <End Role="AdditionalEquipment" EntitySet="AdditionalEquipment" />
             <End Role="Auditorium" EntitySet="Auditorium" />
           </AssociationSet>
+          <FunctionImport Name="DeleteAuditoriumEquipment">
+            <Parameter Name="auditoriumId" Mode="In" Type="Int32" />
+            <Parameter Name="additionalEquipmentId" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="InsertAudEq">
             <Parameter Name="audId" Mode="In" Type="Int32" />
             <Parameter Name="addEqId" Mode="In" Type="Int32" />
@@ -339,6 +347,7 @@
               <ScalarProperty Name="AuditoriumId" ColumnName="Auditorium" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="DeleteAuditoriumEquipment" FunctionName="DBAuditoriumModel.Store.DeleteAuditoriumEquipment" />
           <FunctionImportMapping FunctionImportName="InsertAudEq" FunctionName="DBAuditoriumModel.Store.InsertAudEq" />
         </EntityContainerMapping>
       </Mapping>

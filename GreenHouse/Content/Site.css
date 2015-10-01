@@ -1757,7 +1757,9 @@ input[type="checkbox"]:checked + label span.grey {
 }
 
 .custompopover {
-    z-index: 100;
+    position: inherit;
+    overflow: visible;
+    z-index: 1000;
 }
 
 .table-left {
@@ -1786,6 +1788,11 @@ input[type="checkbox"]:checked + label span.grey {
 #info {
     color: #ff0000;
 }
+
 #info1 {
     color: #ff0000;
+}
+
+.has-error {
+    border-color:  #ff0000;
 }

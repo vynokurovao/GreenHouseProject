@@ -54,7 +54,7 @@ namespace GreenHouse.Controllers
         {
             Entities db = new Entities();
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && room.Capacity != 0)
             {
                 Auditorium auditorium = new Auditorium();
 

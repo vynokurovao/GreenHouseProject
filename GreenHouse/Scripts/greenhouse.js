@@ -527,6 +527,55 @@ $(function () {
         btnEditRoom: function () {
             $('#showInfo').addClass('hidden');
             $('#editInfo').removeClass('hidden');
+        },
+
+        btnSaveSelectedRoom: function () {
+
+            var wifi = false;
+            if ($("#wi-fi").is(':checked')) {
+                wifi = true;
+            }
+
+            var mon = false;
+            if ($("#mon").is(':checked')) {
+                mon = true;
+            }
+
+            var proj = false;
+            if ($("#proj").is(':checked')) {
+                proj = true;
+            }
+
+            var mic = false;
+            if ($("#mic").is(':checked')) {
+                mic = true;
+            }
+
+            var newCapacity = $("#new-capacity").val();
+
+            var roomName = $("#room_name").html();
+
+            if (newCapacity == "") {
+                $("#new-capacity").addClass("has-error");
+            } else {
+
+                var model = {
+                    Name: roomName,
+                    Capacity: newCapacity,
+                    Wifi: wifi,
+                    Projector: proj,
+                    Microphone: mic,
+                    Monitor: mon
+                }
+
+                $.post("/Room/ChangeRoom", model, "html").done(function (x) {
+                    $("#cont").html(x);
+                });
+
+                $('#showInfo').removeClass('hidden');
+                $('#editInfo').addClass('hidden');
+            }
+
         }
 
     });

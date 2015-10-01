@@ -99,5 +99,99 @@ namespace GreenHouse.Controllers
 
             return result;
         }
+
+        public ActionResult ChangeRoom(NewRoomModel room)
+        {
+            Auditorium changeAuditorium =
+                db.Auditorium.Where(a => a.AuditoriumName.Equals(room.Name)).First();
+
+            changeAuditorium.Capacity = room.Capacity;
+
+            AdditionalEquipment wifi = db.AdditionalEquipment.Where(addeq => addeq.AdditionalEquipmentName.Equals("Wifi")).First();
+            AdditionalEquipment monitor = db.AdditionalEquipment.Where(addeq => addeq.AdditionalEquipmentName.Equals("Монитор")).First();
+            AdditionalEquipment projector = db.AdditionalEquipment.Where(addeq => addeq.AdditionalEquipmentName.Equals("Проектор")).First();
+            AdditionalEquipment microphone = db.AdditionalEquipment.Where(addeq => addeq.AdditionalEquipmentName.Equals("Микрофон")).First();
+
+            if (changeAuditorium.AdditionalEquipment.Contains(wifi))
+            {
+                if (room.Wifi == false)
+                {
+                    db.DeleteAuditoriumEquipment(changeAuditorium.AuditoriumId, wifi.AdditionalEquipmentId);
+                }
+            }
+            else
+            {
+                if (room.Wifi == true)
+                {
+                    db.InsertAudEq(changeAuditorium.AuditoriumId, wifi.AdditionalEquipmentId);
+                }
+            }
+
+            if (changeAuditorium.AdditionalEquipment.Contains(monitor))
+            {
+                if (room.Monitor == false)
+                {
+                    db.DeleteAuditoriumEquipment(changeAuditorium.AuditoriumId, monitor.AdditionalEquipmentId);
+                }
+            }
+            else
+            {
+                if (room.Monitor == true)
+                {
+                    db.InsertAudEq(changeAuditorium.AuditoriumId, monitor.AdditionalEquipmentId);
+                }
+            }
+
+            if (changeAuditorium.AdditionalEquipment.Contains(projector))
+            {
+                if (room.Projector == false)
+                {
+                    db.DeleteAuditoriumEquipment(changeAuditorium.AuditoriumId, projector.AdditionalEquipmentId);
+                }
+            }
+            else
+            {
+                if (room.Projector == true)
+                {
+                    db.InsertAudEq(changeAuditorium.AuditoriumId, projector.AdditionalEquipmentId);
+                }
+            }
+
+            if (changeAuditorium.AdditionalEquipment.Contains(microphone))
+            {
+                if (room.Microphone == false)
+                {
+                    db.DeleteAuditoriumEquipment(changeAuditorium.AuditoriumId, microphone.AdditionalEquipmentId);
+                }
+            }
+            else
+            {
+                if (room.Microphone == true)
+                {
+                    db.InsertAudEq(changeAuditorium.AuditoriumId, microphone.AdditionalEquipmentId);
+                }
+            }
+
+            db.SaveChanges();
+
+            ViewBag.Room = room.Name;
+
+            DateTime date = DateTime.Now;
+
+            ReservationManager reservManager = new ReservationManager(date);
+
+            reservManager.Table = new List<List<TD>>();
+
+            reservManager.Table = reservManager.GetDayRoomReservation(date, room.Name);
+
+            ViewBag.Date = date;
+
+            ViewBag.Room = room.Name;
+
+            ViewBag.id = "td-day";
+
+            return View("Room", reservManager);
+        }
+
     }
 }

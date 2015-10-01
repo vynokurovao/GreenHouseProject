@@ -33,6 +33,19 @@ namespace GreenHouse.Models
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<User> User { get; set; }
     
+        public virtual int DeleteAuditoriumEquipment(Nullable<int> auditoriumId, Nullable<int> additionalEquipmentId)
+        {
+            var auditoriumIdParameter = auditoriumId.HasValue ?
+                new ObjectParameter("auditoriumId", auditoriumId) :
+                new ObjectParameter("auditoriumId", typeof(int));
+    
+            var additionalEquipmentIdParameter = additionalEquipmentId.HasValue ?
+                new ObjectParameter("additionalEquipmentId", additionalEquipmentId) :
+                new ObjectParameter("additionalEquipmentId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteAuditoriumEquipment", auditoriumIdParameter, additionalEquipmentIdParameter);
+        }
+    
         public virtual int InsertAudEq(Nullable<int> audId, Nullable<int> addEqId)
         {
             var audIdParameter = audId.HasValue ?
@@ -44,19 +57,6 @@ namespace GreenHouse.Models
                 new ObjectParameter("addEqId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertAudEq", audIdParameter, addEqIdParameter);
-        }
-
-        public virtual int DeleteAuditoriumEquipment(Nullable<int> auditoriumId, Nullable<int> additionalEquipmentId)
-        {
-            var auditoriumIdParameter = auditoriumId.HasValue ?
-                new ObjectParameter("auditoriumId", auditoriumId) :
-                new ObjectParameter("auditoriumId", typeof(int));
-
-            var additionalEquipmentIdParameter = additionalEquipmentId.HasValue ?
-                new ObjectParameter("additionalEquipmentId", additionalEquipmentId) :
-                new ObjectParameter("additionalEquipmentId", typeof(int));
-
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertAudEq", auditoriumIdParameter, additionalEquipmentIdParameter);
         }
 
         public bool AddReservation(Reservation reservation)

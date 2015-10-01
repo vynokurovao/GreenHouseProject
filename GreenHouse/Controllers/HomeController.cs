@@ -295,7 +295,7 @@ namespace GreenHouse.Controllers
 
             date = date.Subtract(new TimeSpan((int)dayOfWeek - 1, 0, 0, 0));
 
-            date = date.AddDays(7);
+            date = date.AddDays(6);
 
             return date;
         }
