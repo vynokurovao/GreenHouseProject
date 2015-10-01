@@ -122,7 +122,7 @@
                 <h3>Комната {{ selectedNewRoom }}</h3>
                 <input class="roomCap" placeholder="Количество мест" ng-model="newRoom.capacity"/>
                 <div class="row">
-                    <div class="pad15">
+                    <div class="pad12">
                         <div class="col-xs-3">
                             <span class="icon-wifi"></span>
                             <label> Wi-Fi</label>
@@ -142,7 +142,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="pad15">
+                    <div class="pad12">
                         <div class="col-xs-3">
                             <span class="icon-projector"></span>
                             <label>Проектор</label>
@@ -162,7 +162,7 @@
                     </div>
                 </div>
             </div>
-            <div class="pad15">
+            <div class="pad12">
                 <div class="mapImgContainer" style="height: 261px; width: 436px;">
                     <div data-ng-repeat="room in filteredRooms">
                         <div id="Room{{ room.number }}"></div>
@@ -193,7 +193,7 @@
                 </div>
             </div>
 
-            <div class="pad15">
+            <div class="pad12">
                 <button type="button" class="btn btn-primary btn-lg" onclick="$.GreenHouse.btnCancelNewRoom_Click()">Отмена</button>
                 <button type="button" class="btn btn-primary btn-lg" ng-click="addRoom(newRoom)" onclick="$.GreenHouse.btnAddNewRoom_Click()">Добавить</button>
             </div>

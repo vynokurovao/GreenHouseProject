@@ -522,6 +522,11 @@ $(function () {
             $('#info').html("");
             $('#info1').addClass("hidden");
             $('#info1').html("");
+        },
+
+        btnEditRoom: function () {
+            $('#showInfo').addClass('hidden');
+            $('#editInfo').removeClass('hidden');
         }
 
     });

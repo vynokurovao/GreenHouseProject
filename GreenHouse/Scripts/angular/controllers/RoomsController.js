@@ -157,13 +157,18 @@
         $scope.activeRoom = null;
 
         $scope.selectActiveRoom = function (roomNumber) {
-            //var activeRoom = null;
             if (angular.isDefined($scope.rooms)) {
                 $scope.activeRoom = $filter('filter')($scope.rooms, { number: roomNumber })[0];
             }
-            //return activeRoom;
 
             return true;
+        }
+
+        $scope.isAdministrator = function (isAuthenticated, userRole) {
+            if (isAuthenticated == "true" && userRole == "admin")
+                return true;
+            else
+                return false;
         }
     }
 

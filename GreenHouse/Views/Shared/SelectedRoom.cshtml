@@ -1,7 +1,7 @@
 ﻿<div class="container-fluid">
     <div class="row">
         <div class="col-xs-2"></div>
-        <div class="col-xs-10" data-ng-controller="RoomsController">
+        <div class="col-xs-10">
 
             <div class="mapContainer" >
                 <div class="mapImgContainer">
@@ -18,45 +18,124 @@
                 </div>
             </div>
 
-            <div class="informWindow">
+            <div id="showInfo">
+                <div class="informWindow">
 
-                <div data-ng-show="activeRoom">
-                    <div><h3 class="whiteHeader">Комната {{ activeRoom.number }}</h3></div>
-                    <div class="row">
-                        <div class="col-xs-1">
-                            <span class="icon-peoples"></span>
+                    <div data-ng-show="activeRoom">
+                        <div class="row">
+                            <div class="col-xs-10"><h3 class="whiteHeader">Комната {{ activeRoom.number }}</h3></div>
+                            <div class="col-xs-2">
+                                @if (Session["IsAuthenticated"].ToString() == "true" && Session["UserRole"].ToString() == "admin")
+                                {
+                                    <div onclick="$.GreenHouse.btnEditRoom()">
+                                        <img src="~/Content/images/icon-edit-white.png" />
+                                    </div>
+                                }
+                            </div>
                         </div>
-                        <div class="col-xs-3">
-                            Количество мест
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <span class="icon-peoples"></span>
+                            </div>
+                            <div class="col-xs-3">
+                                Количество мест
+                            </div>
+                            <div class="col-xs-1" style="font-size: 20px; padding-left: 5px; margin-left: 12px;">
+                                {{ activeRoom.places }}
+                            </div>
                         </div>
-                        <div class="col-xs-1"  style="background-color:white; color:darkgrey; padding-left: 5px; margin-left: 12px;">
-                            {{ activeRoom.places }}
+                        <div class="row">
+                            <div class="pad10">
+                                <div class="col-xs-1"><span class="icon-wifi"></span></div>
+                                <div class="col-xs-3">Wifi</div>
+                                <div class="col-xs-2" ng-show="activeRoom.wifi"><span class="icon-tick"></span></div>
+                                <div class="col-xs-2" ng-hide="activeRoom.wifi">-</div>
+
+                                <div class="col-xs-1"><span class="icon-monitor"></span></div>
+                                <div class="col-xs-3">Монитор</div>
+                                <div class="col-xs-1" ng-show="activeRoom.monitor"><span class="icon-tick"></span></div>
+                                <div class="col-xs-1" ng-hide="activeRoom.monitor">-</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="pad10">
+                                <div class="col-xs-1"><span class="icon-projector"></span></div>
+                                <div class="col-xs-3">Проектор</div>
+                                <div class="col-xs-2" ng-show="activeRoom.projector"><span class="icon-tick"></span></div>
+                                <div class="col-xs-2" ng-hide="activeRoom.projector">-</div>
+
+                                <div class="col-xs-1"><span class="icon-microphone"></span></div>
+                                <div class="col-xs-3">Микрофон</div>
+                                <div class="col-xs-1" ng-show="activeRoom.microphone"><span class="icon-tick"></span></div>
+                                <div class="col-xs-1" ng-hide="activeRoom.microphone">-</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="pad10">
-                            <div class="col-xs-1"><span class="icon-wifi"></span></div>
-                            <div class="col-xs-3">Wifi</div>
-                            <div class="col-xs-2" ng-show="activeRoom.wifi"><span class="icon-tick"></span></div>
-                            <div class="col-xs-2" ng-hide="activeRoom.wifi">-</div>
+                </div>
+            </div>
 
-                            <div class="col-xs-1"><span class="icon-monitor"></span></div>
-                            <div class="col-xs-3">Монитор</div>
-                            <div class="col-xs-1" ng-show="activeRoom.monitor"><span class="icon-tick"></span></div>
-                            <div class="col-xs-1" ng-hide="activeRoom.monitor">-</div>
+            <div id="editInfo" class="hidden">
+                <div class="informWindow">
+
+                    <div data-ng-show="activeRoom">
+                        <div class="row">
+                            <div class="col-xs-8"><h3 class="whiteHeader">Комната {{ activeRoom.number }}</h3></div>
+                            <div class="col-xs-4">
+                                @if (Session["IsAuthenticated"].ToString() == "true" && Session["UserRole"].ToString() == "admin")
+                                {
+                                    <div>
+                                        <button class="btn btn-primary">Сохранить</button>
+                                    </div>
+                                }
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="pad10">
-                            <div class="col-xs-1"><span class="icon-projector"></span></div>
-                            <div class="col-xs-3">Проектор</div>
-                            <div class="col-xs-2" ng-show="activeRoom.projector"><span class="icon-tick"></span></div>
-                            <div class="col-xs-2" ng-hide="activeRoom.projector">-</div>
+                        <div class="row">
+                            <div class="col-xs-1"><span class="icon-peoples"></span></div>
+                            <div class="col-xs-3">Количество мест</div>
+                            <div class="col-xs-1" style="font-size: 20px; padding-left: 5px; margin-left: 12px;">
+                                <input placeholder="{{ activeRoom.places }}" style="width: 50px; height: 30px; padding-left: 5px;" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="pad10">
+                                <div class="col-xs-1"><span class="icon-wifi"></span></div>
+                                <div class="col-xs-3">Wifi</div>
+                                <div class="col-xs-2" data-ng-show="activeRoom.wifi">
+                                    <input type="checkbox" checked="checked"  id="wi-fi" name="Wi-fi" ng-model="newRoom.wifi" />
+                                    <label for="wi-fi"><span class="white"></span></label>
+                                </div>
+                                <div class="col-xs-2" data-ng-hide="activeRoom.wifi">
+                                    <input type="checkbox" id="wi-fi" name="Wi-fi" ng-model="newRoom.wifi" />
+                                    <label for="wi-fi"><span class="white"></span></label>
+                                </div>
+                                <div class="col-xs-1"><span class="icon-monitor"></span></div>
+                                <div class="col-xs-3">Монитор</div>
+                                <div class="col-xs-1" data-ng-show="activeRoom.monitor">
+                                    <input type="checkbox" checked="checked" id="mon" name="Monitor" ng-model="newRoom.monitor" />
+                                    <label for="mon"><span class="white"></span></label>
+                                </div>
+                                <div class="col-xs-1" data-ng-hide="activeRoom.monitor">
+                                    <input type="checkbox" id="mon" name="Monitor" ng-model="newRoom.monitor" />
+                                    <label for="mon"><span class="white"></span></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="pad10">
+                                <div class="col-xs-1"><span class="icon-projector"></span></div>
+                                <div class="col-xs-3">Проектор</div>
+                                <div class="col-xs-2">
+                                    <input type="checkbox" id="proj" name="Projector" ng-model="newRoom.projector" />
+                                    <label for="proj"><span class="white"></span></label>
+                                </div>
 
-                            <div class="col-xs-1"><span class="icon-microphone"></span></div>
-                            <div class="col-xs-3">Микрофон</div>
-                            <div class="col-xs-1" ng-show="activeRoom.microphone"><span class="icon-tick"></span></div>
-                            <div class="col-xs-1" ng-hide="activeRoom.microphone">-</div>
+                                <div class="col-xs-1"><span class="icon-microphone"></span></div>
+                                <div class="col-xs-3">Микрофон</div>
+                                <div class="col-xs-1">
+                                    <input type="checkbox" id="mic" name="Microphone" ng-model="newRoom.microphone" />
+                                    <label for="mic"><span class="white"></span></label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

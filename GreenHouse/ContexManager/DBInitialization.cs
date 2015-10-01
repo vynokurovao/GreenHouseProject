@@ -32,9 +32,9 @@ namespace GreenHouse.ContexManager
             var additionalEquipments = new List<AdditionalEquipment>
             {
                 new AdditionalEquipment {AdditionalEquipmentName = "Wifi"},
-                new AdditionalEquipment {AdditionalEquipmentName = "Проектор"},
-                new AdditionalEquipment {AdditionalEquipmentName = "Монитор"},
-                new AdditionalEquipment {AdditionalEquipmentName = "Микрофон"}
+                new AdditionalEquipment {AdditionalEquipmentName = "Projector"},
+                new AdditionalEquipment {AdditionalEquipmentName = "Monitor"},
+                new AdditionalEquipment {AdditionalEquipmentName = "Microphone"}
             };
             additionalEquipments.ForEach(adde => context.AdditionalEquipment.Add(adde));
             context.SaveChanges();

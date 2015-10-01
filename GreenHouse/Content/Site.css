@@ -1502,6 +1502,11 @@ div#newRoom315 {
     font-size: 25px;
 }
 
+.icon-checkbox:before {
+	content: "\e607";
+    font-size: 25px;
+}
+
 .icon-peoples:before {
 	content: "\e609";
     font-size: 25px;
@@ -1699,6 +1704,15 @@ input[type="checkbox"]:checked + label span.grey {
     content: "\e604";
     font-size: 25px;
     color: darkgrey;
+}
+
+.edit {
+    position: absolute;
+    top: 20px;
+    left: 700px;
+    height: 20px;
+    width: 20px;
+    z-index: 6;
 }
 
 #new-room{
