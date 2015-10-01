@@ -8,5 +8,7 @@ namespace GreenHouse.ContexManager
 
         public override Auditorium Auditorium { get; set; }
         public override User User { get; set; }
+
+        public string Placement { get; set; }
     }
 }

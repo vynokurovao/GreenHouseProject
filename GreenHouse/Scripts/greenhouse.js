@@ -25,6 +25,11 @@ $(function () {
 
         var Date = { Date: day + '.' + month + '.' + year }
 
+        $('#info').addClass("hidden");
+        $('#info').html("");
+        $('#info1').addClass("hidden");
+        $('#info1').html("");
+
         $('#forDate').html('на ' + day + '.' + month + '.' + year);
 
         $.post("/Home/TableForDate", Date, null, "html").done(function (x) {
@@ -45,6 +50,11 @@ $(function () {
             auditorium: $("#room_name").html()
         }
         var interval = $('#btnWeekCalendar').html();
+
+        $('#info').addClass("hidden");
+        $('#info').html("");
+        $('#info1').addClass("hidden");
+        $('#info1').html("");
 
         if (interval != null) {
 
@@ -406,7 +416,7 @@ $(function () {
                 Surname: $("#surname").val()
             };
 
-            $("#information").removeClass("hidden");
+            $("#user_information").removeClass("hidden");
 
             $.getJSON("/Cabinet/ValidateUserData", model).done(function (result)
             {
@@ -429,7 +439,7 @@ $(function () {
                 }
                 else
                 {
-                    $("#information").html(result.Message);
+                    $("#user_information").html(result.Message);
                 }
             });
         },
@@ -441,6 +451,8 @@ $(function () {
         },
 
         btnSavePassword_Click: function() {
+
+            $("#user_information").addClass("hidden");
 
             var pass = $("#newpass").val();
 
@@ -482,6 +494,7 @@ $(function () {
             $('#user_data').show();
             $('#update_user_data').addClass('hidden');
             $("#information").addClass("hidden");
+            $("#user_information").addClass("hidden");
         },
 
         btnUpdatePassword_Click: function() {
@@ -493,6 +506,7 @@ $(function () {
             $('#btn_new_pass_room').show();
             $('#new_password').addClass('hidden');
             $("#information").addClass("hidden");
+            $("#user_information").addClass("hidden");
         },
 
         btnNewRoom_Click: function() {
@@ -504,12 +518,14 @@ $(function () {
             $('#btn_new_pass_room').show();
             $('#new-room').addClass('hidden');
             $("#information").addClass("hidden");
+            $("#user_information").addClass("hidden");
         },
 
         btnAddNewRoom_Click: function() {
             $('#btn_new_pass_room').show();
             $('#new-room').addClass('hidden');
             $("#information").addClass("hidden");
+            $("#user_information").addClass("hidden");
         },
 
         btnPast_Click: function () {
@@ -522,6 +538,8 @@ $(function () {
             $('#info').html("");
             $('#info1').addClass("hidden");
             $('#info1').html("");
+            
+            $(".popover").remove();
         },
 
         btnEditRoom: function () {
@@ -576,6 +594,34 @@ $(function () {
                 $('#editInfo').addClass('hidden');
             }
 
+        },
+
+        ChangeReserv: function (id) {
+
+            var newpurpose = $("#" + id).val();
+
+            var view = 0;
+
+            var interval = $('#btnWeekCalendar').html();
+
+            if (interval != null) {
+                if (interval == "Неделя") {
+
+                    view = 1;
+                } else {
+
+                    view = 2;
+                }
+            }
+
+            var model = {
+                purpose: newpurpose,
+                id: id,
+                view:view
+            }
+            $.post("/Home/ChangeReservation", model, "html").done(function (x) {
+                $("#cont").html(x);
+            });
         }
 
     });

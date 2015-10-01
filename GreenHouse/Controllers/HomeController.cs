@@ -75,7 +75,7 @@ namespace GreenHouse.Controllers
         }
 
         [HttpPost]
-        public ActionResult RemoveReservation(ReservationForRemove reservForRemote)
+        public ActionResult RemoveReservation(ReservationForChange reservForRemote)
         {
             int rId = int.Parse(reservForRemote.reservation);
 
@@ -284,6 +284,54 @@ namespace GreenHouse.Controllers
 
                     reservManager.Table = reservManager.GetWeekReservation(reservation.StartDate, a.AuditoriumName);
                 }
+            }
+
+            return PartialView("Table", reservManager);
+        }
+
+        public ActionResult ChangeReservation(ReservationForChange newReservation)
+        {
+            Reservation reservation = db.Reservation.Where(res => res.ReservationId.Equals(newReservation.id)).First();
+
+            reservation.Purpose = newReservation.purpose;
+
+            db.SaveChanges();
+
+            ReservationManager reservManager = new ReservationManager(reservation.StartDate);
+
+            if (newReservation.view == 0)
+            {
+                ViewBag.id = "td";
+
+                ViewBag.Auditoriums = db.Auditorium;
+            }
+            else if (newReservation.view == 1)
+            {
+
+                    reservManager.Table = new List<List<TD>>();
+
+                    ViewBag.Room = reservation.Auditorium.AuditoriumName;
+
+                    ViewBag.Date = reservation.StartDate;
+
+                    reservManager.Table = reservManager.GetDayRoomReservation(reservation.StartDate, reservation.Auditorium.AuditoriumName);
+
+                    ViewBag.Auditoriums = reservation.Auditorium;
+
+                    ViewBag.id = "td-day";
+                
+            }
+            else if (newReservation.view == 2)
+            {
+               
+                    reservManager.Table = new List<List<TD>>();
+
+                    ViewBag.id = "td";
+
+                    ViewBag.week = reservManager.GetDays(reservation.StartDate);
+
+                    reservManager.Table = reservManager.GetWeekReservation(reservation.StartDate, reservation.Auditorium.AuditoriumName);
+                
             }
 
             return PartialView("Table", reservManager);

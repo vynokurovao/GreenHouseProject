@@ -25,14 +25,17 @@
         </div>
 
         <div id="update_user_data" class="col-xs-12 hidden">
+            
             <div class="row">
                 <div class="col-xs-12">
+                    <h5 id="user_information" class="hidden"></h5>
+                    <br />
                     <input id="firstname" class="form-control" placeholder='@Session["UserFirstName"]'>
-                    <br />
+                    <br/>
                     <input id="surname" class="form-control" placeholder='@Session["UserSurname"]'>
-                    <br />
+                    <br/>
                     <input id="email" class="form-control" placeholder='@Session["UserEmail"]'>
-                    <br />
+                    <br/>
                     <div>
                         <button type="button" class="btn btn-primary btn-lg" onclick="$.GreenHouse.btnCancelUpdateUserData_Click()">Отмена</button>
 
@@ -100,20 +103,22 @@
         </div>
     </div>
 
+
+<div id="new_password" class="col-xs-6 hidden">
+
     <h5 id="information" class="hidden"></h5>
+    <br />
+
+    <input id="newpass" class="form-control" placeholder="Новый пароль">
     <br/>
-    <div id="new_password" class="col-xs-6 hidden">
-        <input id="newpass" class="form-control" placeholder="Новый пароль">
-        <br/>
-        <input id="confirm" class="form-control" placeholder="Повторить новый пароль">
-        <br/>
+    <input id="confirm" class="form-control" placeholder="Повторить новый пароль">
+    <br/>
 
-        <div>
-            <button type="button" class="btn btn-primary btn-lg" onclick="$.GreenHouse.btnCancelUpdatePassword_Click()">Отмена</button>
-            <button type="button" class="btn btn-primary btn-lg" onclick="$.GreenHouse.btnSavePassword_Click()">Сохранить</button>
-        </div>
+    <div>
+        <button type="button" class="btn btn-primary btn-lg" onclick="$.GreenHouse.btnCancelUpdatePassword_Click()">Отмена</button>
+        <button type="button" class="btn btn-primary btn-lg" onclick="$.GreenHouse.btnSavePassword_Click()">Сохранить</button>
     </div>
-
+</div>
 
     <div id="new-room" class="col-xs-6 hidden mt30">
         <div data-ng-controller="RoomsController">

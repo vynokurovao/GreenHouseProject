@@ -94,6 +94,8 @@ namespace GreenHouse.ContexManager
 
                 row.Add(first);
 
+                int roomNumber = 0;
+
                 foreach (Auditorium auditory in db.Auditorium)
                 {
                     Reservation reserv = GetAuditoriumReservation(auditory.AuditoriumId, new DateTime(date.Year, date.Month, date.Day, i, 0, 0));
@@ -114,6 +116,24 @@ namespace GreenHouse.ContexManager
                     }
 
                     td.Hour = i;
+
+                    td.Placement = "right";
+
+                    if (roomNumber >= 6)
+                    {
+                        td.Placement = "left";
+                    }
+
+                    if (i == 9)
+                    {
+                        td.Placement = "bottom";
+                    }
+                    else if (i == 20 || i == 21)
+                    {
+                        td.Placement = "top";
+                    }
+                    
+                    roomNumber++;
 
                     row.Add(td);
                 }
@@ -151,6 +171,8 @@ namespace GreenHouse.ContexManager
 
                 row.Add(first);
 
+                int roomNumber = 0;
+
                 for (int day = 0; day < 7; day++)
                 {
                     foreach (Auditorium auditory in auditorium)
@@ -174,8 +196,26 @@ namespace GreenHouse.ContexManager
 
                         td.Hour = i;
 
+                        td.Placement = "right";
+
+                        if (roomNumber >= 5)
+                        {
+                            td.Placement = "left";
+                        }
+
+                        if (i == 9)
+                        {
+                            td.Placement = "bottom";
+                        }
+                        else if (i == 20 || i == 21)
+                        {
+                            td.Placement = "top";
+                        }
+
                         row.Add(td);
                     }
+
+                    roomNumber++;
 
                     startdate = startdate.AddDays(1);
                 }
@@ -202,6 +242,8 @@ namespace GreenHouse.ContexManager
 
                 row.Add(first);
 
+                int roomNumber = 0;
+
                 foreach (Auditorium auditory in auditorium)
                 {
                     Reservation reserv = GetAuditoriumReservation(auditory.AuditoriumId, new DateTime(date.Year, date.Month, date.Day, i, 0, 0));
@@ -222,6 +264,15 @@ namespace GreenHouse.ContexManager
                     }
 
                     td.Hour = i;
+
+                    td.Placement = "bottom";
+
+                    if (i == 18 || i == 19 || i == 20 || i == 21)
+                    {
+                        td.Placement = "top";
+                    }
+
+                    roomNumber++;
 
                     row.Add(td);
                 }

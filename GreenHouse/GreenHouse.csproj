@@ -174,7 +174,7 @@
       <DependentUpon>DBAuditoriumModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ReservationAuditoriumDay.cs" />
-    <Compile Include="Models\ReservationForRemove.cs" />
+    <Compile Include="Models\ReservationForChange.cs" />
     <Compile Include="Models\Role.cs">
       <DependentUpon>DBAuditoriumModel.tt</DependentUpon>
     </Compile>
