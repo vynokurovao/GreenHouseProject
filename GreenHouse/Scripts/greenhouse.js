@@ -348,7 +348,18 @@ $(function () {
 
             $('#calendar-close').addClass('hidden');
 
-            window.location.href = "/Room/ShowRoom?room=" + auditoriumName;
+            var room= {
+                Name:auditoriumName
+            }
+
+            $.getJSON("/Room/IsRoomExist", room).done(function (result) {
+
+                if (result.IsValid) {
+                    window.location.href = "/Room/ShowRoom?room=" + auditoriumName;
+                } else {
+                    $("#room-name").addClass("has-error");
+                }
+            });
         },
 
         btnWeekCalendar_Click: function (auditoriumName) {
@@ -587,7 +598,7 @@ $(function () {
                 }
 
                 $.post("/Room/ChangeRoom", model, "html").done(function (x) {
-                    $("#cont").html(x);
+                    exec()
                 });
 
                 $('#showInfo').removeClass('hidden');

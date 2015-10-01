@@ -193,5 +193,27 @@ namespace GreenHouse.Controllers
             return View("Room", reservManager);
         }
 
+        public ActionResult IsRoomExist(NewRoomModel room)
+        {
+            Validation answer = new Validation();
+
+            IQueryable<Auditorium> rooms = db.Auditorium.Where(a => a.AuditoriumName.Equals(room.Name));
+
+            if (rooms.Count() == 0)
+            {
+                answer.IsValid = false;
+
+                answer.Message = "Указанная аудитория не найдена";
+            }
+            else
+            {
+                answer.IsValid = true;
+
+                answer.Message = "Указанная аудитория найдена";
+            }
+
+            return Json(answer, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

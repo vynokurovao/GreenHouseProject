@@ -243,6 +243,7 @@
     <Content Include="Content\images\icon-yes-white.png" />
     <Content Include="Content\images\logo-big.png" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\map.png" />
     <Content Include="Content\images\popup-bg.png" />
     <Content Include="Content\images\rooms\map-min.png" />
     <Content Include="Content\images\rooms\map.png" />
