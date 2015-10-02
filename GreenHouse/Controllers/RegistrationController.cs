@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using GreenHouse.Models;
+using System.Security.Cryptography;
+using System.Text;
+using GreenHouse.ContexManager;
 
 namespace GreenHouse.Controllers
 {
@@ -37,7 +40,12 @@ namespace GreenHouse.Controllers
 
                 user.Email = userInfo.Email;
 
-                user.Password = userInfo.Password;
+                using (MD5 md5Hash = MD5.Create())
+                {
+                    Security crypto = new Security();
+
+                    user.Password = crypto.GetMd5Hash(md5Hash, userInfo.Password);
+                }
 
                 user.Role1 = db.Role.Where(role => role.RoleName.Equals("Client")).First();
 
@@ -66,5 +74,6 @@ namespace GreenHouse.Controllers
 
             return PartialView("Create", userInfo);
         }
+        
     }
 }

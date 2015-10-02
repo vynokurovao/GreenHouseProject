@@ -131,20 +131,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Models\Password.cs" />
-    <Compile Include="ContexManager\ReservationManager.cs" />
-    <Compile Include="ContexManager\DBInitialization.cs" />
-    <Compile Include="ContexManager\TD.cs" />
-    <Compile Include="ContexManager\UserReservation.cs" />
-    <Compile Include="Controllers\CabinetController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\RegistrationController.cs" />
-    <Compile Include="Controllers\DailyController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\RoomController.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
+    <Compile Include="ContexManager\Security.cs" />
     <Compile Include="Models\AdditionalEquipment.cs">
       <DependentUpon>DBAuditoriumModel.tt</DependentUpon>
     </Compile>
@@ -165,6 +152,20 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DBAuditoriumModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Password.cs" />
+    <Compile Include="ContexManager\ReservationManager.cs" />
+    <Compile Include="ContexManager\DBInitialization.cs" />
+    <Compile Include="ContexManager\TD.cs" />
+    <Compile Include="ContexManager\UserReservation.cs" />
+    <Compile Include="Controllers\CabinetController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\RegistrationController.cs" />
+    <Compile Include="Controllers\DailyController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RoomController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\NewResevation.cs" />

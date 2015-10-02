@@ -1703,12 +1703,11 @@ input[type="checkbox"]:checked + label span.grey {
     font-size: 25px;
 }
 
-.icon-lock:before 
-{
-	content: "\e60a";
+.icon-lock:before {
+    content: "\e60a";
     font-size: 25px;
-     color: darkgrey;
-      padding: 5px;
+    color: darkgrey;
+    padding: 5px;
 }
 
 
@@ -1757,6 +1756,11 @@ input[type="checkbox"]:checked + label span.grey {
 
 #td-day {
     width: 550px; 
+    text-align: center;
+}
+
+#td {
+    text-align: center;
 }
 
 .form-select-room{
@@ -1828,7 +1832,7 @@ input[type="checkbox"]:checked + label span.grey {
 }
 
 textarea {
-    padding: 10px;
+    margin: 10px;
 }
 
 .btn-xs {

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
+using GreenHouse.ContexManager;
 using GreenHouse.Models;
 
 namespace GreenHouse.Controllers
@@ -28,7 +30,7 @@ namespace GreenHouse.Controllers
                 using (Entities db = new Entities())
                 {
                     IQueryable<User> users = db.User
-                        .Where(user => user.Email.Equals(userInfo.Email) && user.Password.Equals(userInfo.Password));
+                        .Where(user => user.Email.Equals(userInfo.Email));
 
                     if (users.AsEnumerable().Count() == 0)
                     {
@@ -42,17 +44,32 @@ namespace GreenHouse.Controllers
                     {
                         foreach (User curuser in users)
                         {
-                            Session["IsAuthenticated"] = "true";
+                            Security crypto = new Security();
 
-                            Session["UserSurname"] = curuser.Surname;
+                            bool isVerify = crypto.VerifyMd5Hash(MD5.Create(), userInfo.Password, curuser.Password);
 
-                            Session["UserFirstName"] = curuser.FirstName;
+                            if (isVerify)
+                            {
+                                Session["IsAuthenticated"] = "true";
 
-                            string rol = curuser.Role1.RoleName;
+                                Session["UserSurname"] = curuser.Surname;
 
-                            Session["UserRole"] = rol;
+                                Session["UserFirstName"] = curuser.FirstName;
 
-                            Session["UserEmail"] = curuser.Email;
+                                string rol = curuser.Role1.RoleName;
+
+                                Session["UserRole"] = rol;
+
+                                Session["UserEmail"] = curuser.Email;
+                            }
+                            else
+                            {
+                                ModelState.AddModelError("", "Данные введены не верно");
+
+                                ViewBag.Close = false;
+
+                                return PartialView("Create", userInfo);
+                            }
                         }
 
                         ViewBag.Close = true;
@@ -68,7 +85,6 @@ namespace GreenHouse.Controllers
         [HttpGet]
         public ActionResult LogOut()
         {
-
             Session["IsAuthenticated"] = "false";
 
             Session["UserSurname"] = null;
