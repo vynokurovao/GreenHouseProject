@@ -537,6 +537,7 @@ $(function () {
             $('#new-room').addClass('hidden');
             $("#information").addClass("hidden");
             $("#user_information").addClass("hidden");
+            window.location.href = "/Cabinet";
         },
 
         btnPast_Click: function () {
@@ -584,7 +585,7 @@ $(function () {
 
             var roomName = $("#room_name").html();
 
-            if (newCapacity == "") {
+            if (newCapacity == "" || newCapacity > 200) {
                 $("#new-capacity").addClass("has-error");
             } else {
 
@@ -597,8 +598,8 @@ $(function () {
                     Monitor: mon
                 }
 
-                $.post("/Room/ChangeRoom", model, "html").done(function (x) {
-                    exec()
+                $.post("/Room/ChangeRoom", model, "html").done(function(x) {
+                    window.location.href = "/Room/ShowRoom?room=" + $("#room_name").html();
                 });
 
                 $('#showInfo').removeClass('hidden');

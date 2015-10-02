@@ -347,5 +347,11 @@ namespace GreenHouse.Controllers
 
             return date;
         }
+
+        [HttpGet]
+        public ActionResult Error()
+        {
+            return View("Error");
+        }
     }
 }

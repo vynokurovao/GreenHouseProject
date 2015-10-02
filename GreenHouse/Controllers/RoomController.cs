@@ -108,8 +108,11 @@ namespace GreenHouse.Controllers
             changeAuditorium.Capacity = room.Capacity;
 
             AdditionalEquipment wifi = db.AdditionalEquipment.Where(addeq => addeq.AdditionalEquipmentName.Equals("Wifi")).First();
+
             AdditionalEquipment monitor = db.AdditionalEquipment.Where(addeq => addeq.AdditionalEquipmentName.Equals("Монитор")).First();
+
             AdditionalEquipment projector = db.AdditionalEquipment.Where(addeq => addeq.AdditionalEquipmentName.Equals("Проектор")).First();
+
             AdditionalEquipment microphone = db.AdditionalEquipment.Where(addeq => addeq.AdditionalEquipmentName.Equals("Микрофон")).First();
 
             if (changeAuditorium.AdditionalEquipment.Contains(wifi))

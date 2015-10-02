@@ -131,7 +131,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="ContexManager\Password.cs" />
+    <Compile Include="Models\Password.cs" />
     <Compile Include="ContexManager\ReservationManager.cs" />
     <Compile Include="ContexManager\DBInitialization.cs" />
     <Compile Include="ContexManager\TD.cs" />

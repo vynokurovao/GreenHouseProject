@@ -11,8 +11,10 @@
 
                 @if (rol == "admin")
                 {
-                    @Html.ActionLink(@Session["UserEmail"].ToString(), "Index", "Cabinet");
-                    @Html.ActionLink(@Session["UserRole"].ToString(), "Index", "Cabinet");
+                    @Html.ActionLink(@Session["UserEmail"].ToString(), "Index", "Cabinet")
+                    ;
+                    @Html.ActionLink(@Session["UserRole"].ToString(), "Index", "Cabinet")
+                    ;
                 }
                 else
                 {
@@ -21,7 +23,7 @@
 
             </li>
             <li>
-                |
+                <h4>  |  </h4>
             </li>
             <li>
                 @Html.ActionLink("Выйти", "LogOut", "Login")
@@ -33,7 +35,7 @@ else
 {
     <ul class="nav navbar-right">
         <li>
-            <span data-toggle="modal" data-target="#Registration">
+            <span data-toggle="modal" data-target="#Registration" style="padding-right: 10px;">
                 @Ajax.ActionLink("Логин", "Create", "Login", new AjaxOptions
                {
                    HttpMethod = "Get",
@@ -41,8 +43,8 @@ else
                    UpdateTargetId = "ModalContent"
                })
             </span>
-            |
-            <span data-toggle="modal" data-target="#Registration">
+            | 
+            <span data-toggle="modal" data-target="#Registration" style="padding-left: 10px;">
                 @Ajax.ActionLink("Регистрация", "Create", "Registration", new AjaxOptions
                {
                    HttpMethod = "GET",
