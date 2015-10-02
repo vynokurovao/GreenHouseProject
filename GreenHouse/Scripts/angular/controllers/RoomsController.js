@@ -150,6 +150,9 @@
 
         $scope.addRoom = function (newRoom) {
             newRoom.Name = $scope.selectedNewRoom;
+
+
+
             roomsService.addNewRoom(newRoom);
         }
 

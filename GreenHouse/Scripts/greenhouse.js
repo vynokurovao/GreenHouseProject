@@ -585,7 +585,7 @@ $(function () {
 
             var roomName = $("#room_name").html();
 
-            if (newCapacity == "" || newCapacity > 200) {
+            if (newCapacity == "" || newCapacity > 200 || !newCapacity.isNumber || newCapacity<=0) {
                 $("#new-capacity").addClass("has-error");
             } else {
 
