@@ -209,9 +209,9 @@ $(function () {
         },
 
         btnRight_Click: function() {
-            var on_screen_pic = 9;
+            var on_screen_pic = 10;
 
-            var slider_diff = 60;
+            var slider_diff = 55;
 
             var x = $("#cont").position();
 
@@ -229,7 +229,7 @@ $(function () {
         },
         btnLeft_Click: function() {
 
-            var slider_diff = 60;
+            var slider_diff = 55;
 
             var x = $("#cont").position();
 
@@ -294,7 +294,7 @@ $(function () {
                    if (x == 2) {
 
                        $('#info').removeClass("hidden");
-                       $('#info').html("Вы не можете заблокировать эту комнату, так как указаное время уже прошло.");
+                       $('#info').html("Вы не можете заблокировать эту комнату, так как указанное время уже прошло.");
                    }
                    else if (x == 1) {
 
@@ -585,7 +585,7 @@ $(function () {
 
             var roomName = $("#room_name").html();
 
-            if (newCapacity == "" || newCapacity > 200 || !newCapacity.isNumber || newCapacity<=0) {
+            if (newCapacity == "" || newCapacity > 200 || newCapacity<=0) {
                 $("#new-capacity").addClass("has-error");
             } else {
 

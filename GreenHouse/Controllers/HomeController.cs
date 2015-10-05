@@ -17,8 +17,14 @@ namespace GreenHouse.Controllers
             //для инициализации бд
             //DBInitialization init = new DBInitialization();
             //init.Initialization(db);
-
-            if (Session["IsAuthenticated"] == null)
+            try
+            {
+                if (Session["IsAuthenticated"] == null)
+                {
+                    Session["IsAuthenticated"] = false;
+                }
+            }
+            catch 
             {
                 Session["IsAuthenticated"] = false;
             }

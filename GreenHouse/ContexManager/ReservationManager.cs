@@ -119,7 +119,7 @@ namespace GreenHouse.ContexManager
 
                     td.Placement = "right";
 
-                    if (roomNumber >= 6)
+                    if (roomNumber >= 8)
                     {
                         td.Placement = "left";
                     }
@@ -267,7 +267,7 @@ namespace GreenHouse.ContexManager
 
                     td.Placement = "bottom";
 
-                    if (i == 18 || i == 19 || i == 20 || i == 21)
+                    if (i == 17 || i == 18 || i == 19 || i == 20 || i == 21)
                     {
                         td.Placement = "top";
                     }
@@ -294,7 +294,34 @@ namespace GreenHouse.ContexManager
 
             for (int i = 0; i < 7; i++)
             {
-                list.Add(startdate.DayOfWeek.ToString() + " " + startdate.Day.ToString() + "." + startdate.Month.ToString() + "." + startdate.Year.ToString());
+                string dayName = "";
+
+                switch (startdate.DayOfWeek)
+                {
+                    case DayOfWeek.Monday:
+                        dayName = "Понедельник";
+                        break;
+                    case DayOfWeek.Tuesday:
+                        dayName = "Вторник";
+                        break;
+                    case DayOfWeek.Wednesday:
+                        dayName = "Среда";
+                        break;
+                    case DayOfWeek.Thursday:
+                        dayName = "Четверг";
+                        break;
+                    case DayOfWeek.Friday:
+                        dayName = "Пятница";
+                        break;
+                    case DayOfWeek.Saturday:
+                        dayName = "Суббота";
+                        break;
+                    case DayOfWeek.Sunday:
+                        dayName = "Воскресенье";
+                        break;
+                }
+
+                list.Add(dayName + " " + startdate.Day + "." + startdate.Month + "." + startdate.Year);
 
                 startdate = startdate.AddDays(1);
             }
